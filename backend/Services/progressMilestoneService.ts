@@ -1,5 +1,6 @@
 import { Planner, User } from '../Models';
 import { emailService } from './emailService';
+import logger from './logger';
 
 export interface MilestoneData {
   userId: number;
@@ -66,7 +67,7 @@ export class ProgressMilestoneService {
 
       return milestones;
     } catch (error) {
-      console.error('Error checking progress milestones:', error);
+      logger.error('Error checking progress milestones:', error);
       return [];
     }
   }
@@ -91,11 +92,11 @@ export class ProgressMilestoneService {
       };
 
       const result = await emailService['transporter']?.sendMail(mailOptions);
-      console.log(`Milestone notification sent for ${milestone.progress}% completion:`, result.messageId);
+      logger.info(`Milestone notification sent for ${milestone.progress}% completion:`, result.messageId);
       
       return true;
     } catch (error) {
-      console.error('Failed to send milestone notification:', error);
+      logger.error('Failed to send milestone notification:', error);
       return false;
     }
   }
@@ -223,7 +224,7 @@ export class ProgressMilestoneService {
       const milestones = (planner.planJson as any).milestones || [];
       return milestones.includes(progress);
     } catch (error) {
-      console.error('Error checking milestone achievement:', error);
+      logger.error('Error checking milestone achievement:', error);
       return false;
     }
   }
@@ -248,7 +249,7 @@ export class ProgressMilestoneService {
         await planner.save();
       }
     } catch (error) {
-      console.error('Error marking milestone as achieved:', error);
+      logger.error('Error marking milestone as achieved:', error);
     }
   }
 
@@ -286,7 +287,7 @@ export class ProgressMilestoneService {
 
       return milestones.sort((a, b) => b.progress - a.progress);
     } catch (error) {
-      console.error('Error fetching user milestones:', error);
+      logger.error('Error fetching user milestones:', error);
       return [];
     }
   }

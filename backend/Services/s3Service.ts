@@ -3,6 +3,7 @@ import multer from 'multer';
 import multerS3 from 'multer-s3';
 import path from 'path';
 import { Request } from 'express';
+import logger from './logger';
 
 // Configure AWS SDK
 AWS.config.update({
@@ -90,7 +91,7 @@ export class S3Service {
       const result = await s3.upload(uploadParams).promise();
       return result.Location;
     } catch (error) {
-      console.error('Error uploading file to S3:', error);
+      logger.error('Error uploading file to S3:', error);
       throw new Error('Failed to upload file to S3');
     }
   }
@@ -122,7 +123,7 @@ export class S3Service {
       const result = await s3.upload(uploadParams).promise();
       return result.Location;
     } catch (error) {
-      console.error('Error uploading buffer to S3:', error);
+      logger.error('Error uploading buffer to S3:', error);
       throw new Error('Failed to upload buffer to S3');
     }
   }
@@ -139,7 +140,7 @@ export class S3Service {
 
       return await s3.getObject(params).promise();
     } catch (error) {
-      console.error('Error getting file from S3:', error);
+      logger.error('Error getting file from S3:', error);
       throw new Error('Failed to get file from S3');
     }
   }
@@ -157,7 +158,7 @@ export class S3Service {
       await s3.deleteObject(params).promise();
       return true;
     } catch (error) {
-      console.error('Error deleting file from S3:', error);
+      logger.error('Error deleting file from S3:', error);
       return false;
     }
   }
@@ -175,7 +176,7 @@ export class S3Service {
 
       return await s3.getSignedUrl('getObject', params);
     } catch (error) {
-      console.error('Error generating signed URL:', error);
+      logger.error('Error generating signed URL:', error);
       throw new Error('Failed to generate signed URL');
     }
   }
@@ -193,7 +194,7 @@ export class S3Service {
       const result = await s3.listObjectsV2(params).promise();
       return result.Contents || [];
     } catch (error) {
-      console.error('Error listing files from S3:', error);
+      logger.error('Error listing files from S3:', error);
       throw new Error('Failed to list files from S3');
     }
   }
@@ -210,7 +211,7 @@ export class S3Service {
 
       return await s3.headObject(params).promise();
     } catch (error) {
-      console.error('Error getting file metadata from S3:', error);
+      logger.error('Error getting file metadata from S3:', error);
       throw new Error('Failed to get file metadata from S3');
     }
   }
@@ -229,7 +230,7 @@ export class S3Service {
       await s3.copyObject(copyParams).promise();
       return `https://${this.bucketName}.s3.${this.region}.amazonaws.com/${destinationKey}`;
     } catch (error) {
-      console.error('Error copying file in S3:', error);
+      logger.error('Error copying file in S3:', error);
       throw new Error('Failed to copy file in S3');
     }
   }

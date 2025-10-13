@@ -3,11 +3,12 @@ import { Op } from 'sequelize';
 import { Interview, Planner, User } from '../Models';
 import { interviewEligibilityService } from '../Services/interviewEligibilityService';
 import { vapiWorkflowService } from '../Services/vapiWorkflowService';
+import logger from '../Services/logger';
 
 const interviewController = express.Router();
 
 // Get interview eligibility status
-interviewController.get('/api/interview/eligibility', async (req: Request, res: Response) => {
+interviewController.get('/eligibility', async (req: Request, res: Response) => {
   try {
     const rawUserId = req.user?.id;
     const userId = typeof rawUserId === 'string' ? Number(rawUserId) : rawUserId;
@@ -26,7 +27,7 @@ interviewController.get('/api/interview/eligibility', async (req: Request, res: 
       data: eligibility
     });
   } catch (error) {
-    console.error('Failed to check interview eligibility:', error);
+    logger.error('Failed to check interview eligibility:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -35,7 +36,7 @@ interviewController.get('/api/interview/eligibility', async (req: Request, res: 
 });
 
 // Get user's interview history
-interviewController.get('/api/interview/history', async (req: Request, res: Response) => {
+interviewController.get('/history', async (req: Request, res: Response) => {
   try {
     const rawUserId = req.user?.id;
     const userId = typeof rawUserId === 'string' ? Number(rawUserId) : rawUserId;
@@ -54,7 +55,7 @@ interviewController.get('/api/interview/history', async (req: Request, res: Resp
       data: interviews
     });
   } catch (error) {
-    console.error('Failed to fetch interview history:', error);
+    logger.error('Failed to fetch interview history:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -63,7 +64,7 @@ interviewController.get('/api/interview/history', async (req: Request, res: Resp
 });
 
 // Schedule interview manually (if eligible)
-interviewController.post('/api/interview/schedule', async (req: Request, res: Response) => {
+interviewController.post('/schedule', async (req: Request, res: Response) => {
   try {
     const { plannerId, scheduledAt } = req.body as {
       plannerId?: number;
@@ -169,7 +170,7 @@ interviewController.post('/api/interview/schedule', async (req: Request, res: Re
       }
     });
   } catch (error) {
-    console.error('Failed to schedule interview:', error);
+    logger.error('Failed to schedule interview:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -178,7 +179,7 @@ interviewController.post('/api/interview/schedule', async (req: Request, res: Re
 });
 
 // Get specific interview details
-interviewController.get('/api/interview/:id', async (req: Request, res: Response) => {
+interviewController.get('/:id', async (req: Request, res: Response) => {
   try {
     const interviewId = Number(req.params.id);
     const rawUserId = req.user?.id;
@@ -221,7 +222,7 @@ interviewController.get('/api/interview/:id', async (req: Request, res: Response
       data: interview
     });
   } catch (error) {
-    console.error('Failed to fetch interview:', error);
+    logger.error('Failed to fetch interview:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -230,7 +231,7 @@ interviewController.get('/api/interview/:id', async (req: Request, res: Response
 });
 
 // Reschedule interview
-interviewController.put('/api/interview/:id/reschedule', async (req: Request, res: Response) => {
+interviewController.put('/:id/reschedule', async (req: Request, res: Response) => {
   try {
     const interviewId = Number(req.params.id);
     const { scheduledAt } = req.body as { scheduledAt: string };
@@ -298,7 +299,7 @@ interviewController.put('/api/interview/:id/reschedule', async (req: Request, re
       data: interview
     });
   } catch (error) {
-    console.error('Failed to reschedule interview:', error);
+    logger.error('Failed to reschedule interview:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -307,7 +308,7 @@ interviewController.put('/api/interview/:id/reschedule', async (req: Request, re
 });
 
 // Cancel interview
-interviewController.delete('/api/interview/:id', async (req: Request, res: Response) => {
+interviewController.delete('/:id', async (req: Request, res: Response) => {
   try {
     const interviewId = Number(req.params.id);
     const rawUserId = req.user?.id;
@@ -349,7 +350,7 @@ interviewController.delete('/api/interview/:id', async (req: Request, res: Respo
       message: 'Interview cancelled successfully'
     });
   } catch (error) {
-    console.error('Failed to cancel interview:', error);
+    logger.error('Failed to cancel interview:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -358,7 +359,7 @@ interviewController.delete('/api/interview/:id', async (req: Request, res: Respo
 });
 
 // Get interview report (after completion)
-interviewController.get('/api/interview/:id/report', async (req: Request, res: Response) => {
+interviewController.get('/:id/report', async (req: Request, res: Response) => {
   try {
     const interviewId = Number(req.params.id);
     const rawUserId = req.user?.id;
@@ -405,7 +406,7 @@ interviewController.get('/api/interview/:id/report', async (req: Request, res: R
       }
     });
   } catch (error) {
-    console.error('Failed to fetch interview report:', error);
+    logger.error('Failed to fetch interview report:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -414,7 +415,7 @@ interviewController.get('/api/interview/:id/report', async (req: Request, res: R
 });
 
 // Start VAPI interview call
-interviewController.post('/api/interview/:id/start', async (req: Request, res: Response) => {
+interviewController.post('/:id/start', async (req: Request, res: Response) => {
   try {
     const interviewId = Number(req.params.id);
     const { phoneNumber } = req.body as { phoneNumber: string };
@@ -512,7 +513,7 @@ interviewController.post('/api/interview/:id/start', async (req: Request, res: R
       }
     });
   } catch (error) {
-    console.error('Failed to start interview call:', error);
+    logger.error('Failed to start interview call:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -521,7 +522,7 @@ interviewController.post('/api/interview/:id/start', async (req: Request, res: R
 });
 
 // Get VAPI call status
-interviewController.get('/api/interview/:id/status', async (req: Request, res: Response) => {
+interviewController.get('/:id/status', async (req: Request, res: Response) => {
   try {
     const interviewId = Number(req.params.id);
     const rawUserId = req.user?.id;
@@ -567,7 +568,7 @@ interviewController.get('/api/interview/:id/status', async (req: Request, res: R
           }
         });
       } catch (error) {
-        console.error('Failed to get VAPI call status:', error);
+        logger.error('Failed to get VAPI call status:', error);
         return res.status(200).json({
           success: true,
           data: {
@@ -586,7 +587,7 @@ interviewController.get('/api/interview/:id/status', async (req: Request, res: R
       }
     });
   } catch (error) {
-    console.error('Failed to get interview status:', error);
+    logger.error('Failed to get interview status:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 
@@ -595,7 +596,7 @@ interviewController.get('/api/interview/:id/status', async (req: Request, res: R
 });
 
 // Webhook endpoint for VAPI callbacks (when interview is completed)
-interviewController.post('/api/interview/webhook', async (req: Request, res: Response) => {
+interviewController.post('/webhook', async (req: Request, res: Response) => {
   try {
     const { 
       callId, 
@@ -608,7 +609,7 @@ interviewController.post('/api/interview/webhook', async (req: Request, res: Res
       cost
     } = req.body;
 
-    console.log('VAPI webhook received:', { callId, status, endedReason, duration });
+    logger.info('VAPI webhook received:', { callId, status, endedReason, duration });
 
     if (!callId) {
       return res.status(400).json({
@@ -625,7 +626,7 @@ interviewController.post('/api/interview/webhook', async (req: Request, res: Res
     });
 
     if (!interview) {
-      console.log('Interview not found for call ID:', callId);
+      logger.info('Interview not found for call ID:', callId);
       return res.status(404).json({
         success: false,
         message: 'Interview not found'
@@ -638,7 +639,7 @@ interviewController.post('/api/interview/webhook', async (req: Request, res: Res
       try {
         evaluationResult = await vapiWorkflowService.processInterviewResults(transcript, { functionCalls });
       } catch (error) {
-        console.error('Error processing interview results:', error);
+        logger.error('Error processing interview results:', error);
       }
     }
 
@@ -649,7 +650,7 @@ interviewController.post('/api/interview/webhook', async (req: Request, res: Res
     interview.recordingUrl = recordingUrl;
     await interview.save();
 
-    console.log(`✅ Interview ${interview.id} completed with transcript and evaluation`);
+    logger.info(`✅ Interview ${interview.id} completed with transcript and evaluation`);
 
     return res.status(200).json({
       success: true,
@@ -662,7 +663,7 @@ interviewController.post('/api/interview/webhook', async (req: Request, res: Res
       }
     });
   } catch (error) {
-    console.error('Failed to process interview webhook:', error);
+    logger.error('Failed to process interview webhook:', error);
     return res.status(500).json({ 
       success: false, 
       message: 'Internal Server Error' 

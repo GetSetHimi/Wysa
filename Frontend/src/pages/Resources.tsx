@@ -46,11 +46,32 @@ interface ResourceGenerationData {
   downloadUrl: string
 }
 
+interface SavedResource {
+  id: number
+  title: string
+  description: string
+  resourceType: 'video' | 'article' | 'course' | 'book' | 'tool' | 'other'
+  url?: string
+  content?: string
+  tags: string[]
+  difficulty: 'beginner' | 'intermediate' | 'advanced'
+  estimatedHours: number
+  completed: boolean
+  completedAt?: Date
+  rating?: number
+  notes?: string
+  source: 'ai_generated' | 'user_added' | 'recommended'
+  metadata?: any
+  createdAt: Date
+  updatedAt: Date
+}
+
 export const Resources: React.FC = () => {
   const { user } = useAuth()
   const [loading, setLoading] = useState(false)
   const [generated, setGenerated] = useState(false)
   const [resourceData, setResourceData] = useState<ResourceGenerationData | null>(null)
+  const [savedResources, setSavedResources] = useState<SavedResource[]>([])
   const [userProfile, setUserProfile] = useState<any>(null)
   const [generationForm, setGenerationForm] = useState({
     role: '',
@@ -63,6 +84,7 @@ export const Resources: React.FC = () => {
 
   useEffect(() => {
     fetchUserProfile()
+    fetchSavedResources()
   }, [])
 
   const fetchUserProfile = async () => {
@@ -81,6 +103,23 @@ export const Resources: React.FC = () => {
       }
     } catch (error) {
       console.log('No profile found')
+    }
+  }
+
+  const fetchSavedResources = async () => {
+    try {
+      if (user?.id) {
+        const response = await resourceAPI.getUserResources(user.id)
+        if (response.data.data) {
+          setSavedResources(response.data.data)
+          // If we have saved resources, show them instead of the generation form
+          if (response.data.data.length > 0) {
+            setGenerated(true)
+          }
+        }
+      }
+    } catch (error) {
+      console.log('No saved resources found')
     }
   }
 
@@ -103,6 +142,8 @@ export const Resources: React.FC = () => {
 
       setResourceData(response.data.data)
       setGenerated(true)
+      // Also fetch the saved resources to show them
+      await fetchSavedResources()
       toast.success('Personalized resources generated successfully!')
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Failed to generate resources')
@@ -136,6 +177,122 @@ export const Resources: React.FC = () => {
       case 'mixed': return BookOpen
       default: return BookOpen
     }
+  }
+
+  const getSavedResourceIcon = (type: string) => {
+    switch (type) {
+      case 'video': return Play
+      case 'article': return FileText
+      case 'course': return BookOpen
+      case 'book': return BookOpen
+      case 'tool': return Target
+      default: return BookOpen
+    }
+  }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  }
+
+  // Show saved resources if they exist
+  if (generated && savedResources.length > 0) {
+    return (
+      <div className="max-w-6xl mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Your Learning Resources</h1>
+            <p className="mt-1 text-sm text-gray-500">
+              {savedResources.length} saved resources
+            </p>
+          </div>
+          <button
+            onClick={() => {
+              setGenerated(false)
+              setResourceData(null)
+            }}
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+          >
+            <Brain className="h-4 w-4 mr-2" />
+            Generate New Resources
+          </button>
+        </div>
+
+        {/* Resources Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {savedResources.map((resource) => {
+            const ResourceIcon = getSavedResourceIcon(resource.resourceType)
+            return (
+              <div key={resource.id} className="bg-white shadow rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center">
+                    <div className="p-2 rounded-md bg-blue-100">
+                      <ResourceIcon className="h-5 w-5 text-blue-600" />
+                    </div>
+                    <div className="ml-3">
+                      <h3 className="text-lg font-medium text-gray-900">{resource.title}</h3>
+                      <p className="text-sm text-gray-500 capitalize">{resource.resourceType}</p>
+                    </div>
+                  </div>
+                  {resource.completed && (
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                  )}
+                </div>
+
+                <p className="text-sm text-gray-600 mb-4">{resource.description}</p>
+
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(resource.difficulty)}`}>
+                    {resource.difficulty}
+                  </span>
+                  <div className="flex items-center text-sm text-gray-500">
+                    <Clock className="h-4 w-4 mr-1" />
+                    {resource.estimatedHours}h
+                  </div>
+                </div>
+
+                {resource.tags && resource.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mb-4">
+                    {resource.tags.slice(0, 3).map((tag, index) => (
+                      <span key={index} className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                        <Tag className="h-3 w-3 mr-1" />
+                        {tag}
+                      </span>
+                    ))}
+                    {resource.tags.length > 3 && (
+                      <span className="text-xs text-gray-500">+{resource.tags.length - 3} more</span>
+                    )}
+                  </div>
+                )}
+
+                {resource.url && (
+                  <a
+                    href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-sm text-blue-600 hover:text-blue-500"
+                  >
+                    <ExternalLink className="h-4 w-4 mr-1" />
+                    Open Resource
+                  </a>
+                )}
+
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <span>Added {formatDate(resource.createdAt)}</span>
+                    <span className="capitalize">{resource.source.replace('_', ' ')}</span>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    )
   }
 
   if (generated && resourceData) {

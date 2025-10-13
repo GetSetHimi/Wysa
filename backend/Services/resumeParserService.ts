@@ -1,6 +1,7 @@
 import express from 'express';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import 'dotenv/config';
+import logger from './logger';
 
 const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? 'gemini-1.5-flash';
 const apiKey = process.env.GEMINI_API_KEY;
@@ -182,7 +183,7 @@ function parseJsonResponse(textResponse: string): ResumeAnalysisResult {
       additionalNotes: parsed.additionalNotes ?? undefined,
     } satisfies ResumeAnalysisResult;
   } catch (error) {
-    console.error('Failed to parse Gemini response as JSON:', error);
+    logger.error('Failed to parse Gemini response as JSON:', error);
     return {
       ...FALLBACK_RESPONSE,
       summary: `${FALLBACK_RESPONSE.summary} Raw response: ${textResponse.slice(0, 500)}`,
@@ -279,13 +280,13 @@ export async function analyzeResumeWithGemini(
     const text = result.response?.text();
 
     if (!text) {
-      console.warn('Gemini returned empty response for resume analysis.');
+      logger.warn('Gemini returned empty response for resume analysis.');
       return analyzeResumeBasic(input.resumeContent, input.desiredRole);
     }
 
     return parseJsonResponse(text);
   } catch (error) {
-    console.error('Gemini resume analysis failed:', error);
+    logger.error('Gemini resume analysis failed:', error);
     return analyzeResumeBasic(input.resumeContent, input.desiredRole);
   }
 }
@@ -298,7 +299,7 @@ resumeParserService.get('/api/resume/:id', async (req, res) => {
 
    }
     catch(error){
-        console.error(error);
+        logger.error(error);
         return res.status(500).send('Internal Server Error');
     }
 })  

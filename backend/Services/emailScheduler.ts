@@ -2,6 +2,7 @@ import * as cron from 'node-cron';
 import { emailService } from './emailService';
 import { User, Profile, Planner } from '../Models';
 import { Op } from 'sequelize';
+import logger from './logger';
 
 export class EmailScheduler {
   private isRunning: boolean = false;
@@ -15,7 +16,7 @@ export class EmailScheduler {
    * Initialize all scheduled email jobs
    */
   private initializeScheduler(): void {
-    console.log('🕐 Initializing email scheduler...');
+    logger.info('🕐 Initializing email scheduler...');
     
     // Schedule daily plan emails for all users
     this.scheduleDailyPlanEmails();
@@ -23,7 +24,7 @@ export class EmailScheduler {
     // Schedule interview reminders (to be implemented)
     this.scheduleInterviewReminders();
     
-    console.log('✅ Email scheduler initialized successfully');
+    logger.info('✅ Email scheduler initialized successfully');
   }
 
   /**
@@ -36,12 +37,12 @@ export class EmailScheduler {
       if (this.isRunning) return;
       
       this.isRunning = true;
-      console.log('📧 Starting daily plan email job...');
+      logger.info('📧 Starting daily plan email job...');
       
       try {
         await this.sendDailyEmailsToUsers();
       } catch (error) {
-        console.error('❌ Error in daily plan email job:', error);
+        logger.error('❌ Error in daily plan email job:', error);
       } finally {
         this.isRunning = false;
       }
@@ -50,7 +51,7 @@ export class EmailScheduler {
     });
 
     this.jobs.set('daily-plan-emails', job);
-    console.log('📅 Daily plan emails scheduled (every hour)');
+    logger.info('📅 Daily plan emails scheduled (every hour)');
   }
 
   /**
@@ -59,14 +60,14 @@ export class EmailScheduler {
    */
   private scheduleInterviewReminders(): void {
     const job = cron.schedule('*/30 * * * *', async () => {
-      console.log('📞 Checking for interview reminders...');
+      logger.info('📞 Checking for interview reminders...');
       // TODO: Implement when interview system is ready
     }, {
       timezone: 'UTC'
     });
 
     this.jobs.set('interview-reminders', job);
-    console.log('📅 Interview reminders scheduled (every 30 minutes)');
+    logger.info('📅 Interview reminders scheduled (every 30 minutes)');
   }
 
   /**
@@ -102,11 +103,11 @@ export class EmailScheduler {
             await this.sendDailyEmailToUser(user.id);
           }
         } catch (error) {
-          console.error(`❌ Failed to process user ${user.id}:`, error);
+          logger.error(`❌ Failed to process user ${user.id}:`, error);
         }
       }
     } catch (error) {
-      console.error('❌ Error in sendDailyEmailsToUsers:', error);
+      logger.error('❌ Error in sendDailyEmailsToUsers:', error);
     }
   }
 
@@ -126,7 +127,7 @@ export class EmailScheduler {
       });
 
       if (!planner) {
-        console.log(`⚠️ No active planner found for user ${userId}`);
+        logger.info(`⚠️ No active planner found for user ${userId}`);
         return;
       }
 
@@ -137,12 +138,12 @@ export class EmailScheduler {
       const success = await emailService.sendDailyPlanEmail(userId, planner.id, dayIndex);
       
       if (success) {
-        console.log(`✅ Daily plan email sent to user ${userId} (Day ${dayIndex + 1})`);
+        logger.info(`✅ Daily plan email sent to user ${userId} (Day ${dayIndex + 1})`);
       } else {
-        console.log(`❌ Failed to send daily plan email to user ${userId}`);
+        logger.info(`❌ Failed to send daily plan email to user ${userId}`);
       }
     } catch (error) {
-      console.error(`❌ Error sending daily email to user ${userId}:`, error);
+      logger.error(`❌ Error sending daily email to user ${userId}:`, error);
     }
   }
 
@@ -155,7 +156,7 @@ export class EmailScheduler {
       const localTime = new Date(now.toLocaleString('en-US', { timeZone: timezone }));
       return localTime.getHours();
     } catch (error) {
-      console.error(`❌ Invalid timezone: ${timezone}`);
+      logger.error(`❌ Invalid timezone: ${timezone}`);
       return 0;
     }
   }
@@ -179,7 +180,7 @@ export class EmailScheduler {
       await this.sendDailyEmailToUser(userId);
       return true;
     } catch (error) {
-      console.error(`❌ Failed to trigger daily email for user ${userId}:`, error);
+      logger.error(`❌ Failed to trigger daily email for user ${userId}:`, error);
       return false;
     }
   }
@@ -188,7 +189,7 @@ export class EmailScheduler {
    * Manually trigger daily emails for all users
    */
   async triggerDailyEmailsForAllUsers(): Promise<void> {
-    console.log('📧 Manually triggering daily emails for all users...');
+    logger.info('📧 Manually triggering daily emails for all users...');
     await this.sendDailyEmailsToUsers();
   }
 
@@ -198,7 +199,7 @@ export class EmailScheduler {
   start(): void {
     this.jobs.forEach((job, name) => {
       job.start();
-      console.log(`▶️ Started job: ${name}`);
+      logger.info(`▶️ Started job: ${name}`);
     });
   }
 
@@ -208,7 +209,7 @@ export class EmailScheduler {
   stop(): void {
     this.jobs.forEach((job, name) => {
       job.stop();
-      console.log(`⏹️ Stopped job: ${name}`);
+      logger.info(`⏹️ Stopped job: ${name}`);
     });
   }
 
@@ -218,7 +219,7 @@ export class EmailScheduler {
   destroy(): void {
     this.jobs.forEach((job, name) => {
       job.destroy();
-      console.log(`🗑️ Destroyed job: ${name}`);
+      logger.info(`🗑️ Destroyed job: ${name}`);
     });
     this.jobs.clear();
   }

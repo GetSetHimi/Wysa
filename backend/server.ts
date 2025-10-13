@@ -78,18 +78,18 @@ app.get('/', (_req, res) => {
 
 // Public routes (no authentication required)
 app.use('/api/auth', authController);
-app.use('/chat', apiRateLimit, chatController);
+app.use('/api/chat', apiRateLimit, chatController);
 
 // Protected routes (authentication required)
-app.use(requireAuth);
-app.use(apiRateLimit, profileController);
-app.use(uploadRateLimit, resumeController);
-app.use(apiRateLimit, plannerController);
-app.use(apiRateLimit, notificationController);
-app.use(apiRateLimit, pdfController);
-app.use(apiRateLimit, interviewController);
-app.use(apiRateLimit, s3Controller);
-app.use(apiRateLimit, resourceController);
+app.use('/api', requireAuth);
+app.use('/api/profile', apiRateLimit, profileController);
+app.use('/api/resume', uploadRateLimit, resumeController);
+app.use('/api/planner', apiRateLimit, plannerController);
+app.use('/api/notifications', apiRateLimit, notificationController);
+app.use('/api/pdf', apiRateLimit, pdfController);
+app.use('/api/interview', apiRateLimit, interviewController);
+app.use('/api/s3', apiRateLimit, s3Controller);
+app.use('/api/resources', apiRateLimit, resourceController);
 
 // Error handling middleware (must be last)
 app.use(notFoundHandler);
@@ -102,7 +102,7 @@ async function initializeDatabase() {
     await sequelize.authenticate();
     logger.info('✅ Connected to Postgres (Neon) successfully');
     
-    await sequelize.sync({ force: false, alter: true });
+    await sequelize.sync({ force: false, alter: false });
     logger.info('✅ Database synchronized successfully');
   } catch (error) {
     logger.error('❌ Database initialization failed:', error);

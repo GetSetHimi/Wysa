@@ -1,0 +1,717 @@
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:01:41.607Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:01:41.850Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:01:41.861Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:01:41.862Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:01:41.862Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:01:42.095Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:01:42.095Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:01:42.095Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:01:42.095Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:01:42.095Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:01:42.095Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:01:46.439Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:02:13.063Z"}
+{"level":"info","message":"SIGINT received, shutting down gracefully","timestamp":"2025-10-13T18:02:59.711Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:03:04.990Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:03:05.234Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:03:05.244Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:03:05.245Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:03:05.245Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:03:05.470Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:03:05.470Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:03:05.471Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:03:05.471Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:03:05.471Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:03:05.471Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:03:09.815Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:03:35.435Z"}
+{"level":"info","message":"POST /login - 401 - 1933ms","timestamp":"2025-10-13T18:03:56.023Z"}
+{"level":"info","message":"POST /login - 401 - 1966ms","timestamp":"2025-10-13T18:04:09.228Z"}
+{"level":"info","message":"POST /login - 401 - 2001ms","timestamp":"2025-10-13T18:04:25.794Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:05:27.587Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:05:27.822Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:05:27.832Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:05:27.833Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:05:27.833Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:05:28.070Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:05:28.070Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:05:28.070Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:05:28.070Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:05:28.070Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:05:28.070Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:05:34.398Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:05:40.824Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:05:41.128Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:05:41.139Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:05:41.140Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:05:41.140Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:05:41.449Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:05:41.449Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:05:41.449Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:05:41.450Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:05:41.450Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:05:41.450Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:05:40.793Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:05:41.085Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:05:41.096Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:05:41.097Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:05:41.098Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:05:41.451Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:05:41.451Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:05:41.451Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:05:41.451Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:05:41.452Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:05:41.452Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:05:46.657Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:05:47.501Z"}
+{"level":"info","message":"POST /login - 200 - 335ms","timestamp":"2025-10-13T18:05:56.529Z"}
+{"level":"info","message":"GET /api/profile - 404 - 2ms","timestamp":"2025-10-13T18:05:56.582Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:05:56.585Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:05:56.587Z"}
+{"level":"info","message":"GET /api/profile - 404 - 4ms","timestamp":"2025-10-13T18:05:56.592Z"}
+{"level":"info","message":"GET /api/today - 404 - 2ms","timestamp":"2025-10-13T18:05:56.596Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:05:56.598Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:05:56.600Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:05:56.603Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:05:56.608Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:05:56.610Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:05:56.612Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:05:56.613Z"}
+{"level":"info","message":"GET /me - 200 - 285ms","timestamp":"2025-10-13T18:05:56.890Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:05:56.921Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:05:56.922Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:05:56.923Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:05:56.925Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:05:56.926Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:05:56.930Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:06:10.535Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:06:10.546Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:06:13.504Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:06:13.508Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:06:14.906Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:06:16.986Z"}
+{"level":"info","message":"POST /api/profile - 404 - 2ms","timestamp":"2025-10-13T18:06:46.361Z"}
+{"level":"info","message":"GET /me - 200 - 2368ms","timestamp":"2025-10-13T18:06:58.924Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:06:58.959Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:06:58.961Z"}
+{"level":"info","message":"GET /me - 200 - 267ms","timestamp":"2025-10-13T18:06:59.194Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:07:01.278Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:07:01.286Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:07:01.288Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:07:01.290Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:07:01.291Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:07:01.293Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:07:01.295Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:07:01.296Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:07:01.299Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:07:01.301Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:07:01.302Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:07:01.304Z"}
+{"level":"info","message":"GET /api/profile - 404 - 2ms","timestamp":"2025-10-13T18:07:02.111Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:07:02.114Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:07:13.449Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:07:13.452Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:08:26.063Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:08:26.066Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:08:26.068Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:08:26.074Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:08:26.076Z"}
+{"level":"info","message":"GET /api/profile - 404 - 0ms","timestamp":"2025-10-13T18:08:26.077Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:08:26.078Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:08:26.080Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:08:26.082Z"}
+{"level":"info","message":"GET /api/profile - 404 - 1ms","timestamp":"2025-10-13T18:08:26.083Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:08:26.085Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:08:26.088Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:09:01.729Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:09:02.026Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:09:02.036Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:09:02.037Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:09:02.038Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:09:02.358Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:09:02.358Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:09:02.359Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:09:02.359Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:09:02.360Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:09:02.360Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:09:01.729Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:09:02.026Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:09:02.037Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:09:02.038Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:09:02.038Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:09:02.361Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:09:02.361Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:09:02.361Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:09:02.362Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:09:02.362Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:09:02.362Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:09:17.395Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:09:17.703Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:09:17.714Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:09:17.715Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:09:17.715Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:09:17.990Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:09:17.991Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:09:17.991Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:09:17.992Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:09:17.992Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:09:17.992Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:09:17.407Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:09:17.706Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:09:17.718Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:09:17.719Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:09:17.721Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:09:17.990Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:09:17.990Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:09:17.991Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:09:17.991Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:09:17.991Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:09:17.991Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:09:22.206Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:09:22.452Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:10:04.829Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:10:05.135Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:10:05.147Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:10:05.148Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:10:05.148Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:10:05.463Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:10:05.463Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:10:05.463Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:10:05.463Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:10:05.463Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:10:05.464Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:10:04.804Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:10:05.112Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:10:05.124Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:10:05.125Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:10:05.126Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:10:05.463Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:10:05.464Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:10:05.464Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:10:05.464Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:10:05.465Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:10:05.465Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:10:19.985Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:10:20.286Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:10:20.299Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:10:20.300Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:10:20.300Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:10:20.570Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:10:20.570Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:10:20.571Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:10:20.571Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:10:20.571Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:10:20.571Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:10:20.018Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:10:20.320Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:10:20.333Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:10:20.334Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:10:20.334Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:10:20.607Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:10:20.608Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:10:20.608Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:10:20.608Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:10:20.608Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:10:20.608Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:10:25.797Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:10:26.101Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:10:26.113Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:10:26.114Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:10:26.115Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:10:26.381Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:10:26.381Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:10:26.382Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:10:26.383Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:10:26.383Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:10:26.383Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:10:25.830Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:10:26.140Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:10:26.152Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:10:26.153Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:10:26.154Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:10:26.417Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:10:26.417Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:10:26.417Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:10:26.418Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:10:26.418Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:10:26.418Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:11:17.934Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:11:18.257Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:11:18.269Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:11:18.270Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:11:18.271Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:11:18.664Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:11:18.664Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:11:18.664Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:11:18.665Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:11:18.665Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:11:18.665Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:11:17.983Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:11:18.299Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:11:18.312Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:11:18.314Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:11:18.315Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:11:18.673Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:11:18.673Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:11:18.673Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:11:18.673Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:11:18.674Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:11:18.674Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:11:22.974Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:11:22.974Z"}
+{"level":"info","message":"GET / - 200 - 1ms","timestamp":"2025-10-13T18:11:25.145Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:11:26.134Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:11:26.405Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:11:26.417Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:11:26.418Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:11:26.418Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:11:26.758Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:11:26.758Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:11:26.758Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:11:26.759Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:11:26.759Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:11:26.759Z"}
+{"level":"info","message":"GET /profile - 401 - 5ms","timestamp":"2025-10-13T18:11:27.117Z"}
+{"constraint":"profiles_userId_fkey","level":"error","message":"❌ Database initialization failed: Unknown constraint error","name":"SequelizeUnknownConstraintError","original":{"code":"42704","file":"tablecmds.c","length":141,"line":"12648","name":"error","routine":"ATExecDropConstraint","severity":"ERROR","sql":"ALTER TABLE \"profiles\" DROP CONSTRAINT \"profiles_userId_fkey\""},"parameters":{},"parent":{"code":"42704","file":"tablecmds.c","length":141,"line":"12648","name":"error","routine":"ATExecDropConstraint","severity":"ERROR","sql":"ALTER TABLE \"profiles\" DROP CONSTRAINT \"profiles_userId_fkey\""},"sql":"ALTER TABLE \"profiles\" DROP CONSTRAINT \"profiles_userId_fkey\"","stack":"Error\n    at Query.run (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/dialects/postgres/query.js:76:25)\n    at /Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/sequelize.js:650:28\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Function.sync (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/model.js:1402:17)\n    at async Sequelize.sync (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/sequelize.js:825:9)\n    at async initializeDatabase (/Users/hexahealth/Desktop/Personal/Wysa/backend/server.ts:105:5)","table":"profiles","timestamp":"2025-10-13T18:11:27.619Z"}
+{"level":"info","message":"GET /today - 401 - 1ms","timestamp":"2025-10-13T18:11:29.304Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:11:31.044Z"}
+{"level":"info","message":"GET /notifications - 401 - 0ms","timestamp":"2025-10-13T18:11:32.266Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:11:44.646Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:11:45.005Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:11:45.016Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:11:45.017Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:11:45.017Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:11:45.298Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:11:45.298Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:11:45.299Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:11:45.300Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:11:45.300Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:11:45.300Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:11:44.644Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:11:45.011Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:11:45.022Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:11:45.024Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:11:45.024Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:11:45.307Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:11:45.308Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:11:45.308Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:11:45.308Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:11:45.308Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:11:45.308Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:11:49.560Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:11:52.575Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:11:52.858Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:11:52.870Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:11:52.871Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:11:52.871Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:11:53.143Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:11:53.143Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:11:53.144Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:11:53.145Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:11:53.145Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:11:53.145Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:11:52.575Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:11:52.870Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:11:52.882Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:11:52.883Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:11:52.883Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:11:53.168Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:11:53.168Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:11:53.168Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:11:53.169Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:11:53.169Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:11:53.169Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:11:57.573Z"}
+{"level":"info","message":"GET /me - 200 - 3892ms","timestamp":"2025-10-13T18:11:57.580Z"}
+{"level":"info","message":"GET / - 200 - 2913ms","timestamp":"2025-10-13T18:11:57.583Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:57.634Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:57.636Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:57.639Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:57.641Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:11:57.671Z"}
+{"level":"info","message":"GET /me - 200 - 238ms","timestamp":"2025-10-13T18:11:57.822Z"}
+{"level":"info","message":"GET /api/today - 404 - 3ms","timestamp":"2025-10-13T18:11:57.839Z"}
+{"level":"info","message":"GET /api/today - 404 - 2ms","timestamp":"2025-10-13T18:11:57.843Z"}
+{"level":"info","message":"GET / - 200 - 234ms","timestamp":"2025-10-13T18:11:57.860Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:57.868Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:57.874Z"}
+{"level":"info","message":"GET / - 200 - 237ms","timestamp":"2025-10-13T18:11:58.099Z"}
+{"level":"info","message":"GET / - 200 - 238ms","timestamp":"2025-10-13T18:11:58.340Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:11:58.424Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:58.425Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:58.426Z"}
+{"level":"info","message":"GET /user/2 - 200 - 557ms","timestamp":"2025-10-13T18:11:58.427Z"}
+{"level":"info","message":"GET / - 200 - 240ms","timestamp":"2025-10-13T18:11:58.583Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:11:58.678Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:58.679Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:58.679Z"}
+{"level":"info","message":"GET /user/2 - 200 - 242ms","timestamp":"2025-10-13T18:11:58.679Z"}
+{"level":"info","message":"GET /user/0 - 200 - 241ms","timestamp":"2025-10-13T18:11:58.685Z"}
+{"level":"info","message":"GET / - 200 - 325ms","timestamp":"2025-10-13T18:11:58.913Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:11:58.919Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:58.919Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:58.919Z"}
+{"level":"info","message":"GET /user/2 - 200 - 238ms","timestamp":"2025-10-13T18:11:58.920Z"}
+{"level":"info","message":"GET /user/0 - 200 - 363ms","timestamp":"2025-10-13T18:11:59.050Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:59.058Z"}
+{"level":"info","message":"GET / - 200 - 234ms","timestamp":"2025-10-13T18:11:59.149Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:11:59.290Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:59.290Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:59.291Z"}
+{"level":"info","message":"GET /user/2 - 200 - 370ms","timestamp":"2025-10-13T18:11:59.292Z"}
+{"level":"info","message":"GET /user/0 - 200 - 327ms","timestamp":"2025-10-13T18:11:59.380Z"}
+{"level":"info","message":"GET / - 200 - 413ms","timestamp":"2025-10-13T18:11:59.565Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:11:59.616Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:59.617Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:59.617Z"}
+{"level":"info","message":"GET /user/2 - 200 - 324ms","timestamp":"2025-10-13T18:11:59.618Z"}
+{"level":"info","message":"GET /user/0 - 200 - 300ms","timestamp":"2025-10-13T18:11:59.683Z"}
+{"level":"info","message":"GET / - 200 - 236ms","timestamp":"2025-10-13T18:11:59.806Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:11:59.858Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:59.858Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:11:59.859Z"}
+{"level":"info","message":"GET /user/2 - 200 - 238ms","timestamp":"2025-10-13T18:11:59.859Z"}
+{"level":"info","message":"GET /user/0 - 200 - 244ms","timestamp":"2025-10-13T18:11:59.929Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:11:59.936Z"}
+{"level":"info","message":"GET / - 200 - 233ms","timestamp":"2025-10-13T18:12:00.042Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:00.102Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.102Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.102Z"}
+{"level":"info","message":"GET /user/2 - 200 - 240ms","timestamp":"2025-10-13T18:12:00.102Z"}
+{"level":"info","message":"GET /user/0 - 200 - 236ms","timestamp":"2025-10-13T18:12:00.168Z"}
+{"level":"info","message":"GET / - 200 - 234ms","timestamp":"2025-10-13T18:12:00.278Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:00.341Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.341Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.341Z"}
+{"level":"info","message":"GET /user/2 - 200 - 237ms","timestamp":"2025-10-13T18:12:00.341Z"}
+{"level":"info","message":"GET /user/0 - 200 - 234ms","timestamp":"2025-10-13T18:12:00.403Z"}
+{"level":"info","message":"GET / - 200 - 323ms","timestamp":"2025-10-13T18:12:00.602Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:00.611Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.612Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.612Z"}
+{"level":"info","message":"GET /user/2 - 200 - 270ms","timestamp":"2025-10-13T18:12:00.613Z"}
+{"level":"info","message":"GET /user/0 - 200 - 247ms","timestamp":"2025-10-13T18:12:00.653Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:00.659Z"}
+{"level":"info","message":"GET / - 200 - 234ms","timestamp":"2025-10-13T18:12:00.849Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:00.851Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.852Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:00.852Z"}
+{"level":"info","message":"GET /user/2 - 200 - 235ms","timestamp":"2025-10-13T18:12:00.852Z"}
+{"level":"info","message":"GET /user/0 - 200 - 236ms","timestamp":"2025-10-13T18:12:00.892Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:01.093Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:01.093Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:01.093Z"}
+{"level":"info","message":"GET /user/2 - 200 - 239ms","timestamp":"2025-10-13T18:12:01.093Z"}
+{"level":"info","message":"GET /user/2 - 200 - 236ms","timestamp":"2025-10-13T18:12:01.097Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:01.335Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:01.335Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:01.335Z"}
+{"level":"info","message":"GET /user/2 - 200 - 240ms","timestamp":"2025-10-13T18:12:01.336Z"}
+{"level":"info","message":"GET /user/2 - 200 - 238ms","timestamp":"2025-10-13T18:12:01.342Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:01.356Z"}
+{"level":"info","message":"GET /user/2 - 200 - 252ms","timestamp":"2025-10-13T18:12:01.610Z"}
+{"level":"info","message":"GET / - 200 - 236ms","timestamp":"2025-10-13T18:12:04.647Z"}
+{"level":"info","message":"GET / - 200 - 232ms","timestamp":"2025-10-13T18:12:04.882Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:04.888Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:04.889Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:04.889Z"}
+{"level":"info","message":"GET /user/2 - 200 - 233ms","timestamp":"2025-10-13T18:12:04.889Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:08.573Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:08.576Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:08.579Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:08.581Z"}
+{"constraint":"planners_userId_fkey","level":"error","message":"❌ Database initialization failed: Unknown constraint error","name":"SequelizeUnknownConstraintError","original":{"code":"42704","file":"tablecmds.c","length":141,"line":"12648","name":"error","routine":"ATExecDropConstraint","severity":"ERROR","sql":"ALTER TABLE \"planners\" DROP CONSTRAINT \"planners_userId_fkey\""},"parameters":{},"parent":{"code":"42704","file":"tablecmds.c","length":141,"line":"12648","name":"error","routine":"ATExecDropConstraint","severity":"ERROR","sql":"ALTER TABLE \"planners\" DROP CONSTRAINT \"planners_userId_fkey\""},"sql":"ALTER TABLE \"planners\" DROP CONSTRAINT \"planners_userId_fkey\"","stack":"Error\n    at Query.run (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/dialects/postgres/query.js:76:25)\n    at /Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/sequelize.js:650:28\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Function.sync (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/model.js:1402:17)\n    at async Sequelize.sync (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/sequelize.js:825:9)\n    at async initializeDatabase (/Users/hexahealth/Desktop/Personal/Wysa/backend/server.ts:105:5)","table":"planners","timestamp":"2025-10-13T18:12:08.768Z"}
+{"level":"info","message":"GET / - 200 - 231ms","timestamp":"2025-10-13T18:12:08.801Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:12:08.808Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:12:08.810Z"}
+{"level":"info","message":"GET / - 200 - 230ms","timestamp":"2025-10-13T18:12:09.033Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:09.041Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.041Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.041Z"}
+{"level":"info","message":"GET /user/2 - 200 - 236ms","timestamp":"2025-10-13T18:12:09.042Z"}
+{"level":"info","message":"GET / - 200 - 236ms","timestamp":"2025-10-13T18:12:09.273Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:09.279Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.279Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.280Z"}
+{"level":"info","message":"GET /user/2 - 200 - 236ms","timestamp":"2025-10-13T18:12:09.280Z"}
+{"level":"info","message":"GET /user/0 - 200 - 234ms","timestamp":"2025-10-13T18:12:09.286Z"}
+{"level":"info","message":"GET / - 200 - 231ms","timestamp":"2025-10-13T18:12:09.506Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:09.515Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.515Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.515Z"}
+{"level":"info","message":"GET /user/2 - 200 - 233ms","timestamp":"2025-10-13T18:12:09.515Z"}
+{"level":"info","message":"GET /user/0 - 200 - 231ms","timestamp":"2025-10-13T18:12:09.519Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:12:09.524Z"}
+{"level":"info","message":"GET / - 200 - 229ms","timestamp":"2025-10-13T18:12:09.737Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:09.748Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.749Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:09.749Z"}
+{"level":"info","message":"GET /user/2 - 200 - 233ms","timestamp":"2025-10-13T18:12:09.750Z"}
+{"level":"info","message":"GET /user/0 - 200 - 240ms","timestamp":"2025-10-13T18:12:09.764Z"}
+{"level":"info","message":"GET / - 200 - 231ms","timestamp":"2025-10-13T18:12:09.971Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:10.003Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.004Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.004Z"}
+{"level":"info","message":"GET /user/2 - 200 - 244ms","timestamp":"2025-10-13T18:12:10.005Z"}
+{"level":"info","message":"GET /user/0 - 200 - 240ms","timestamp":"2025-10-13T18:12:10.006Z"}
+{"level":"info","message":"GET / - 200 - 232ms","timestamp":"2025-10-13T18:12:10.205Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:10.244Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.244Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.244Z"}
+{"level":"info","message":"GET /user/2 - 200 - 236ms","timestamp":"2025-10-13T18:12:10.244Z"}
+{"level":"info","message":"GET /user/0 - 200 - 231ms","timestamp":"2025-10-13T18:12:10.246Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:10.258Z"}
+{"level":"info","message":"GET / - 200 - 231ms","timestamp":"2025-10-13T18:12:10.437Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:10.482Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.482Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.482Z"}
+{"level":"info","message":"GET /user/2 - 200 - 237ms","timestamp":"2025-10-13T18:12:10.483Z"}
+{"level":"info","message":"GET /user/0 - 200 - 234ms","timestamp":"2025-10-13T18:12:10.493Z"}
+{"level":"info","message":"GET / - 200 - 241ms","timestamp":"2025-10-13T18:12:10.690Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:10.729Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.730Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.730Z"}
+{"level":"info","message":"GET /user/2 - 200 - 245ms","timestamp":"2025-10-13T18:12:10.731Z"}
+{"level":"info","message":"GET /user/2 - 200 - 241ms","timestamp":"2025-10-13T18:12:10.735Z"}
+{"level":"info","message":"GET / - 200 - 233ms","timestamp":"2025-10-13T18:12:10.928Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:10.995Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.995Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:10.996Z"}
+{"level":"info","message":"GET /user/2 - 200 - 260ms","timestamp":"2025-10-13T18:12:10.996Z"}
+{"level":"info","message":"GET /user/2 - 200 - 259ms","timestamp":"2025-10-13T18:12:10.998Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:12:11.006Z"}
+{"level":"info","message":"GET / - 200 - 232ms","timestamp":"2025-10-13T18:12:11.163Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:11.245Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:11.245Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:11.245Z"}
+{"level":"info","message":"GET /user/2 - 200 - 246ms","timestamp":"2025-10-13T18:12:11.246Z"}
+{"level":"info","message":"GET /user/2 - 200 - 246ms","timestamp":"2025-10-13T18:12:11.249Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:12:11.503Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:11.503Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:12:11.503Z"}
+{"level":"info","message":"GET /user/2 - 200 - 252ms","timestamp":"2025-10-13T18:12:11.504Z"}
+{"level":"info","message":"GET /user/2 - 200 - 251ms","timestamp":"2025-10-13T18:12:11.506Z"}
+{"level":"info","message":"GET /5/daily-pdf - 200 - 768ms","timestamp":"2025-10-13T18:12:16.843Z"}
+{"level":"info","message":"GET /favicon.ico - 404 - 0ms","timestamp":"2025-10-13T18:12:16.969Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:12:22.555Z"}
+{"level":"info","message":"GET / - 200 - 2040ms","timestamp":"2025-10-13T18:12:35.549Z"}
+{"level":"info","message":"GET / - 200 - 234ms","timestamp":"2025-10-13T18:12:35.786Z"}
+{"level":"info","message":"GET / - 200 - 236ms","timestamp":"2025-10-13T18:12:36.026Z"}
+{"level":"info","message":"GET / - 200 - 249ms","timestamp":"2025-10-13T18:12:36.282Z"}
+{"level":"error","message":"Error analyzing skill gaps: Gemini API error: 404","stack":"Error: Gemini API error: 404\n    at ResourceGenerationService.callGeminiAPI (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:258:13)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async ResourceGenerationService.analyzeSkillGaps (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:117:24)\n    at async ResourceGenerationService.generatePersonalizedResources (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:73:32)\n    at async /Users/hexahealth/Desktop/Personal/Wysa/backend/Controller/resourceController.ts:94:22","timestamp":"2025-10-13T18:12:43.999Z"}
+{"level":"error","message":"Error generating resources: Gemini API error: 404","stack":"Error: Gemini API error: 404\n    at ResourceGenerationService.callGeminiAPI (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:258:13)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async ResourceGenerationService.generateResources (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:151:24)\n    at async ResourceGenerationService.generatePersonalizedResources (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:76:25)\n    at async /Users/hexahealth/Desktop/Personal/Wysa/backend/Controller/resourceController.ts:94:22","timestamp":"2025-10-13T18:12:44.856Z"}
+{"level":"info","message":"POST /generate - 200 - 3316ms","timestamp":"2025-10-13T18:12:45.812Z"}
+{"level":"info","message":"GET /me - 200 - 1930ms","timestamp":"2025-10-13T18:13:10.192Z"}
+{"level":"info","message":"GET /me - 200 - 234ms","timestamp":"2025-10-13T18:13:10.431Z"}
+{"level":"info","message":"GET / - 200 - 460ms","timestamp":"2025-10-13T18:13:10.681Z"}
+{"level":"info","message":"GET / - 200 - 233ms","timestamp":"2025-10-13T18:13:10.919Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:14:12.871Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:14:13.225Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:14:13.236Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:14:13.237Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:14:13.238Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:14:13.621Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:14:13.621Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:14:13.621Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:14:13.622Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:14:13.622Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:14:13.622Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:14:12.871Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:14:13.225Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:14:13.236Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:14:13.237Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:14:13.237Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:14:13.625Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:14:13.625Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:14:13.626Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:14:13.626Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:14:13.626Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:14:13.626Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:14:14.919Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:14:15.149Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:14:15.159Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:14:15.160Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:14:15.160Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:14:15.375Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:14:15.375Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:14:15.375Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:14:15.376Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:14:15.376Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:14:15.376Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:14:17.994Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:14:18.214Z"}
+{"level":"info","message":"GET / - 200 - 1ms","timestamp":"2025-10-13T18:14:19.054Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:14:19.693Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:14:23.000Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:14:23.226Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:14:24.563Z"}
+{"level":"info","message":"GET / - 200 - 1869ms","timestamp":"2025-10-13T18:14:41.501Z"}
+{"level":"info","message":"GET / - 200 - 241ms","timestamp":"2025-10-13T18:14:41.745Z"}
+{"level":"info","message":"GET / - 200 - 1867ms","timestamp":"2025-10-13T18:14:55.483Z"}
+{"level":"info","message":"GET /resources/user/1 - 401 - 2ms","timestamp":"2025-10-13T18:15:28.144Z"}
+{"level":"info","message":"GET / - 200 - 0ms","timestamp":"2025-10-13T18:15:39.836Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:16:10.711Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:16:11.128Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:16:11.139Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:16:11.140Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:16:11.140Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:16:11.572Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:16:11.572Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:16:11.575Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:16:11.576Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:16:11.576Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:16:11.576Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:16:10.712Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:16:11.127Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:16:11.138Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:16:11.139Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:16:11.139Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:16:11.576Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:16:11.576Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:16:11.577Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:16:11.577Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:16:11.577Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:16:11.577Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:16:10.718Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:16:11.124Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:16:11.136Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:16:11.137Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:16:11.137Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:16:11.588Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:16:11.588Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:16:11.589Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:16:11.589Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:16:11.589Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:16:11.589Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:16:18.996Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:16:19.415Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:16:19.427Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:16:19.428Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:16:19.428Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:16:19.837Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:16:19.837Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:16:19.837Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:16:19.838Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:16:19.838Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:16:19.838Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:16:19.033Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:16:19.449Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:16:19.471Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:16:19.473Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:16:19.473Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:16:19.858Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:16:19.859Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:16:19.859Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:16:19.860Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:16:19.860Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:16:19.860Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-13T18:16:19.052Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-13T18:16:19.498Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-13T18:16:19.513Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-13T18:16:19.515Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-13T18:16:19.516Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-13T18:16:19.894Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-13T18:16:19.894Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-13T18:16:19.894Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-13T18:16:19.895Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-13T18:16:19.895Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-13T18:16:19.895Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:16:24.513Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:16:24.744Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-13T18:16:24.983Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:16:30.034Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:16:30.274Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:16:30.507Z"}
+{"level":"info","message":"POST /login - 200 - 2078ms","timestamp":"2025-10-13T18:16:57.595Z"}
+{"level":"info","message":"GET /api/today - 404 - 2ms","timestamp":"2025-10-13T18:16:57.631Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:16:57.635Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:16:57.636Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:16:57.637Z"}
+{"level":"info","message":"GET / - 200 - 233ms","timestamp":"2025-10-13T18:16:57.872Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:16:57.879Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:16:57.882Z"}
+{"level":"info","message":"GET /me - 200 - 465ms","timestamp":"2025-10-13T18:16:58.104Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:16:58.122Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:16:58.129Z"}
+{"level":"info","message":"GET / - 200 - 461ms","timestamp":"2025-10-13T18:16:58.335Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:16:58.570Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:58.571Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:58.571Z"}
+{"level":"info","message":"GET /user/2 - 200 - 690ms","timestamp":"2025-10-13T18:16:58.572Z"}
+{"level":"info","message":"GET / - 200 - 471ms","timestamp":"2025-10-13T18:16:58.813Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:16:59.050Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:59.050Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:59.051Z"}
+{"level":"info","message":"GET /user/2 - 200 - 476ms","timestamp":"2025-10-13T18:16:59.051Z"}
+{"level":"info","message":"GET /user/0 - 200 - 768ms","timestamp":"2025-10-13T18:16:59.351Z"}
+{"level":"info","message":"GET / - 200 - 800ms","timestamp":"2025-10-13T18:16:59.617Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:16:59.624Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:59.624Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:59.624Z"}
+{"level":"info","message":"GET /user/2 - 200 - 571ms","timestamp":"2025-10-13T18:16:59.624Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:16:59.863Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:59.863Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:16:59.863Z"}
+{"level":"info","message":"GET /user/2 - 200 - 237ms","timestamp":"2025-10-13T18:16:59.863Z"}
+{"level":"info","message":"GET / - 200 - 245ms","timestamp":"2025-10-13T18:16:59.865Z"}
+{"level":"info","message":"GET /user/0 - 200 - 514ms","timestamp":"2025-10-13T18:16:59.869Z"}
+{"level":"info","message":"GET / - 200 - 433ms","timestamp":"2025-10-13T18:17:00.303Z"}
+{"level":"info","message":"GET /user/0 - 200 - 431ms","timestamp":"2025-10-13T18:17:00.304Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:00.308Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:00.309Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:00.309Z"}
+{"level":"info","message":"GET /user/2 - 200 - 433ms","timestamp":"2025-10-13T18:17:00.310Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:17:00.323Z"}
+{"level":"info","message":"GET / - 200 - 243ms","timestamp":"2025-10-13T18:17:00.562Z"}
+{"level":"info","message":"GET /user/0 - 200 - 242ms","timestamp":"2025-10-13T18:17:00.563Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:00.565Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:00.565Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:00.565Z"}
+{"level":"info","message":"GET /user/2 - 200 - 242ms","timestamp":"2025-10-13T18:17:00.566Z"}
+{"level":"info","message":"GET /api/today - 404 - 0ms","timestamp":"2025-10-13T18:17:00.577Z"}
+{"level":"info","message":"GET / - 200 - 245ms","timestamp":"2025-10-13T18:17:00.815Z"}
+{"level":"info","message":"GET /user/0 - 200 - 244ms","timestamp":"2025-10-13T18:17:00.819Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:00.827Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:00.827Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:00.827Z"}
+{"level":"info","message":"GET /user/2 - 200 - 251ms","timestamp":"2025-10-13T18:17:00.828Z"}
+{"level":"info","message":"GET / - 200 - 232ms","timestamp":"2025-10-13T18:17:01.053Z"}
+{"level":"info","message":"GET /user/0 - 200 - 236ms","timestamp":"2025-10-13T18:17:01.061Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:01.068Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.068Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.068Z"}
+{"level":"info","message":"GET /user/2 - 200 - 236ms","timestamp":"2025-10-13T18:17:01.069Z"}
+{"level":"info","message":"GET /user/2 - 200 - 241ms","timestamp":"2025-10-13T18:17:01.079Z"}
+{"level":"info","message":"GET / - 200 - 237ms","timestamp":"2025-10-13T18:17:01.293Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:01.314Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.314Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.314Z"}
+{"level":"info","message":"GET /user/2 - 200 - 243ms","timestamp":"2025-10-13T18:17:01.314Z"}
+{"level":"info","message":"GET /user/2 - 200 - 235ms","timestamp":"2025-10-13T18:17:01.316Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:17:01.323Z"}
+{"level":"info","message":"GET / - 200 - 236ms","timestamp":"2025-10-13T18:17:01.531Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:01.548Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.549Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.549Z"}
+{"level":"info","message":"GET /user/2 - 200 - 234ms","timestamp":"2025-10-13T18:17:01.550Z"}
+{"level":"info","message":"GET /user/2 - 200 - 235ms","timestamp":"2025-10-13T18:17:01.570Z"}
+{"level":"info","message":"GET / - 200 - 231ms","timestamp":"2025-10-13T18:17:01.764Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:01.782Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.783Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:01.783Z"}
+{"level":"info","message":"GET /user/2 - 200 - 232ms","timestamp":"2025-10-13T18:17:01.783Z"}
+{"level":"info","message":"GET /user/2 - 200 - 232ms","timestamp":"2025-10-13T18:17:01.807Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:02.018Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:02.018Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:02.018Z"}
+{"level":"info","message":"GET /user/2 - 200 - 234ms","timestamp":"2025-10-13T18:17:02.019Z"}
+{"level":"info","message":"GET /user/2 - 200 - 234ms","timestamp":"2025-10-13T18:17:02.043Z"}
+{"level":"info","message":"GET /api/today - 404 - 2ms","timestamp":"2025-10-13T18:17:02.052Z"}
+{"level":"info","message":"GET /user/2 - 200 - 235ms","timestamp":"2025-10-13T18:17:02.288Z"}
+{"level":"info","message":"GET / - 200 - 2070ms","timestamp":"2025-10-13T18:17:14.741Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-13T18:17:14.996Z"}
+{"hasParsedJson":true,"id":8,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:14.996Z"}
+{"hasParsedJson":true,"id":7,"level":"info","message":"Resume 2:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-13T18:17:14.996Z"}
+{"level":"info","message":"GET /user/2 - 200 - 243ms","timestamp":"2025-10-13T18:17:14.996Z"}
+{"level":"info","message":"GET /user/2 - 200 - 238ms","timestamp":"2025-10-13T18:17:15.239Z"}
+{"level":"info","message":"GET /api/today - 404 - 1ms","timestamp":"2025-10-13T18:17:15.246Z"}

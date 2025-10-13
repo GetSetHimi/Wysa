@@ -1,5 +1,6 @@
 import { Planner, Interview, User } from '../Models';
 import { emailService } from './emailService';
+import logger from './logger';
 
 export interface InterviewEligibilityResult {
   isEligible: boolean;
@@ -90,7 +91,7 @@ export class InterviewEligibilityService {
       };
 
     } catch (error) {
-      console.error('Error checking interview eligibility:', error);
+      logger.error('Error checking interview eligibility:', error);
       return {
         isEligible: false,
         currentProgress: 0,
@@ -106,14 +107,14 @@ export class InterviewEligibilityService {
         const eligibility = await this.checkInterviewEligibility(userId, plannerId);
         
         if (eligibility.isEligible) {
-          console.log(`🎉 User ${userId} reached 80% completion! Scheduling interview...`);
+          logger.info(`🎉 User ${userId} reached 80% completion! Scheduling interview...`);
           
           // Get user and planner details
           const user = await User.findByPk(userId);
           const planner = await Planner.findByPk(plannerId);
           
           if (!user || !planner) {
-            console.error('User or planner not found for interview scheduling');
+            logger.error('User or planner not found for interview scheduling');
             return false;
           }
 
@@ -138,14 +139,14 @@ export class InterviewEligibilityService {
             progress: newProgress
           });
 
-          console.log(`✅ Interview scheduled for user ${userId} on ${scheduledAt.toISOString()}`);
+          logger.info(`✅ Interview scheduled for user ${userId} on ${scheduledAt.toISOString()}`);
           return true;
         }
       }
 
       return false;
     } catch (error) {
-      console.error('Error handling progress milestone:', error);
+      logger.error('Error handling progress milestone:', error);
       return false;
     }
   }
@@ -175,11 +176,11 @@ export class InterviewEligibilityService {
       };
 
       const result = await emailService['transporter']?.sendMail(mailOptions);
-      console.log('Interview unlock email sent successfully:', result.messageId);
+      logger.info('Interview unlock email sent successfully:', result.messageId);
       
       return true;
     } catch (error) {
-      console.error('Failed to send interview unlock email:', error);
+      logger.error('Failed to send interview unlock email:', error);
       return false;
     }
   }
@@ -291,7 +292,7 @@ export class InterviewEligibilityService {
         order: [['createdAt', 'DESC']]
       });
     } catch (error) {
-      console.error('Error fetching interview history:', error);
+      logger.error('Error fetching interview history:', error);
       return [];
     }
   }
@@ -314,7 +315,7 @@ export class InterviewEligibilityService {
       
       return hoursUntilInterview > 24;
     } catch (error) {
-      console.error('Error checking reschedule eligibility:', error);
+      logger.error('Error checking reschedule eligibility:', error);
       return false;
     }
   }

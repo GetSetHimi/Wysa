@@ -1,10 +1,11 @@
 import express, { Request, Response } from 'express';
 import { resourcePdfService } from '../Services/resourcePdfService';
+import logger from '../Services/logger';
 
 const pdfController = express.Router();
 
 // Generate study guide PDF
-pdfController.post('/api/resources/study-guide', async (req: Request, res: Response) => {
+pdfController.post('/study-guide', async (req: Request, res: Response) => {
   try {
     const { title, content, metadata } = req.body as {
       title: string;
@@ -42,13 +43,13 @@ pdfController.post('/api/resources/study-guide', async (req: Request, res: Respo
       }
     });
   } catch (error) {
-    console.error('Failed to generate study guide PDF:', error);
+    logger.error('Failed to generate study guide PDF:', error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
 
 // Generate practice exercise PDF
-pdfController.post('/api/resources/practice', async (req: Request, res: Response) => {
+pdfController.post('/practice', async (req: Request, res: Response) => {
   try {
     const { title, exercises, answers } = req.body as {
       title: string;
@@ -86,13 +87,13 @@ pdfController.post('/api/resources/practice', async (req: Request, res: Response
       }
     });
   } catch (error) {
-    console.error('Failed to generate practice PDF:', error);
+    logger.error('Failed to generate practice PDF:', error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
 
 // Generate reference guide PDF
-pdfController.post('/api/resources/reference', async (req: Request, res: Response) => {
+pdfController.post('/reference', async (req: Request, res: Response) => {
   try {
     const { title, content, metadata } = req.body as {
       title: string;
@@ -130,13 +131,13 @@ pdfController.post('/api/resources/reference', async (req: Request, res: Respons
       }
     });
   } catch (error) {
-    console.error('Failed to generate reference PDF:', error);
+    logger.error('Failed to generate reference PDF:', error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
 
 // List all available resource PDFs
-pdfController.get('/api/resources/list', async (req: Request, res: Response) => {
+pdfController.get('/list', async (req: Request, res: Response) => {
   try {
     const pdfFiles = await resourcePdfService.listResourcePdfs();
     
@@ -148,13 +149,13 @@ pdfController.get('/api/resources/list', async (req: Request, res: Response) => 
       }
     });
   } catch (error) {
-    console.error('Failed to list resource PDFs:', error);
+    logger.error('Failed to list resource PDFs:', error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
 
 // Download specific resource PDF
-pdfController.get('/api/resources/download/:fileName', async (req: Request<{ fileName: string }>, res: Response) => {
+pdfController.get('/download/:fileName', async (req: Request<{ fileName: string }>, res: Response) => {
   try {
     const { fileName } = req.params;
     
@@ -175,7 +176,7 @@ pdfController.get('/api/resources/download/:fileName', async (req: Request<{ fil
       }
     });
   } catch (error) {
-    console.error('Failed to get resource PDF download URL:', error);
+    logger.error('Failed to get resource PDF download URL:', error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });

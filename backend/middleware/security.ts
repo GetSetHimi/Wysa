@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import { Request, Response, NextFunction } from 'express';
+import logger from '../Services/logger';
 
 // CORS configuration
 export const corsOptions = {
@@ -97,7 +98,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
   
   res.send = function(data) {
     const duration = Date.now() - start;
-    console.log(`${req.method} ${req.path} - ${res.statusCode} - ${duration}ms`);
+    logger.info(`${req.method} ${req.path} - ${res.statusCode} - ${duration}ms`);
     return originalSend.call(this, data);
   };
   
@@ -106,7 +107,7 @@ export const requestLogger = (req: Request, res: Response, next: NextFunction) =
 
 // Error handling middleware
 export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
-  console.error('Error:', err);
+  logger.error('Error:', err);
   
   // Don't leak error details in production
   const isDevelopment = process.env.NODE_ENV === 'development';

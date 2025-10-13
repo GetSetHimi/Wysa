@@ -3,10 +3,11 @@ import { Op } from 'sequelize';
 import { Notification, NotificationCreationAttributes, Planner, User } from '../Models';
 import { emailService } from '../Services/emailService';
 import { emailScheduler } from '../Services/emailScheduler';
+import logger from '../Services/logger';
 
 const notificationController = express.Router();
 
-notificationController.get('/api/notifications', async (req: Request, res) => {
+notificationController.get('/', async (req: Request, res) => {
     try {
         const rawUserId = req.body.userId ?? req.user?.id;
         const userId = typeof rawUserId === 'string' ? Number(rawUserId) : rawUserId;
@@ -16,12 +17,12 @@ notificationController.get('/api/notifications', async (req: Request, res) => {
         const notifications = await Notification.findAll({ where: { userId } });
         return res.status(200).json({ success: true, notifications });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         return res.status(500).send('Internal Server Error');
     }
 });
 
-notificationController.post('/api/notifications', async (req: Request, res) => {
+notificationController.post('/', async (req: Request, res) => {
     try {
         const { message, read, type } = req.body as NotificationCreationAttributes;
         const rawUserId = req.body.userId ?? req.user?.id;
@@ -40,13 +41,13 @@ notificationController.post('/api/notifications', async (req: Request, res) => {
 
         return res.status(201).json({ success: true, notification: newNotification });
     } catch (error) {
-        console.error(error);
+        logger.error(error);
         return res.status(500).send('Internal Server Error');
     }
 });
 
 // Send daily plan email to specific user
-notificationController.post('/api/notifications/sendDailyPlan', async (req: Request, res: Response) => {
+notificationController.post('/sendDailyPlan', async (req: Request, res: Response) => {
     try {
         const { userId, plannerId, dayIndex } = req.body as {
             userId?: number;
@@ -119,7 +120,7 @@ notificationController.post('/api/notifications/sendDailyPlan', async (req: Requ
             });
         }
     } catch (error) {
-        console.error('Failed to send daily plan email:', error);
+        logger.error('Failed to send daily plan email:', error);
         return res.status(500).json({ 
             success: false, 
             message: 'Internal Server Error' 
@@ -128,7 +129,7 @@ notificationController.post('/api/notifications/sendDailyPlan', async (req: Requ
 });
 
 // Get today's tasks for dashboard
-notificationController.get('/api/today', async (req: Request, res: Response) => {
+notificationController.get('/today', async (req: Request, res: Response) => {
     try {
         const rawUserId = req.user?.id;
         const userId = typeof rawUserId === 'string' ? Number(rawUserId) : rawUserId;
@@ -219,7 +220,7 @@ notificationController.get('/api/today', async (req: Request, res: Response) => 
             }
         });
     } catch (error) {
-        console.error('Failed to fetch today\'s tasks:', error);
+        logger.error('Failed to fetch today\'s tasks:', error);
         return res.status(500).json({ 
             success: false, 
             message: 'Internal Server Error' 
@@ -228,7 +229,7 @@ notificationController.get('/api/today', async (req: Request, res: Response) => 
 });
 
 // Test email configuration
-notificationController.get('/api/notifications/test-email', async (req: Request, res: Response) => {
+notificationController.get('/test-email', async (req: Request, res: Response) => {
     try {
         const isValid = await emailService.testEmailConfiguration();
         
@@ -244,7 +245,7 @@ notificationController.get('/api/notifications/test-email', async (req: Request,
             });
         }
     } catch (error) {
-        console.error('Email configuration test failed:', error);
+        logger.error('Email configuration test failed:', error);
         return res.status(500).json({ 
             success: false, 
             message: 'Email configuration test failed' 
@@ -253,7 +254,7 @@ notificationController.get('/api/notifications/test-email', async (req: Request,
 });
 
 // Trigger daily emails for all users (admin endpoint)
-notificationController.post('/api/notifications/trigger-all', async (req: Request, res: Response) => {
+notificationController.post('/trigger-all', async (req: Request, res: Response) => {
     try {
         await emailScheduler.triggerDailyEmailsForAllUsers();
         
@@ -262,7 +263,7 @@ notificationController.post('/api/notifications/trigger-all', async (req: Reques
             message: 'Daily emails triggered for all users' 
         });
     } catch (error) {
-        console.error('Failed to trigger daily emails:', error);
+        logger.error('Failed to trigger daily emails:', error);
         return res.status(500).json({ 
             success: false, 
             message: 'Failed to trigger daily emails' 
@@ -271,7 +272,7 @@ notificationController.post('/api/notifications/trigger-all', async (req: Reques
 });
 
 // Get scheduler status
-notificationController.get('/api/notifications/scheduler-status', async (req: Request, res: Response) => {
+notificationController.get('/scheduler-status', async (req: Request, res: Response) => {
     try {
         const status = emailScheduler.getStatus();
         
@@ -280,7 +281,7 @@ notificationController.get('/api/notifications/scheduler-status', async (req: Re
             data: { status } 
         });
     } catch (error) {
-        console.error('Failed to get scheduler status:', error);
+        logger.error('Failed to get scheduler status:', error);
         return res.status(500).json({ 
             success: false, 
             message: 'Failed to get scheduler status' 

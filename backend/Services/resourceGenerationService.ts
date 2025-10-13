@@ -2,6 +2,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import path from 'path';
 import { Profile, Resume } from '../Models';
+import logger from './logger';
 
 interface ResourceGenerationRequest {
   userId: number;
@@ -83,7 +84,7 @@ export class ResourceGenerationService {
         pdfPath
       };
     } catch (error) {
-      console.error('Error generating personalized resources:', error);
+      logger.error('Error generating personalized resources:', error);
       throw error;
     }
   }
@@ -117,7 +118,7 @@ export class ResourceGenerationService {
       
       return JSON.parse(response);
     } catch (error) {
-      console.error('Error analyzing skill gaps:', error);
+      logger.error('Error analyzing skill gaps:', error);
       // Return fallback analysis
       return {
         missingSkills: ['JavaScript', 'React', 'Node.js'],
@@ -151,7 +152,7 @@ export class ResourceGenerationService {
       
       return JSON.parse(response);
     } catch (error) {
-      console.error('Error generating resources:', error);
+      logger.error('Error generating resources:', error);
       return this.getFallbackResources(request);
     }
   }

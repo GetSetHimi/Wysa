@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { s3Service } from '../Services/s3Service';
 import { requireAuth } from '../middleware/authMiddleware';
+import logger from '../Services/logger';
 
 export const s3Controller = require('express').Router();
 
 // Upload single file
-s3Controller.post('/api/upload/single', requireAuth, s3Service.getUploadMiddleware().single('file'), async (req: Request, res: Response) => {
+s3Controller.post('/upload/single', requireAuth, s3Service.getUploadMiddleware().single('file'), async (req: Request, res: Response) => {
   try {
     if (!req.file) {
       return res.status(400).json({
@@ -29,7 +30,7 @@ s3Controller.post('/api/upload/single', requireAuth, s3Service.getUploadMiddlewa
       }
     });
   } catch (error) {
-    console.error('Error uploading file:', error);
+    logger.error('Error uploading file:', error);
     return res.status(500).json({
       success: false,
       message: 'Failed to upload file'
@@ -38,7 +39,7 @@ s3Controller.post('/api/upload/single', requireAuth, s3Service.getUploadMiddlewa
 });
 
 // Upload multiple files
-s3Controller.post('/api/upload/multiple', requireAuth, s3Service.getUploadMiddleware().array('files', 5), async (req: Request, res: Response) => {
+s3Controller.post('/upload/multiple', requireAuth, s3Service.getUploadMiddleware().array('files', 5), async (req: Request, res: Response) => {
   try {
     const files = req.files as Express.Multer.File[];
     
@@ -66,7 +67,7 @@ s3Controller.post('/api/upload/multiple', requireAuth, s3Service.getUploadMiddle
       }
     });
   } catch (error) {
-    console.error('Error uploading files:', error);
+    logger.error('Error uploading files:', error);
     return res.status(500).json({
       success: false,
       message: 'Failed to upload files'
@@ -75,7 +76,7 @@ s3Controller.post('/api/upload/multiple', requireAuth, s3Service.getUploadMiddle
 });
 
 // Get file by key
-s3Controller.get('/api/file/:key', requireAuth, async (req: Request, res: Response) => {
+s3Controller.get('/file/:key', requireAuth, async (req: Request, res: Response) => {
   try {
     const { key } = req.params;
     
@@ -89,7 +90,7 @@ s3Controller.get('/api/file/:key', requireAuth, async (req: Request, res: Respon
 
     return res.send(file.Body);
   } catch (error) {
-    console.error('Error getting file:', error);
+    logger.error('Error getting file:', error);
     return res.status(404).json({
       success: false,
       message: 'File not found'
@@ -98,7 +99,7 @@ s3Controller.get('/api/file/:key', requireAuth, async (req: Request, res: Respon
 });
 
 // Get signed URL for file access
-s3Controller.get('/api/file/:key/url', requireAuth, async (req: Request, res: Response) => {
+s3Controller.get('/file/:key/url', requireAuth, async (req: Request, res: Response) => {
   try {
     const { key } = req.params;
     const expiresIn = parseInt(req.query.expires as string) || 3600;
@@ -114,7 +115,7 @@ s3Controller.get('/api/file/:key/url', requireAuth, async (req: Request, res: Re
       }
     });
   } catch (error) {
-    console.error('Error generating signed URL:', error);
+    logger.error('Error generating signed URL:', error);
     return res.status(500).json({
       success: false,
       message: 'Failed to generate signed URL'
@@ -123,7 +124,7 @@ s3Controller.get('/api/file/:key/url', requireAuth, async (req: Request, res: Re
 });
 
 // List files in folder
-s3Controller.get('/api/files', requireAuth, async (req: Request, res: Response) => {
+s3Controller.get('/files', requireAuth, async (req: Request, res: Response) => {
   try {
     const prefix = req.query.prefix as string || 'uploads';
     
@@ -146,7 +147,7 @@ s3Controller.get('/api/files', requireAuth, async (req: Request, res: Response) 
       }
     });
   } catch (error) {
-    console.error('Error listing files:', error);
+    logger.error('Error listing files:', error);
     return res.status(500).json({
       success: false,
       message: 'Failed to list files'
@@ -155,7 +156,7 @@ s3Controller.get('/api/files', requireAuth, async (req: Request, res: Response) 
 });
 
 // Get file metadata
-s3Controller.get('/api/file/:key/metadata', requireAuth, async (req: Request, res: Response) => {
+s3Controller.get('/file/:key/metadata', requireAuth, async (req: Request, res: Response) => {
   try {
     const { key } = req.params;
     
@@ -173,7 +174,7 @@ s3Controller.get('/api/file/:key/metadata', requireAuth, async (req: Request, re
       }
     });
   } catch (error) {
-    console.error('Error getting file metadata:', error);
+    logger.error('Error getting file metadata:', error);
     return res.status(404).json({
       success: false,
       message: 'File not found'
@@ -182,7 +183,7 @@ s3Controller.get('/api/file/:key/metadata', requireAuth, async (req: Request, re
 });
 
 // Delete file
-s3Controller.delete('/api/file/:key', requireAuth, async (req: Request, res: Response) => {
+s3Controller.delete('/file/:key', requireAuth, async (req: Request, res: Response) => {
   try {
     const { key } = req.params;
     
@@ -201,7 +202,7 @@ s3Controller.delete('/api/file/:key', requireAuth, async (req: Request, res: Res
       });
     }
   } catch (error) {
-    console.error('Error deleting file:', error);
+    logger.error('Error deleting file:', error);
     return res.status(500).json({
       success: false,
       message: 'Failed to delete file'
@@ -210,7 +211,7 @@ s3Controller.delete('/api/file/:key', requireAuth, async (req: Request, res: Res
 });
 
 // Copy file
-s3Controller.post('/api/file/:key/copy', requireAuth, async (req: Request, res: Response) => {
+s3Controller.post('/file/:key/copy', requireAuth, async (req: Request, res: Response) => {
   try {
     const { key } = req.params;
     const { destinationKey } = req.body;
@@ -234,7 +235,7 @@ s3Controller.post('/api/file/:key/copy', requireAuth, async (req: Request, res: 
       }
     });
   } catch (error) {
-    console.error('Error copying file:', error);
+    logger.error('Error copying file:', error);
     return res.status(500).json({
       success: false,
       message: 'Failed to copy file'
@@ -243,7 +244,7 @@ s3Controller.post('/api/file/:key/copy', requireAuth, async (req: Request, res: 
 });
 
 // Upload buffer (for programmatic uploads)
-s3Controller.post('/api/upload/buffer', requireAuth, async (req: Request, res: Response) => {
+s3Controller.post('/upload/buffer', requireAuth, async (req: Request, res: Response) => {
   try {
     const { buffer, fileName, contentType, folder } = req.body;
     
@@ -275,7 +276,7 @@ s3Controller.post('/api/upload/buffer', requireAuth, async (req: Request, res: R
       }
     });
   } catch (error) {
-    console.error('Error uploading buffer:', error);
+    logger.error('Error uploading buffer:', error);
     return res.status(500).json({
       success: false,
       message: 'Failed to upload buffer'

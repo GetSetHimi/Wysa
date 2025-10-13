@@ -1,4 +1,5 @@
 import express from 'express';
+import logger from '../Services/logger';
 
 const chatController = express.Router();
 
@@ -13,7 +14,7 @@ chatController.post('/', async (req, res) => {
     try {
         const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey || !apiKey.trim()) {
-            console.error('Gemini API key missing or empty');
+            logger.error('Gemini API key missing or empty');
             return res.status(500).json({
                 success: false,
                 message: 'AI service is not configured. Please contact support.',
@@ -48,7 +49,7 @@ chatController.post('/', async (req, res) => {
 
         if (!resp.ok) {
             const text = await resp.text();
-            console.error('Gemini API error:', resp.status, text);
+            logger.error('Gemini API error:', resp.status, text);
             return res.status(502).json({ success: false, message: 'Upstream AI service error' });
         }
 
@@ -57,13 +58,13 @@ chatController.post('/', async (req, res) => {
         const trimmedReply = reply.trim();
 
         if (!trimmedReply) {
-            console.warn('Gemini API responded without usable text');
+            logger.warn('Gemini API responded without usable text');
             return res.status(200).json({ success: true, reply: "" });
         }
 
         return res.status(200).json({ success: true, reply: trimmedReply });
     } catch (error) {
-        console.error('Gemini chat error:', error);
+        logger.error('Gemini chat error:', error);
         return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 });

@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { Resume } from '../Models';
 import { ResumeAnalysisResult } from './resumeParserService';
+import logger from './logger';
 
 // PDF generation service for resume analysis reports
 export class ResumeAnalysisPdfService {
@@ -65,7 +66,7 @@ export class ResumeAnalysisPdfService {
       });
 
     } catch (error) {
-      console.error('Error generating resume analysis PDF:', error);
+      logger.error('Error generating resume analysis PDF:', error);
       throw error;
     }
   }

@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { z } from 'zod';
 import { Planner, Profile, Resume } from '../Models';
 import { dailyPlanPdfService } from '../Services/pdfGeneratorService';
+import logger from '../Services/logger';
 
 const plannerController = express.Router();
 
@@ -64,12 +65,12 @@ const GEMINI_MODEL = process.env.GEMINI_PLANNER_MODEL ?? 'gemini-1.5-flash';
 
 async function callGeminiForPlanner(prompt: string): Promise<GeneratedPlan | null> {
     if (!GEMINI_API_KEY) {
-        console.warn('GEMINI_API_KEY is not configured. Falling back to deterministic planner.');
+        logger.warn('GEMINI_API_KEY is not configured. Falling back to deterministic planner.');
         return null;
     }
 
     if (typeof fetch !== 'function') {
-        console.error('Global fetch is not available in this runtime. Falling back to deterministic planner.');
+        logger.error('Global fetch is not available in this runtime. Falling back to deterministic planner.');
         return null;
     }
 
@@ -106,7 +107,7 @@ User: ${prompt}`
 
             if (!response.ok) {
                 const errorBody = await response.text();
-                console.error('Gemini planner generation failed:', response.status, errorBody);
+                logger.error('Gemini planner generation failed:', response.status, errorBody);
                 continue;
             }
 
@@ -116,7 +117,7 @@ User: ${prompt}`
 
             const rawContent = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
             if (!rawContent) {
-                console.warn('Gemini returned empty content for planner generation.');
+                logger.warn('Gemini returned empty content for planner generation.');
                 continue;
             }
 
@@ -133,10 +134,10 @@ User: ${prompt}`
                 );
                 return parsed;
             } catch (error) {
-                console.error('Failed to parse/validate Gemini planner JSON:', error);
+                logger.error('Failed to parse/validate Gemini planner JSON:', error);
             }
         } catch (error) {
-            console.error('Gemini request error:', error);
+            logger.error('Gemini request error:', error);
         }
     }
 
@@ -331,13 +332,13 @@ function resolveDurationDays(raw?: number): number {
 }
 
 plannerController.post(
-    '/api/planner/generate',
+    '/generate',
     async (req: AuthedPlannerRequest, res: Response) => {
         try {
-            console.log('Planner generation request received:', req.body);
+            logger.info('Planner generation request received:', req.body);
             const userId = req.user?.id;
             if (!userId) {
-                console.error('User ID not found in request');
+                logger.error('User ID not found in request');
                 return res.status(401).json({ success: false, message: 'User ID is required' });
             }
 
@@ -350,23 +351,23 @@ plannerController.post(
                 additionalContext,
             } = req.body ?? {};
 
-            console.log('Request params:', { roleFromBody, startDate, rawDuration, experienceSummary, focusAreas, additionalContext });
+            logger.info('Request params:', { roleFromBody, startDate, rawDuration, experienceSummary, focusAreas, additionalContext });
 
             let profile = null;
             try {
                 profile = await Profile.findOne({ where: { userId } });
-                console.log('Profile found:', profile ? 'Yes' : 'No');
+                logger.info('Profile found:', profile ? 'Yes' : 'No');
             } catch (error) {
-                console.error('Failed to fetch profile for planner generation:', error);
+                logger.error('Failed to fetch profile for planner generation:', error);
                 return res.status(500).json({ success: false, message: 'Failed to fetch user profile' });
             }
 
             const role = roleFromBody ?? profile?.desiredRole ?? 'Software Engineer';
-            console.log('Using role:', role, 'roleFromBody:', roleFromBody, 'profile.desiredRole:', profile?.desiredRole);
+            logger.info('Using role:', role, 'roleFromBody:', roleFromBody, 'profile.desiredRole:', profile?.desiredRole);
 
             // Validate role
             if (!role || typeof role !== 'string' || role.trim().length === 0) {
-                console.error('Invalid role provided:', role);
+                logger.error('Invalid role provided:', role);
                 return res.status(400).json({ success: false, message: 'Valid role is required' });
             }
 
@@ -377,17 +378,17 @@ plannerController.post(
 
             const startDateObj = startDate ? new Date(startDate) : new Date();
             if (Number.isNaN(startDateObj.getTime())) {
-                console.error('Invalid start date provided:', startDate);
+                logger.error('Invalid start date provided:', startDate);
                 return res.status(400).json({ success: false, message: 'Invalid start date' });
             }
             const startDateISO = startDateObj.toISOString().split('T')[0];
 
             const durationDays = resolveDurationDays(rawDuration ?? (profile?.weeklyHours ? Math.ceil(profile.weeklyHours / 2) : 7));
-            console.log('Calculated duration days:', durationDays, 'rawDuration:', rawDuration, 'profile.weeklyHours:', profile?.weeklyHours);
+            logger.info('Calculated duration days:', durationDays, 'rawDuration:', rawDuration, 'profile.weeklyHours:', profile?.weeklyHours);
 
             // Validate durationDays
             if (!durationDays || durationDays <= 0 || durationDays > 56) {
-                console.error('Invalid duration days calculated:', durationDays);
+                logger.error('Invalid duration days calculated:', durationDays);
                 return res.status(400).json({ success: false, message: 'Invalid duration days calculated' });
             }
 
@@ -397,7 +398,7 @@ plannerController.post(
                 if (!role) missingParams.push('role');
                 if (!startDateISO) missingParams.push('startDateISO');
                 if (!durationDays) missingParams.push('durationDays');
-                console.error('Missing required parameters for prompt building:', missingParams);
+                logger.error('Missing required parameters for prompt building:', missingParams);
                 return res.status(400).json({
                     success: false,
                     message: `Missing required parameters: ${missingParams.join(', ')}`
@@ -411,16 +412,16 @@ plannerController.post(
                     where: { userId },
                     order: [['createdAt', 'DESC']]
                 });
-                console.log('Latest resume found:', latestResume ? 'Yes' : 'No');
+                logger.info('Latest resume found:', latestResume ? 'Yes' : 'No');
 
                 if (latestResume && latestResume.parsedJson) {
                     resumeAnalysis = latestResume.parsedJson;
-                    console.log('Resume analysis found');
+                    logger.info('Resume analysis found');
                 } else {
-                    console.log('No resume analysis available');
+                    logger.info('No resume analysis available');
                 }
             } catch (resumeError) {
-                console.error('Error fetching resume analysis:', resumeError);
+                logger.error('Error fetching resume analysis:', resumeError);
             }
 
             let prompt;
@@ -434,13 +435,13 @@ plannerController.post(
                     additionalContext,
                     resumeAnalysis,
                 };
-                console.log('Building prompt with options:', JSON.stringify(promptOptions, null, 2));
+                logger.info('Building prompt with options:', JSON.stringify(promptOptions, null, 2));
                 prompt = buildPrompt(promptOptions);
-                console.log('Prompt built successfully');
-                console.log('Generated prompt length:', prompt.length);
+                logger.info('Prompt built successfully');
+                logger.info('Generated prompt length:', prompt.length);
             } catch (promptError) {
-                console.error('Error building prompt:', promptError);
-                console.error('Prompt options that caused the error:', {
+                logger.error('Error building prompt:', promptError);
+                logger.error('Prompt options that caused the error:', {
                     role,
                     durationDays,
                     startDateISO,
@@ -458,18 +459,18 @@ plannerController.post(
             let aiPlan;
             try {
                 aiPlan = (await callGeminiForPlanner(prompt)) ?? deterministicFallbackPlan(role, durationDays, startDateISO);
-                console.log('AI plan generated successfully');
+                logger.info('AI plan generated successfully');
             } catch (aiError) {
-                console.error('Error generating AI plan:', aiError);
+                logger.error('Error generating AI plan:', aiError);
                 return res.status(500).json({ success: false, message: 'Failed to generate learning plan' });
             }
 
             let normalized;
             try {
                 normalized = normaliseGeneratedPlan(aiPlan, durationDays);
-                console.log('Plan normalized successfully');
+                logger.info('Plan normalized successfully');
             } catch (normalizeError) {
-                console.error('Error normalizing plan:', normalizeError);
+                logger.error('Error normalizing plan:', normalizeError);
                 return res.status(500).json({ success: false, message: 'Failed to normalize learning plan' });
             }
 
@@ -486,9 +487,9 @@ plannerController.post(
                     planJson: normalized.planJson,
                     progressPercent: 0,
                 });
-                console.log('Planner created successfully');
+                logger.info('Planner created successfully');
             } catch (plannerError) {
-                console.error('Error creating planner:', plannerError);
+                logger.error('Error creating planner:', plannerError);
                 return res.status(500).json({ success: false, message: 'Failed to create learning plan' });
             }
 
@@ -501,14 +502,14 @@ plannerController.post(
                 },
             });
         } catch (error) {
-            console.error('Planner generation failed:', error);
+            logger.error('Planner generation failed:', error);
             return res.status(500).json({ success: false, message: 'Internal Server Error' });
         }
     }
 );
 
 plannerController.get(
-    '/api/planner/:plannerId',
+    '/:plannerId',
     async (req: Request<{ plannerId: string }>, res: Response) => {
         try {
             const plannerId = Number(req.params.plannerId);
@@ -523,14 +524,14 @@ plannerController.get(
 
             return res.json({ success: true, data: { planner, tasks: [] } });
         } catch (error) {
-            console.error('Failed to fetch planner:', error);
+            logger.error('Failed to fetch planner:', error);
             return res.status(500).json({ success: false, message: 'Internal Server Error' });
         }
     }
 );
 
 plannerController.get(
-    '/api/planner/user/:userId',
+    '/user/:userId',
     async (req: Request<{ userId: string }>, res: Response) => {
         try {
             const userId = Number(req.params.userId);
@@ -545,14 +546,14 @@ plannerController.get(
 
             return res.json({ success: true, data: planners });
         } catch (error) {
-            console.error('Failed to fetch planners for user:', error);
+            logger.error('Failed to fetch planners for user:', error);
             return res.status(500).json({ success: false, message: 'Internal Server Error' });
         }
     }
 );
 
 plannerController.put(
-    '/api/planner/:plannerId',
+    '/:plannerId',
     async (
         req: Request<{ plannerId: string }, unknown, { progressPercent?: number }>,
         res: Response
@@ -582,7 +583,7 @@ plannerController.put(
 
             return res.json({ success: true, message: 'Planner progress updated', data: planner });
         } catch (error) {
-            console.error('Failed to update planner progress:', error);
+            logger.error('Failed to update planner progress:', error);
             return res.status(500).json({ success: false, message: 'Internal Server Error' });
         }
     }
@@ -590,7 +591,7 @@ plannerController.put(
 
 // Generate daily plan PDF
 plannerController.get(
-    '/api/planner/:plannerId/daily-pdf',
+    '/:plannerId/daily-pdf',
     async (req: Request<{ plannerId: string }>, res: Response) => {
         try {
             const plannerId = Number(req.params.plannerId);
@@ -629,7 +630,7 @@ plannerController.get(
                 }
             });
         } catch (error) {
-            console.error('Failed to generate daily plan PDF:', error);
+            logger.error('Failed to generate daily plan PDF:', error);
             return res.status(500).json({ success: false, message: 'Internal Server Error' });
         }
     }

@@ -155,6 +155,7 @@ export const pdfAPI = {
 export const resourceAPI = {
   generate: (data: Record<string, unknown>) => api.post('/api/resources/generate', data),
   getStatus: (userId: number) => api.get(`/api/resources/status/${userId}`),
+  getUserResources: (userId: number) => api.get(`/api/resources/user/${userId}`),
 }
 
 // Chat API

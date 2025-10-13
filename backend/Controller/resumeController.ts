@@ -6,6 +6,7 @@ import { promises as fsPromises } from 'fs';
 import { Resume, ResumeAttributes } from '../Models';
 import { analyzeResumeWithGemini } from '../Services/resumeParserService';
 import { resumeAnalysisPdfService } from '../Services/resumeAnalysisPdfService';
+import logger from '../Services/logger';
 
 const resumeController = express.Router();
 
@@ -46,7 +47,7 @@ const toResumeResponse = (resume: Resume): ResumeAttributes & { downloadUrl: str
 };
 
 resumeController.post(
-  '/api/resume/upload',
+  '/upload',
   upload.single('file'),
   async (req: Request, res: Response) => {
     try {
@@ -79,14 +80,14 @@ resumeController.post(
         data: toResumeResponse(resume),
       });
     } catch (error) {
-      console.error('Resume upload failed:', error);
+      logger.error('Resume upload failed:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
 );
 
 resumeController.post(
-  '/api/resume/parse/:resumeId',
+  '/parse/:resumeId',
   async (req: Request<{ resumeId: string }>, res: Response) => {
     try {
       const resumeId = Number(req.params.resumeId);
@@ -105,7 +106,7 @@ resumeController.post(
       try {
         fileBuffer = await fsPromises.readFile(filePath);
       } catch (readError) {
-        console.error('Failed to read resume file for parsing:', readError);
+        logger.error('Failed to read resume file for parsing:', readError);
         return res.status(500).json({ success: false, message: 'Unable to read resume file' });
       }
 
@@ -156,12 +157,12 @@ resumeController.post(
         generatedAt: new Date().toISOString(),
       };
 
-      console.log('Saving parsedJson to database:', JSON.stringify(parsedJson, null, 2));
+      logger.info('Saving parsedJson to database:', JSON.stringify(parsedJson, null, 2));
       await resume.update({ parsedJson });
       await resume.reload();
 
-      console.log('Resume after update:', JSON.stringify(resume.toJSON(), null, 2));
-      console.log('Resume parsedJson after reload:', resume.parsedJson);
+      logger.info('Resume after update:', JSON.stringify(resume.toJSON(), null, 2));
+      logger.info('Resume parsedJson after reload:', resume.parsedJson);
 
       return res.json({
         success: true,
@@ -172,14 +173,14 @@ resumeController.post(
         },
       });
     } catch (error) {
-      console.error('Resume parsing failed:', error);
+      logger.error('Resume parsing failed:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
 );
 
 resumeController.get(
-  '/api/resume/:resumeId',
+  '/:resumeId',
   async (req: Request<{ resumeId: string }>, res: Response) => {
     try {
       const resumeId = Number(req.params.resumeId);
@@ -194,14 +195,14 @@ resumeController.get(
 
       return res.json({ success: true, data: toResumeResponse(resume) });
     } catch (error) {
-      console.error('Failed to fetch resume:', error);
+      logger.error('Failed to fetch resume:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
 );
 
 resumeController.get(
-  '/api/resume/user/:userId',
+  '/user/:userId',
   async (req: Request<{ userId: string }>, res: Response) => {
     try {
       const userId = Number(req.params.userId);
@@ -214,9 +215,9 @@ resumeController.get(
         order: [['createdAt', 'DESC']],
       });
 
-      console.log('Found resumes for user:', resumes.length);
+      logger.info('Found resumes for user:', resumes.length);
       resumes.forEach((resume, index) => {
-        console.log(`Resume ${index + 1}:`, {
+        logger.info(`Resume ${index + 1}:`, {
           id: resume.id,
           originalFileName: resume.originalFileName,
           hasParsedJson: !!resume.parsedJson,
@@ -230,7 +231,7 @@ resumeController.get(
         data: resumes.map((resume) => toResumeResponse(resume)),
       });
     } catch (error) {
-      console.error('Failed to fetch resumes for user:', error);
+      logger.error('Failed to fetch resumes for user:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
@@ -238,7 +239,7 @@ resumeController.get(
 
 // Generate resume analysis PDF report
 resumeController.get(
-  '/api/resume/:resumeId/analysis-pdf',
+  '/:resumeId/analysis-pdf',
   async (req: Request<{ resumeId: string }>, res: Response) => {
     try {
       const resumeId = Number(req.params.resumeId);
@@ -286,7 +287,7 @@ resumeController.get(
         }
       });
     } catch (error) {
-      console.error('Failed to generate resume analysis PDF:', error);
+      logger.error('Failed to generate resume analysis PDF:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
@@ -294,7 +295,7 @@ resumeController.get(
 
 // Delete a resume
 resumeController.delete(
-  '/api/resume/:resumeId',
+  '/:resumeId',
   async (req: Request<{ resumeId: string }>, res: Response) => {
     try {
       const resumeId = Number(req.params.resumeId);
@@ -323,7 +324,7 @@ resumeController.delete(
           await fsPromises.unlink(filePath);
         }
       } catch (fileError) {
-        console.error('Failed to delete resume file:', fileError);
+        logger.error('Failed to delete resume file:', fileError);
         // Continue with database deletion even if file deletion fails
       }
 
@@ -335,7 +336,7 @@ resumeController.delete(
         message: 'Resume deleted successfully'
       });
     } catch (error) {
-      console.error('Failed to delete resume:', error);
+      logger.error('Failed to delete resume:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }

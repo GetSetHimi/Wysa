@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { resourceGenerationService } from '../Services/resourceGenerationService';
 import { Resource } from '../Models';
+import logger from '../Services/logger';
 
 const resourceController = express.Router();
 
@@ -41,7 +42,7 @@ type AuthedManualResourceRequest = Request<unknown, unknown, ManualResourceReque
 
 // Generate personalized learning resources
 resourceController.post(
-  '/api/resources/generate',
+  '/generate',
   async (req: AuthedResourceRequest, res: Response) => {
     try {
       const userId = req.user?.id;
@@ -122,7 +123,7 @@ resourceController.post(
           });
           savedResources.push(savedResource);
         } catch (saveError) {
-          console.error('Failed to save resource:', resource.title, saveError);
+          logger.error('Failed to save resource:', resource.title, saveError);
         }
       }
 
@@ -138,7 +139,7 @@ resourceController.post(
         }
       });
     } catch (error) {
-      console.error('Resource generation failed:', error);
+      logger.error('Resource generation failed:', error);
       return res.status(500).json({ 
         success: false, 
         message: 'Failed to generate personalized resources' 
@@ -149,7 +150,7 @@ resourceController.post(
 
 // Get resource generation status (for future use)
 resourceController.get(
-  '/api/resources/status/:userId',
+  '/status/:userId',
   async (req: Request<{ userId: string }>, res: Response) => {
     try {
       const userId = Number(req.params.userId);
@@ -167,7 +168,7 @@ resourceController.get(
         }
       });
     } catch (error) {
-      console.error('Failed to get resource status:', error);
+      logger.error('Failed to get resource status:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
@@ -175,7 +176,7 @@ resourceController.get(
 
 // Get all resources for a user
 resourceController.get(
-  '/api/resources/user/:userId',
+  '/user/:userId',
   async (req: Request<{ userId: string }>, res: Response) => {
     try {
       const userId = Number(req.params.userId);
@@ -193,7 +194,7 @@ resourceController.get(
         data: resources
       });
     } catch (error) {
-      console.error('Failed to get user resources:', error);
+      logger.error('Failed to get user resources:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
@@ -201,7 +202,7 @@ resourceController.get(
 
 // Add a new resource manually
 resourceController.post(
-  '/api/resources',
+  '/',
   async (req: AuthedManualResourceRequest, res: Response) => {
     try {
       const userId = req.user?.id;
@@ -249,7 +250,7 @@ resourceController.post(
         data: resource
       });
     } catch (error) {
-      console.error('Failed to add resource:', error);
+      logger.error('Failed to add resource:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
@@ -257,7 +258,7 @@ resourceController.post(
 
 // Update a resource
 resourceController.put(
-  '/api/resources/:resourceId',
+  '/:resourceId',
   async (req: Request<{ resourceId: string }>, res: Response) => {
     try {
       const resourceId = Number(req.params.resourceId);
@@ -315,7 +316,7 @@ resourceController.put(
         data: resource
       });
     } catch (error) {
-      console.error('Failed to update resource:', error);
+      logger.error('Failed to update resource:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }
@@ -323,7 +324,7 @@ resourceController.put(
 
 // Delete a resource
 resourceController.delete(
-  '/api/resources/:resourceId',
+  '/:resourceId',
   async (req: Request<{ resourceId: string }>, res: Response) => {
     try {
       const resourceId = Number(req.params.resourceId);
@@ -352,7 +353,7 @@ resourceController.delete(
         message: 'Resource deleted successfully'
       });
     } catch (error) {
-      console.error('Failed to delete resource:', error);
+      logger.error('Failed to delete resource:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }

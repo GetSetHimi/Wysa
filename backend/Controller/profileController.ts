@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { Profile as profileModel } from '../Models';
 import { isValidTimeZone } from '../utils/timezone';
+import logger from '../Services/logger';
 
 type AuthedRequest<B = unknown> = Request & {
   user?: {
@@ -13,7 +14,7 @@ type AuthedRequest<B = unknown> = Request & {
 const profileController = express.Router();
 
 
-profileController.post('/api/profile', async (req: AuthedRequest<{
+profileController.post('/', async (req: AuthedRequest<{
   desiredRole?: string;
   weeklyHours?: number;
   timezone?: string;
@@ -74,12 +75,12 @@ profileController.post('/api/profile', async (req: AuthedRequest<{
 
     return res.status(201).json({ success: true, message: 'Profile created successfully', profile: created });
   } catch (error) {
-    console.error('Failed to create profile:', error);
+    logger.error('Failed to create profile:', error);
     return res.status(500).send('Internal Server Error');
   }
 });
 
-profileController.put('/api/profile', async (req: AuthedRequest, res: Response) => {
+profileController.put('/', async (req: AuthedRequest, res: Response) => {
   try {
     const { user } = req as AuthedRequest;
     const userId = user?.id ?? null;
@@ -112,12 +113,12 @@ profileController.put('/api/profile', async (req: AuthedRequest, res: Response) 
 
     return res.status(200).json({ success: true, message: 'Profile updated successfully', profile });
   } catch (error) {
-    console.error('Failed to update profile:', error);
+    logger.error('Failed to update profile:', error);
     return res.status(500).send('Internal Server Error');
   }
 });
 
-profileController.get('/api/profile', async (req: AuthedRequest, res: Response) => {
+profileController.get('/', async (req: AuthedRequest, res: Response) => {
   try {
     const { user } = req as AuthedRequest;
     const userId = user?.id ?? null;
@@ -129,12 +130,12 @@ profileController.get('/api/profile', async (req: AuthedRequest, res: Response) 
     // Return null instead of 404 for missing profiles
     return res.status(200).json({ success: true, profile: profile || null });
   } catch (error) {
-    console.error('Failed to fetch profile:', error);
+    logger.error('Failed to fetch profile:', error);
     return res.status(500).send('Internal Server Error');
   }
 });
 
-profileController.delete('/api/profile', async (req: AuthedRequest, res: Response) => {
+profileController.delete('/', async (req: AuthedRequest, res: Response) => {
   try {
     const { user } = req as AuthedRequest;
     const userId = user?.id ?? null;
@@ -151,7 +152,7 @@ profileController.delete('/api/profile', async (req: AuthedRequest, res: Respons
 
     return res.status(200).json({ success: true, message: 'Profile deleted successfully' });
   } catch (error) {
-    console.error('Failed to delete profile:', error);
+    logger.error('Failed to delete profile:', error);
     return res.status(500).send('Internal Server Error');
   }
 });

@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import { z } from 'zod';
+import logger from '../Services/logger';
 
 // Enhanced security middleware for production deployment
 
@@ -248,9 +249,9 @@ export const securityLogger = (req: Request, res: Response, next: NextFunction) 
 
     // Log security events
     if (res.statusCode === 401 || res.statusCode === 403 || res.statusCode === 429) {
-      console.warn('🚨 Security Event:', logData);
+      logger.warn('🚨 Security Event:', logData);
     } else {
-      console.log('📊 Request:', logData);
+      logger.info('📊 Request:', logData);
     }
 
     return originalSend.call(this, data);

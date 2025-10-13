@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import winston from 'winston';
 
 type JwtPayload = {
   id: number;
@@ -27,7 +28,7 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     req.user = { id: decoded.id, email: decoded.email };
     return next();
   } catch (err) {
-    console.warn('JWT verification failed', err);
+    winston.warn('JWT verification failed', err);
     return res.status(401).json({ success: false, message: 'Invalid or expired token' });
   }
 }

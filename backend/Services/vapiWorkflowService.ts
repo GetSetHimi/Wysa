@@ -1,4 +1,5 @@
 import axios from 'axios';
+import logger from './logger';
 
 export interface VAPIWorkflowConfig {
   userId: number;
@@ -45,10 +46,10 @@ export class VAPIWorkflowService {
         }
       );
 
-      console.log('VAPI workflow created successfully:', response.data.id);
+      logger.info('VAPI workflow created successfully:', response.data.id);
       return response.data.id;
     } catch (error) {
-      console.error('Failed to create VAPI workflow:', error);
+      logger.error('Failed to create VAPI workflow:', error);
       throw error;
     }
   }
@@ -303,10 +304,10 @@ Remember to be thorough, fair, and constructive in your evaluation. The goal is 
         }
       );
 
-      console.log('VAPI call started successfully:', response.data.id);
+      logger.info('VAPI call started successfully:', response.data.id);
       return response.data.id;
     } catch (error) {
-      console.error('Failed to start VAPI call:', error);
+      logger.error('Failed to start VAPI call:', error);
       throw error;
     }
   }
@@ -327,7 +328,7 @@ Remember to be thorough, fair, and constructive in your evaluation. The goal is 
 
       return response.data;
     } catch (error) {
-      console.error('Failed to get call status:', error);
+      logger.error('Failed to get call status:', error);
       throw error;
     }
   }
@@ -395,7 +396,7 @@ Remember to be thorough, fair, and constructive in your evaluation. The goal is 
         detailedFeedback: this.generateDetailedFeedback(overallScore, allStrengths, allWeaknesses, allRecommendations)
       };
     } catch (error) {
-      console.error('Error processing interview results:', error);
+      logger.error('Error processing interview results:', error);
       throw error;
     }
   }

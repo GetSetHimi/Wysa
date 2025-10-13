@@ -1,10 +1,11 @@
 import 'dotenv/config';
 import { Sequelize } from 'sequelize';
+import logger from './Services/logger';
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
 if (!DATABASE_URL) {
-  console.warn('⚠️ DATABASE_URL not set. Please add it to your .env file.');
+  logger.warn('⚠️ DATABASE_URL not set. Please add it to your .env file.');
 }
 
 // Use Sequelize with Postgres (Neon) via connection string; require SSL for Neon
@@ -23,9 +24,9 @@ const sequelize = new Sequelize(DATABASE_URL || '', {
 async function authenticateConnection() {
   try {
     await sequelize.authenticate();
-    console.log('✅ Connected to Postgres (Neon) successfully');
+    logger.info('✅ Connected to Postgres (Neon) successfully');
   } catch (error) {
-    console.error('❌ Postgres connection failed:', error);
+    logger.error('❌ Postgres connection failed:', error);
   }
 }
 

@@ -6,6 +6,7 @@ import { User } from '../Models';
 import axios from 'axios';
 import crypto from 'crypto';
 import { emailService } from '../Services/emailService';
+import logger from '../Services/logger';
 
 const authController = express.Router();
 
@@ -58,7 +59,7 @@ authController.post('/login', loginLimiter, async (req: Request, res: Response) 
       user: { id: user.id, username: user.username, email: user.email }
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     return res.status(500).send('Internal Server Error');
   }
 });
@@ -97,7 +98,7 @@ const handleRegistration = async (req: Request, res: Response) => {
       token,
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 };
@@ -156,7 +157,7 @@ authController.put('/users/:id', async (req: Request, res: Response) => {
       user: { id: user.id, username: user.username, email: user.email }
     });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
@@ -197,7 +198,7 @@ authController.post('/forgot-password', forgotPasswordLimiter, async (req: Reque
     const emailSent = await emailService.sendPasswordResetEmail(user.email, resetLink, user.username);
     
     if (!emailSent && isDev) {
-      console.log('Password reset link (email service not configured):', resetLink);
+      logger.info('Password reset link (email service not configured):', resetLink);
     }
 
     return res.status(200).json({
@@ -205,7 +206,7 @@ authController.post('/forgot-password', forgotPasswordLimiter, async (req: Reque
       message: 'If an account with that email exists, a password reset link has been sent.',
     });
   } catch (error) {
-    console.error('Forgot password error:', error);
+    logger.error('Forgot password error:', error);
     return res.status(500).json({
       success: false,
       message: 'Internal Server Error',
@@ -262,7 +263,7 @@ authController.post('/reset-password', resetPasswordLimiter, async (req: Request
       message: 'Password has been reset successfully',
     });
   } catch (error) {
-    console.error('Reset password error:', error);
+    logger.error('Reset password error:', error);
     return res.status(500).json({
       success: false,
       message: 'Internal Server Error',
@@ -306,7 +307,7 @@ authController.get('/test-email', async (req: Request, res: Response) => {
       });
     }
   } catch (error) {
-    console.error('Email test error:', error);
+    logger.error('Email test error:', error);
     return res.status(500).json({
       success: false,
       message: 'Internal Server Error',
@@ -360,7 +361,7 @@ authController.post('/oauth/google', async (req: Request, res: Response) => {
       user: { id: user.id, username: user.username, email: user.email }
     });
   } catch (error) {
-    console.error('Google OAuth failed:', error);
+    logger.error('Google OAuth failed:', error);
     return res.status(500).json({ success: false, message: 'Google OAuth failed' });
   }
 });
@@ -434,7 +435,7 @@ authController.post('/oauth/linkedin', async (req: Request, res: Response) => {
       user: { id: user.id, username: user.username, email: user.email }
     });
   } catch (error) {
-    console.error('LinkedIn OAuth failed:', error);
+    logger.error('LinkedIn OAuth failed:', error);
     return res.status(500).json({ success: false, message: 'LinkedIn OAuth failed' });
   }
 });

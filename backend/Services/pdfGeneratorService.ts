@@ -2,6 +2,7 @@ import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import path from 'path';
 import { Planner, User } from '../Models';
+import logger from './logger';
 
 // PDF generation service for daily plans
 interface TaskData {
@@ -87,7 +88,7 @@ export class DailyPlanPdfService {
       });
 
     } catch (error) {
-      console.error('Error generating daily plan PDF:', error);
+      logger.error('Error generating daily plan PDF:', error);
       throw error;
     }
   }

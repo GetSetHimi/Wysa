@@ -1,6 +1,7 @@
 import PDFDocument from 'pdfkit';
 import fs from 'fs';
 import path from 'path';
+import logger from './logger';
 
 // PDF generation service for learning resources
 export class ResourcePdfService {
@@ -65,7 +66,7 @@ export class ResourcePdfService {
       });
 
     } catch (error) {
-      console.error('Error generating resource PDF:', error);
+      logger.error('Error generating resource PDF:', error);
       throw error;
     }
   }
@@ -113,7 +114,7 @@ export class ResourcePdfService {
       });
 
     } catch (error) {
-      console.error('Error generating practice PDF:', error);
+      logger.error('Error generating practice PDF:', error);
       throw error;
     }
   }
@@ -340,7 +341,7 @@ export class ResourcePdfService {
       const files = await fs.promises.readdir(this.resourcesDir);
       return files.filter(file => file.endsWith('.pdf'));
     } catch (error) {
-      console.error('Error listing resource PDFs:', error);
+      logger.error('Error listing resource PDFs:', error);
       return [];
     }
   }
