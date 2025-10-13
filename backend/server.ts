@@ -92,6 +92,9 @@ app.use('/api/interview', apiRateLimit, interviewController);
 app.use('/api/s3', apiRateLimit, s3Controller);
 app.use('/api/resources', apiRateLimit, resourceController);
 
+// Direct route for /api/today (points to notificationController's today endpoint)
+app.use('/api/today', apiRateLimit, notificationController);
+
 // Error handling middleware (must be last)
 app.use(notFoundHandler);
 app.use(errorHandler);
