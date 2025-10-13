@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
-import { ForgotPasswordModal } from '../components/ForgotPasswordModal'
+import { ForgotPasswordModal } from '../Components/ForgotPasswordModal'
 import toast from 'react-hot-toast'
 
 export const Login: React.FC = () => {

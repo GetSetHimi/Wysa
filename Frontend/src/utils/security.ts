@@ -119,9 +119,6 @@ export const cspHelper = {
   
   // Sanitize HTML content
   sanitizeHtml: (html: string): string => {
-    const allowedTags = ['p', 'br', 'strong', 'em', 'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
-    const allowedAttributes = ['class', 'id'];
-    
     // Simple HTML sanitization (use a proper library in production)
     return html
       .replace(/<script[^>]*>.*?<\/script>/gi, '')
@@ -202,7 +199,7 @@ export const sessionSecurity = {
   
   // Auto-logout on inactivity
   setupInactivityLogout: (timeoutMinutes: number = 30): void => {
-    let inactivityTimer: NodeJS.Timeout;
+    let inactivityTimer: ReturnType<typeof setTimeout>;
     
     const resetTimer = () => {
       clearTimeout(inactivityTimer);

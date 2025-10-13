@@ -10,7 +10,9 @@ import {
   Eye,
   Trash2,
   Loader,
-  X
+  X,
+  Star,
+  BookOpen
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { format } from 'date-fns'
@@ -54,7 +56,6 @@ interface AnalysisResult {
 
 export const ResumeUpload: React.FC = () => {
   const [resumes, setResumes] = useState<Resume[]>([])
-  const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [analyzing, setAnalyzing] = useState<number | null>(null)
   const [selectedResume, setSelectedResume] = useState<Resume | null>(null)

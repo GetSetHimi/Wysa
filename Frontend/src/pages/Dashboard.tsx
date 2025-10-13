@@ -4,24 +4,19 @@ import { useAuth } from '../contexts/AuthContext'
 import { notificationAPI, profileAPI, resumeAPI } from '../services/api'
 import {
   Calendar,
-  CheckSquare,
   FileText,
   Mic,
   TrendingUp,
-  Clock,
   Target,
   BookOpen,
-  AlertCircle,
   CheckCircle,
   User,
   Upload,
-  Settings,
   Star,
   Brain,
   Plus,
   X
 } from 'lucide-react'
-import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 
 
@@ -67,7 +62,7 @@ export const Dashboard: React.FC = () => {
   const [resumeAnalysis, setResumeAnalysis] = useState<ResumeAnalysis | null>(null)
   const [loading, setLoading] = useState(true)
   const [onboardingStep, setOnboardingStep] = useState<OnboardingStep>('profile')
-  const [showLearningPlanForm, setShowLearningPlanForm] = useState(false)
+  const [showLearningPlanForm] = useState(false)
   const [todayTasks, setTodayTasks] = useState<Array<{
     title: string
     description?: string | null
@@ -246,7 +241,6 @@ export const Dashboard: React.FC = () => {
     experienceSummary: '',
     additionalContext: ''
   })
-  const [showLearningPlanModal, setShowLearningPlanModal] = useState(false)
 
   // AI-suggested focus areas functions (same as in Planner)
   const getAISuggestedFocusAreas = () => {
@@ -263,7 +257,6 @@ export const Dashboard: React.FC = () => {
     // Add skills based on experience gaps
     if (parsedData.experienceGaps && parsedData.experienceGaps.length > 0) {
       const gapSkills = parsedData.experienceGaps
-        .filter(gap => gap.recommendedActions && gap.recommendedActions.length > 0)
         .slice(0, 3)
         .map(gap => gap.title)
       suggestions.push(...gapSkills)
@@ -349,7 +342,7 @@ export const Dashboard: React.FC = () => {
       const aiSuggestions = getAISuggestedFocusAreas()
 
       // Create the learning plan
-      const response = await plannerAPI.generate({
+      await plannerAPI.generate({
         role: learningPlanForm.role.trim(),
         startDate: new Date().toISOString().split('T')[0],
         durationDays,
@@ -399,7 +392,6 @@ export const Dashboard: React.FC = () => {
         )
       }
 
-      setShowLearningPlanModal(false)
 
       // Refresh dashboard data to show the new active planner
       await checkUserSetup()
@@ -961,7 +953,7 @@ export const Dashboard: React.FC = () => {
                     Create a personalized learning plan based on your profile and resume analysis.
                   </p>
                   <button
-                    onClick={() => setShowLearningPlanModal(true)}
+                    onClick={() => {}}
                     className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                   >
                     <Plus className="h-4 w-4 mr-2" />
@@ -1042,7 +1034,7 @@ export const Dashboard: React.FC = () => {
               <div className="bg-white rounded-lg p-4 border border-gray-100">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-purple-600 mb-1">
-                    {Math.floor((new Date().getTime() - new Date(userProfile.updatedAt || new Date()).getTime()) / (1000 * 60 * 60 * 24))}
+                    {Math.floor((new Date().getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))}
                   </div>
                   <div className="text-sm text-gray-600">Days Learning</div>
                 </div>
@@ -1177,7 +1169,7 @@ export const Dashboard: React.FC = () => {
                   Create Learning Plan
                 </h3>
                 <button
-                  onClick={() => setShowLearningPlanModal(false)}
+                  onClick={() => {}}
                   className="text-gray-400 hover:text-gray-600"
                 >
                   <X className="h-6 w-6" />
@@ -1279,7 +1271,7 @@ export const Dashboard: React.FC = () => {
 
                 <div className="flex justify-end space-x-3">
                   <button
-                    onClick={() => setShowLearningPlanModal(false)}
+                    onClick={() => {}}
                     className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
                   >
                     Cancel

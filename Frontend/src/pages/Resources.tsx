@@ -8,14 +8,11 @@ import {
   Download, 
   Loader, 
   CheckCircle, 
-  AlertCircle,
-  Star,
   Clock,
   Tag,
   ExternalLink,
   Brain,
-  Target,
-  TrendingUp
+  Target
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 
@@ -72,7 +69,6 @@ export const Resources: React.FC = () => {
   const [generated, setGenerated] = useState(false)
   const [resourceData, setResourceData] = useState<ResourceGenerationData | null>(null)
   const [savedResources, setSavedResources] = useState<SavedResource[]>([])
-  const [userProfile, setUserProfile] = useState<any>(null)
   const [generationForm, setGenerationForm] = useState({
     role: '',
     weeklyHours: '',
@@ -92,7 +88,6 @@ export const Resources: React.FC = () => {
       const response = await profileAPI.get()
       if (response.data.profile) {
         const profile = response.data.profile
-        setUserProfile(profile)
         setGenerationForm(prev => ({
           ...prev,
           role: profile.desiredRole || '',
@@ -283,7 +278,7 @@ export const Resources: React.FC = () => {
 
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <div className="flex items-center justify-between text-xs text-gray-500">
-                    <span>Added {formatDate(resource.createdAt)}</span>
+                    <span>Added {formatDate(resource.createdAt.toString())}</span>
                     <span className="capitalize">{resource.source.replace('_', ' ')}</span>
                   </div>
                 </div>

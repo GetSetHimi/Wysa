@@ -4,7 +4,6 @@ import { interviewAPI } from '../services/api'
 import { 
   Mic, 
   Calendar, 
-  Phone, 
   Clock, 
   CheckCircle, 
   AlertCircle,
@@ -12,8 +11,7 @@ import {
   Eye,
   X,
   Loader,
-  Play,
-  Pause
+  Play
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { format } from 'date-fns'
@@ -36,7 +34,7 @@ interface EligibilityResult {
 }
 
 export const Interview: React.FC = () => {
-  const { user } = useAuth()
+  const { } = useAuth()
   const [eligibility, setEligibility] = useState<EligibilityResult | null>(null)
   const [interviews, setInterviews] = useState<Interview[]>([])
   const [loading, setLoading] = useState(true)
@@ -109,7 +107,7 @@ export const Interview: React.FC = () => {
 
     setStarting(interviewId)
     try {
-      const response = await interviewAPI.start(interviewId, phoneNumber.trim())
+      await interviewAPI.start(interviewId, phoneNumber.trim())
       toast.success('Interview call started! You will receive a call shortly.')
       
       // Update interview status
