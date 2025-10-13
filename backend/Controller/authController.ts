@@ -36,7 +36,7 @@ authController.post('/login', loginLimiter, async (req: Request, res: Response) 
         message: 'Please enter your email and password',
       });
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email: email.toLowerCase() } });
     if (!user)
       return res.status(401).json({
         success: false,
@@ -78,13 +78,13 @@ const handleRegistration = async (req: Request, res: Response) => {
         .status(400)
         .json({ success: false, message: 'Please enter username, email and password' });
 
-    const existing = await User.findOne({ where: { email } });
+    const existing = await User.findOne({ where: { email: email.toLowerCase() } });
     if (existing) {
       return res.status(409).json({ success: false, message: 'Email already registered' });
     }
 
     const hash = await bcrypt.hash(password, 10);
-    const created = await User.create({ username, age: age ?? 18, email, password: hash });
+    const created = await User.create({ username, age: age ?? 18, email: email.toLowerCase(), password: hash });
 
     const token = signJwt(created);
 
@@ -114,7 +114,7 @@ authController.get('/me', async (req: Request, res: Response) => {
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, JWT_SECRET) as { email: string };
 
-    const user = await User.findOne({ where: { email: decoded.email } });
+    const user = await User.findOne({ where: { email: decoded.email.toLowerCase() } });
     if (!user) return res.status(404).json({ success: false, message: 'User not found' });
 
     return res.status(200).json({
@@ -174,7 +174,7 @@ authController.post('/forgot-password', forgotPasswordLimiter, async (req: Reque
       });
     }
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email: email.toLowerCase() } });
     if (!user) {
       // Don't reveal if user exists or not for security
       return res.status(200).json({
@@ -345,12 +345,12 @@ authController.post('/oauth/google', async (req: Request, res: Response) => {
       return res.status(401).json({ success: false, message: 'Email not verified with Google' });
     }
 
-    let user = await User.findOne({ where: { email } });
+    let user = await User.findOne({ where: { email: email.toLowerCase() } });
     if (!user) {
       const randomPassword = `${sub || 'google'}:${Date.now()}:${Math.random().toString(36).slice(2)}`;
       const hash = await bcrypt.hash(randomPassword, 10);
       const username = name?.trim() || email.split('@')[0];
-      user = await User.create({ username, age: 18, email, password: hash });
+      user = await User.create({ username, age: 18, email: email.toLowerCase(), password: hash });
     }
 
     const token = signJwt(user);
@@ -419,12 +419,12 @@ authController.post('/oauth/linkedin', async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, message: 'Unable to retrieve LinkedIn email' });
     }
 
-    let user = await User.findOne({ where: { email } });
+    let user = await User.findOne({ where: { email: email.toLowerCase() } });
     if (!user) {
       const randomPassword = `linkedin:${Date.now()}:${Math.random().toString(36).slice(2)}`;
       const hash = await bcrypt.hash(randomPassword, 10);
       const username = name || email.split('@')[0];
-      user = await User.create({ username, age: 18, email, password: hash });
+      user = await User.create({ username, age: 18, email: email.toLowerCase(), password: hash });
     }
 
     const token = signJwt(user);

@@ -26,11 +26,19 @@ export const Login: React.FC = () => {
       await login(email, password)
       toast.success('Login successful!')
       navigate('/dashboard')
-    } catch (error: any) {
-      toast.error(error.message || 'Login failed')
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Login failed'
+      toast.error(errorMessage)
     } finally {
       setLoading(false)
     }
+  }
+
+  const togglePasswordVisibility = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    console.log('Password visibility toggle clicked, current state:', showPassword)
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -78,20 +86,22 @@ export const Login: React.FC = () => {
                 type={showPassword ? 'text' : 'password'}
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-10 pr-10 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="appearance-none rounded-none relative block w-full px-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center justify-center w-10 h-full z-10 hover:bg-gray-50 rounded-r-md transition-colors cursor-pointer"
+                onClick={togglePasswordVisibility}
+                tabIndex={-1}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
               >
                 {showPassword ? (
-                  <EyeOff className="h-5 w-5 text-gray-400" />
+                  <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
                 ) : (
-                  <Eye className="h-5 w-5 text-gray-400" />
+                  <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
                 )}
               </button>
             </div>
