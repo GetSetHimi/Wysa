@@ -156,8 +156,12 @@ resumeController.post(
         generatedAt: new Date().toISOString(),
       };
 
+      console.log('Saving parsedJson to database:', JSON.stringify(parsedJson, null, 2));
       await resume.update({ parsedJson });
       await resume.reload();
+
+      console.log('Resume after update:', JSON.stringify(resume.toJSON(), null, 2));
+      console.log('Resume parsedJson after reload:', resume.parsedJson);
 
       return res.json({
         success: true,
@@ -208,6 +212,17 @@ resumeController.get(
       const resumes = await Resume.findAll({
         where: { userId },
         order: [['createdAt', 'DESC']],
+      });
+
+      console.log('Found resumes for user:', resumes.length);
+      resumes.forEach((resume, index) => {
+        console.log(`Resume ${index + 1}:`, {
+          id: resume.id,
+          originalFileName: resume.originalFileName,
+          hasParsedJson: !!resume.parsedJson,
+          parsedJsonType: typeof resume.parsedJson,
+          parsedJsonKeys: resume.parsedJson ? Object.keys(resume.parsedJson) : 'N/A'
+        });
       });
 
       return res.json({
@@ -272,6 +287,55 @@ resumeController.get(
       });
     } catch (error) {
       console.error('Failed to generate resume analysis PDF:', error);
+      return res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+  }
+);
+
+// Delete a resume
+resumeController.delete(
+  '/api/resume/:resumeId',
+  async (req: Request<{ resumeId: string }>, res: Response) => {
+    try {
+      const resumeId = Number(req.params.resumeId);
+      const userId = req.user?.id;
+
+      if (Number.isNaN(resumeId)) {
+        return res.status(400).json({ success: false, message: 'Invalid resume ID' });
+      }
+
+      if (!userId) {
+        return res.status(401).json({ success: false, message: 'User ID is required' });
+      }
+
+      const resume = await Resume.findOne({
+        where: { id: resumeId, userId }
+      });
+
+      if (!resume) {
+        return res.status(404).json({ success: false, message: 'Resume not found' });
+      }
+
+      // Delete the physical file
+      try {
+        const filePath = path.join(uploadsDir, resume.storedFileName);
+        if (fs.existsSync(filePath)) {
+          await fsPromises.unlink(filePath);
+        }
+      } catch (fileError) {
+        console.error('Failed to delete resume file:', fileError);
+        // Continue with database deletion even if file deletion fails
+      }
+
+      // Delete from database
+      await resume.destroy();
+
+      return res.json({
+        success: true,
+        message: 'Resume deleted successfully'
+      });
+    } catch (error) {
+      console.error('Failed to delete resume:', error);
       return res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
   }

@@ -81,6 +81,7 @@ export class EmailScheduler {
       const users = await User.findAll({
         include: [{
           model: Profile,
+          as: 'Profile',
           where: {
             timezone: {
               [Op.ne]: null

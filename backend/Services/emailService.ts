@@ -1,349 +1,486 @@
-import nodemailer from 'nodemailer';
-import path from 'path';
-import { DailyPlanPdfService } from './pdfGeneratorService';
-import { ResumeAnalysisPdfService } from './resumeAnalysisPdfService';
-import { User, Profile, Planner } from '../Models';
+import nodemailer from 'nodemailer'
+import logger from './logger'
 
-// Email configuration interface
 interface EmailConfig {
-  host: string;
-  port: number;
-  secure: boolean;
+  host: string
+  port: number
+  secure: boolean
   auth: {
-    user: string;
-    pass: string;
-  };
+    user: string
+    pass: string
+  }
 }
 
-// Email template data interface
-interface DailyPlanEmailData {
-  userName: string;
-  userEmail: string;
-  timezone: string;
-  todayTasks: Array<{
-    title: string;
-    description: string;
-    duration_mins: number;
-    resource_links: string[];
-    status: string;
-  }>;
-  plannerProgress: number;
-  plannerTitle: string;
-  pdfPath?: string;
-}
-
-interface InterviewEmailData {
-  userName: string;
-  userEmail: string;
-  interviewDate: string;
-  interviewTime: string;
-  preparationTips: string[];
-  pdfPath?: string;
-}
-
-export class EmailService {
-  private transporter: nodemailer.Transporter;
-  private dailyPlanPdfService: DailyPlanPdfService;
-  private resumeAnalysisPdfService: ResumeAnalysisPdfService;
+class EmailService {
+  private transporter: nodemailer.Transporter | null = null
+  private isConfigured = false
 
   constructor() {
-    // Initialize email transporter
-    this.transporter = this.createTransporter();
-    this.dailyPlanPdfService = new DailyPlanPdfService();
-    this.resumeAnalysisPdfService = new ResumeAnalysisPdfService();
+    this.initializeTransporter()
   }
 
-  private createTransporter(): nodemailer.Transporter {
-    const config: EmailConfig = {
-      host: process.env.SMTP_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true',
-      auth: {
-        user: process.env.SMTP_USER || '',
-        pass: process.env.SMTP_PASS || '',
-      },
-    };
-
-    return nodemailer.createTransport(config);
-  }
-
-  /**
-   * Send daily plan email to user
-   */
-  async sendDailyPlanEmail(userId: number, plannerId: number, dayIndex: number = 0): Promise<boolean> {
+  private initializeTransporter() {
     try {
-      // Fetch user and profile data
-      const user = await User.findByPk(userId);
-      const profile = await Profile.findOne({ where: { userId } });
-      const planner = await Planner.findByPk(plannerId);
-
-      if (!user || !profile || !planner) {
-        throw new Error('User, profile, or planner not found');
+      const emailConfig: EmailConfig = {
+        host: process.env.SMTP_HOST || 'smtp.gmail.com',
+        port: parseInt(process.env.SMTP_PORT || '587'),
+        secure: process.env.SMTP_SECURE === 'true',
+        auth: {
+          user: process.env.SMTP_USER || '',
+          pass: process.env.SMTP_PASS || ''
+        }
       }
 
-      // Generate PDF for daily plan
-      const pdfFileName = await this.dailyPlanPdfService.generateDailyPlanPdf(
-        plannerId,
-        userId,
-        dayIndex
-      );
-
-      // Build today's tasks from planner.planJson for email body
-      const plan: any = (planner as any).planJson || null;
-      let todayTasks: DailyPlanEmailData['todayTasks'] = [];
-      if (plan && Array.isArray(plan.days)) {
-        const todayDateString = new Date().toISOString().split('T')[0];
-        const maxIndex = plan.days.reduce((max: number, d: any) => typeof d.dayIndex === 'number' ? Math.max(max, d.dayIndex) : max, 0);
-        const clampedIndex = Math.min(dayIndex, maxIndex);
-        let day = plan.days.find((d: any) => d && typeof d.dayIndex === 'number' && d.dayIndex === clampedIndex) ||
-                  plan.days.find((d: any) => typeof d.date === 'string' && d.date === todayDateString) ||
-                  plan.days[clampedIndex];
-        const rawTasks = day && Array.isArray(day.tasks) ? day.tasks : [];
-        todayTasks = rawTasks
-          .filter((t: any) => t && typeof t.title === 'string' && t.title.trim().length > 0)
-          .map((t: any) => ({
-            title: String(t.title).trim(),
-            description: typeof t.description === 'string' ? t.description : '',
-            duration_mins: typeof t.durationMins === 'number' && Number.isFinite(t.durationMins)
-              ? Math.max(15, Math.min(8 * 60, Math.round(t.durationMins)))
-              : 0,
-            resource_links: Array.isArray(t.resourceLinks)
-              ? t.resourceLinks.filter((l: any) => typeof l === 'string' && l.trim().length > 0)
-              : [],
-            status: 'pending',
-          }));
+      // Check if email is configured
+      if (!emailConfig.auth.user || !emailConfig.auth.pass) {
+        logger.warn('Email service not configured. SMTP_USER and SMTP_PASS environment variables are required.')
+        return
       }
 
-      const emailData: DailyPlanEmailData = {
-        userName: (user as any).name || 'User',
-        userEmail: user.email,
-        timezone: profile.timezone || 'UTC',
-        todayTasks,
-        plannerProgress: (planner as any).progress_percent || 0,
-        plannerTitle: planner.role || 'Learning Plan',
-        pdfPath: pdfFileName
-      };
+      this.transporter = nodemailer.createTransport(emailConfig)
+      this.isConfigured = true
+      logger.info('Email service initialized successfully')
+    } catch (error) {
+      logger.error('Failed to initialize email service:', error)
+    }
+  }
 
-      // Generate email content
-      const emailContent = this.generateDailyPlanEmailContent(emailData);
+  async sendPasswordResetEmail(email: string, resetLink: string, username: string): Promise<boolean> {
+    if (!this.isConfigured || !this.transporter) {
+      logger.warn('Email service not configured. Password reset link:', resetLink)
+      return false
+    }
 
-      // Send email
+    try {
       const mailOptions = {
-        from: `"Wysa AI Career Coach" <${process.env.SMTP_USER}>`,
-        to: user.email,
-        subject: `📚 Your Daily Learning Plan - Day ${dayIndex + 1}`,
-        html: emailContent,
-        attachments: pdfFileName ? [{
-          filename: `daily-plan-day-${dayIndex + 1}.pdf`,
-          path: path.join(__dirname, '../uploads', pdfFileName),
-          contentType: 'application/pdf'
-        }] : []
-      };
+        from: `"AI Career Coach" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: 'Password Reset - AI Career Coach',
+        html: this.generatePasswordResetTemplate(username, resetLink)
+      }
 
-      const result = await this.transporter.sendMail(mailOptions);
-      console.log('Daily plan email sent successfully:', result.messageId);
+      const result = await this.transporter.sendMail(mailOptions)
+      logger.info('Password reset email sent successfully:', result.messageId)
+      return true
+    } catch (error) {
+      logger.error('Failed to send password reset email:', error)
+      return false
+    }
+  }
+
+  async sendWelcomeEmail(email: string, username: string): Promise<boolean> {
+    if (!this.isConfigured || !this.transporter) {
+      logger.warn('Email service not configured. Welcome email not sent.')
+      return false
+    }
+
+    try {
+      const mailOptions = {
+        from: `"AI Career Coach" <${process.env.SMTP_USER}>`,
+        to: email,
+        subject: 'Welcome to AI Career Coach!',
+        html: this.generateWelcomeTemplate(username)
+      }
+
+      const result = await this.transporter.sendMail(mailOptions)
+      logger.info('Welcome email sent successfully:', result.messageId)
+      return true
+    } catch (error) {
+      logger.error('Failed to send welcome email:', error)
+      return false
+    }
+  }
+
+  private generatePasswordResetTemplate(username: string, resetLink: string): string {
+    return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password Reset</title>
+        <style>
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9fafb;
+          }
+          .container {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          }
+          .header {
+            text-align: center;
+            margin-bottom: 30px;
+          }
+          .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 10px;
+          }
+          .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+          }
+          .content {
+            margin-bottom: 30px;
+          }
+          .button {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin: 20px 0;
+          }
+          .button:hover {
+            background-color: #1d4ed8;
+          }
+          .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 14px;
+            color: #6b7280;
+          }
+          .warning {
+            background-color: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #92400e;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <div class="logo">AI Career Coach</div>
+          </div>
+          
+          <h1 class="title">Password Reset Request</h1>
+          
+          <div class="content">
+            <p>Hello ${username},</p>
+            
+            <p>We received a request to reset your password for your AI Career Coach account. If you made this request, click the button below to reset your password:</p>
+            
+            <div style="text-align: center;">
+              <a href="${resetLink}" class="button">Reset Password</a>
+            </div>
+            
+            <div class="warning">
+              <strong>Important:</strong> This link will expire in 15 minutes for security reasons. If you don't reset your password within this time, you'll need to request a new reset link.
+            </div>
+            
+            <p>If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
+            
+            <p>If the button above doesn't work, you can copy and paste this link into your browser:</p>
+            <p style="word-break: break-all; color: #6b7280; font-size: 14px;">${resetLink}</p>
+          </div>
+          
+          <div class="footer">
+            <p>This email was sent from AI Career Coach. If you have any questions, please contact our support team.</p>
+            <p>© ${new Date().getFullYear()} AI Career Coach. All rights reserved.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `
+  }
+
+  private generateWelcomeTemplate(username: string): string {
+    return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to AI Career Coach</title>
+        <style>
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9fafb;
+          }
+          .container {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          }
+          .header {
+            text-align: center;
+            margin-bottom: 30px;
+          }
+          .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 10px;
+          }
+          .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+          }
+          .content {
+            margin-bottom: 30px;
+          }
+          .button {
+            display: inline-block;
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin: 20px 0;
+          }
+          .button:hover {
+            background-color: #1d4ed8;
+          }
+          .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 14px;
+            color: #6b7280;
+          }
+          .feature {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #f8fafc;
+            border-radius: 6px;
+            border-left: 4px solid #2563eb;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <div class="logo">AI Career Coach</div>
+          </div>
+          
+          <h1 class="title">Welcome to AI Career Coach!</h1>
+          
+          <div class="content">
+            <p>Hello ${username},</p>
+            
+            <p>Welcome to AI Career Coach! We're excited to have you on board and help you advance your career with our AI-powered tools.</p>
+            
+            <p>Here's what you can do with your new account:</p>
+            
+            <div class="feature">
+              <strong>📊 Dashboard</strong> - Track your career progress and insights
+            </div>
+            
+            <div class="feature">
+              <strong>📄 Resume Analysis</strong> - Upload your resume for AI-powered analysis and improvement suggestions
+            </div>
+            
+            <div class="feature">
+              <strong>📅 Learning Planner</strong> - Create personalized learning plans based on your career goals
+            </div>
+            
+            <div class="feature">
+              <strong>🎯 Interview Prep</strong> - Practice with AI-powered mock interviews
+            </div>
+            
+            <div class="feature">
+              <strong>📚 Resources</strong> - Access curated learning materials and study guides
+            </div>
+            
+            <div style="text-align: center;">
+              <a href="${process.env.FRONTEND_URL || 'http://localhost:5173'}/dashboard" class="button">Get Started</a>
+            </div>
+            
+            <p>If you have any questions or need help getting started, don't hesitate to reach out to our support team.</p>
+          </div>
+          
+          <div class="footer">
+            <p>Thank you for choosing AI Career Coach!</p>
+            <p>© ${new Date().getFullYear()} AI Career Coach. All rights reserved.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `
+  }
+
+  async sendDailyPlanEmail(userId: number, plannerId: number, dayIndex: number): Promise<boolean> {
+    if (!this.isConfigured || !this.transporter) {
+      logger.warn('Email service not configured. Daily plan email not sent.')
+      return false
+    }
+
+    try {
+      // Import User model dynamically to avoid circular dependencies
+      const { User } = require('../Models')
       
-      return true;
-    } catch (error) {
-      console.error('Failed to send daily plan email:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Send interview reminder email
-   */
-  async sendInterviewReminderEmail(userId: number, interviewId: number): Promise<boolean> {
-    try {
-      // This would be implemented when interview system is ready
-      console.log('Interview reminder email functionality - to be implemented');
-      return true;
-    } catch (error) {
-      console.error('Failed to send interview reminder email:', error);
-      return false;
-    }
-  }
-
-  /**
-   * Send resume analysis report email
-   */
-  async sendResumeAnalysisEmail(userId: number, resumeId: number): Promise<boolean> {
-    try {
-      const user = await User.findByPk(userId);
+      // Fetch user data
+      const user = await User.findByPk(userId)
       if (!user) {
-        throw new Error('User not found');
+        logger.error('User not found for daily plan email:', userId)
+        return false
       }
 
-      // Generate resume analysis PDF
-      // This would need the analysis data from Gemini
-      const emailContent = this.generateResumeAnalysisEmailContent((user as any).name || 'User');
+      const planData = {
+        focus: `Day ${dayIndex + 1} of your learning plan`,
+        duration: '2-3 hours',
+        goals: 'Complete today\'s learning objectives'
+      }
 
       const mailOptions = {
-        from: `"Wysa AI Career Coach" <${process.env.SMTP_USER}>`,
+        from: `"AI Career Coach" <${process.env.SMTP_USER}>`,
         to: user.email,
-        subject: '📊 Your Resume Analysis Report is Ready!',
-        html: emailContent
-      };
+        subject: 'Your Daily Learning Plan - AI Career Coach',
+        html: this.generateDailyPlanTemplate(user.username, planData)
+      }
 
-      const result = await this.transporter.sendMail(mailOptions);
-      console.log('Resume analysis email sent successfully:', result.messageId);
-      
-      return true;
+      const result = await this.transporter.sendMail(mailOptions)
+      logger.info('Daily plan email sent successfully:', result.messageId)
+      return true
     } catch (error) {
-      console.error('Failed to send resume analysis email:', error);
-      return false;
+      logger.error('Failed to send daily plan email:', error)
+      return false
     }
   }
 
-  /**
-   * Generate HTML content for daily plan email
-   */
-  private generateDailyPlanEmailContent(data: DailyPlanEmailData): string {
-    const tasksHtml = data.todayTasks.length > 0 ? data.todayTasks.map((task, index) => `
-      <div style="background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 8px; border-left: 4px solid #007bff;">
-        <h3 style="margin: 0 0 10px 0; color: #333;">${index + 1}. ${task.title}</h3>
-        <p style="margin: 5px 0; color: #666;">${task.description}</p>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
-          <span style="background: #e9ecef; padding: 4px 8px; border-radius: 4px; font-size: 12px;">
-            ⏱️ ${task.duration_mins} minutes
-          </span>
-          <span style="background: ${task.status === 'completed' ? '#d4edda' : '#fff3cd'};
-                      color: ${task.status === 'completed' ? '#155724' : '#856404'};
-                      padding: 4px 8px; border-radius: 4px; font-size: 12px;">
-            ${task.status === 'completed' ? '✅ Completed' : '⏳ Pending'}
-          </span>
-        </div>
-        ${task.resource_links.length > 0 ? `
-          <div style="margin-top: 10px;">
-            <strong>Resources:</strong>
-            <ul style="margin: 5px 0; padding-left: 20px;">
-              ${task.resource_links.map(link => `<li><a href="${link}" style="color: #007bff;">${link}</a></li>`).join('')}
-            </ul>
-          </div>
-        ` : ''}
-      </div>
-    `).join('') : '<p style="text-align: center; color: #666; font-style: italic;">No specific tasks scheduled for today. Focus on your learning goals!</p>';
-
-    return `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Your Daily Learning Plan</title>
-      </head>
-      <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; text-align: center; margin-bottom: 30px;">
-          <h1 style="margin: 0; font-size: 28px;">🎯 Your Daily Learning Plan</h1>
-          <p style="margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Hello ${data.userName}! Ready to level up your skills?</p>
-        </div>
-
-        <div style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
-          <h2 style="color: #333; margin-top: 0; border-bottom: 2px solid #007bff; padding-bottom: 10px;">
-            📋 Today's Tasks
-          </h2>
-          ${tasksHtml}
-        </div>
-
-        <div style="background: #e8f5e8; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-          <h3 style="margin: 0 0 10px 0; color: #2d5a2d;">📈 Your Progress</h3>
-          <div style="background: #fff; height: 20px; border-radius: 10px; overflow: hidden; margin: 10px 0;">
-            <div style="background: linear-gradient(90deg, #28a745, #20c997); height: 100%; width: ${data.plannerProgress}%; transition: width 0.3s ease;"></div>
-          </div>
-          <p style="margin: 5px 0 0 0; font-weight: bold; color: #2d5a2d;">${data.plannerProgress}% Complete</p>
-        </div>
-
-        ${data.pdfPath ? `
-          <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 20px;">
-            <h3 style="margin: 0 0 15px 0; color: #333;">📄 Download Your Daily Plan</h3>
-            <p style="margin: 0 0 15px 0; color: #666;">Get a detailed PDF version of your daily plan</p>
-            <a href="#" style="background: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: bold;">
-              📥 Download PDF
-            </a>
-          </div>
-        ` : ''}
-
-        <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 20px;">
-          <h3 style="margin: 0 0 10px 0; color: #856404;">💡 Pro Tip</h3>
-          <p style="margin: 0; color: #856404;">
-            Complete your tasks in order and take breaks between them. Consistency is key to mastering new skills!
-          </p>
-        </div>
-
-        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-          <p style="margin: 0 0 15px 0; color: #666;">Ready to start your learning journey?</p>
-          <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/dashboard" 
-             style="background: #28a745; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 16px;">
-            🚀 Go to Dashboard
-          </a>
-        </div>
-
-        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-          <p style="margin: 0; color: #999; font-size: 14px;">
-            This email was sent by Wysa AI Career Coach<br>
-            <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}" style="color: #007bff;">Visit our platform</a> | 
-            <a href="#" style="color: #007bff;">Unsubscribe</a>
-          </p>
-        </div>
-      </body>
-      </html>
-    `;
-  }
-
-  /**
-   * Generate HTML content for resume analysis email
-   */
-  private generateResumeAnalysisEmailContent(userName: string): string {
-    return `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resume Analysis Report</title>
-      </head>
-      <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; text-align: center; margin-bottom: 30px;">
-          <h1 style="margin: 0; font-size: 28px;">📊 Resume Analysis Complete!</h1>
-          <p style="margin: 10px 0 0 0; font-size: 16px; opacity: 0.9;">Hello ${userName}! Your personalized analysis is ready.</p>
-        </div>
-
-        <div style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
-          <h2 style="color: #333; margin-top: 0;">🎯 What's Next?</h2>
-          <p>Your resume has been analyzed and we've identified key areas for improvement. Check your dashboard to see:</p>
-          <ul>
-            <li>📈 Skills gap analysis</li>
-            <li>🎯 Personalized learning recommendations</li>
-            <li>📚 Customized study plan</li>
-            <li>💼 Industry-specific insights</li>
-          </ul>
-        </div>
-
-        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-          <a href="${process.env.FRONTEND_URL || 'http://localhost:3000'}/dashboard" 
-             style="background: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; font-weight: bold; font-size: 16px;">
-            📊 View Analysis Report
-          </a>
-        </div>
-      </body>
-      </html>
-    `;
-  }
-
-  /**
-   * Test email configuration
-   */
   async testEmailConfiguration(): Promise<boolean> {
-    try {
-      await this.transporter.verify();
-      console.log('✅ Email configuration is valid');
-      return true;
-    } catch (error) {
-      console.error('❌ Email configuration failed:', error);
-      return false;
+    return this.testConnection()
+  }
+
+  async testConnection(): Promise<boolean> {
+    if (!this.isConfigured || !this.transporter) {
+      return false
     }
+
+    try {
+      await this.transporter.verify()
+      logger.info('Email service connection verified successfully')
+      return true
+    } catch (error) {
+      logger.error('Email service connection failed:', error)
+      return false
+    }
+  }
+
+  private generateDailyPlanTemplate(username: string, planData: any): string {
+    return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Daily Learning Plan</title>
+        <style>
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9fafb;
+          }
+          .container {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+          }
+          .header {
+            text-align: center;
+            margin-bottom: 30px;
+          }
+          .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 10px;
+          }
+          .title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+          }
+          .content {
+            margin-bottom: 30px;
+          }
+          .plan-item {
+            background-color: #f8fafc;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #2563eb;
+          }
+          .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 14px;
+            color: #6b7280;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <div class="logo">AI Career Coach</div>
+          </div>
+          
+          <h1 class="title">Your Daily Learning Plan</h1>
+          
+          <div class="content">
+            <p>Hello ${username},</p>
+            
+            <p>Here's your personalized learning plan for today:</p>
+            
+            <div class="plan-item">
+              <strong>📚 Today's Focus:</strong> ${planData.focus || 'Continue your learning journey'}
+            </div>
+            
+            <div class="plan-item">
+              <strong>⏰ Estimated Time:</strong> ${planData.duration || '2-3 hours'}
+            </div>
+            
+            <div class="plan-item">
+              <strong>🎯 Goals:</strong> ${planData.goals || 'Complete today\'s learning objectives'}
+            </div>
+            
+            <p>Keep up the great work! Your consistent learning will help you achieve your career goals.</p>
+          </div>
+          
+          <div class="footer">
+            <p>This email was sent from AI Career Coach. Keep learning and growing!</p>
+            <p>© ${new Date().getFullYear()} AI Career Coach. All rights reserved.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `
   }
 }
 
-// Export singleton instance
-export const emailService = new EmailService();
+export const emailService = new EmailService()
+export default emailService

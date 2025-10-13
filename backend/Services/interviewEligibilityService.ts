@@ -174,7 +174,7 @@ export class InterviewEligibilityService {
         html: emailContent
       };
 
-      const result = await emailService['transporter'].sendMail(mailOptions);
+      const result = await emailService['transporter']?.sendMail(mailOptions);
       console.log('Interview unlock email sent successfully:', result.messageId);
       
       return true;

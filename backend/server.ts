@@ -102,7 +102,7 @@ async function initializeDatabase() {
     await sequelize.authenticate();
     logger.info('✅ Connected to Postgres (Neon) successfully');
     
-    await sequelize.sync();
+    await sequelize.sync({ force: false, alter: true });
     logger.info('✅ Database synchronized successfully');
   } catch (error) {
     logger.error('❌ Database initialization failed:', error);

@@ -8,7 +8,7 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
   withCredentials: true, // Important for CORS
-  timeout: 30000, // 30 second timeout
+  timeout: 120000, // 2 minute timeout for AI analysis
 })
 
 // Request interceptor to add auth token
@@ -77,6 +77,10 @@ export const authAPI = {
   signup: (username: string, email: string, password: string) =>
     api.post('/api/auth/signup', { username, email, password }),
   me: () => api.get('/api/auth/me'),
+  forgotPassword: (email: string) =>
+    api.post('/api/auth/forgot-password', { email }),
+  resetPassword: (token: string, newPassword: string) =>
+    api.post('/api/auth/reset-password', { token, newPassword }),
 }
 
 // Profile API
@@ -91,10 +95,13 @@ export const resumeAPI = {
   upload: (formData: FormData) => api.post('/api/resume/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   }),
-  parse: (resumeId: number, data: Record<string, unknown>) => api.post(`/api/resume/parse/${resumeId}`, data),
+  parse: (resumeId: number, data: Record<string, unknown>) => api.post(`/api/resume/parse/${resumeId}`, data, {
+    timeout: 180000 // 3 minute timeout for AI analysis
+  }),
   get: (resumeId: number) => api.get(`/api/resume/${resumeId}`),
   getUserResumes: (userId: number) => api.get(`/api/resume/user/${userId}`),
   getAnalysisPdf: (resumeId: number) => api.get(`/api/resume/${resumeId}/analysis-pdf`),
+  delete: (resumeId: number) => api.delete(`/api/resume/${resumeId}`),
 }
 
 // Planner API

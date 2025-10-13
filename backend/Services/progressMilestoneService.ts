@@ -90,7 +90,7 @@ export class ProgressMilestoneService {
         html: emailContent
       };
 
-      const result = await emailService['transporter'].sendMail(mailOptions);
+      const result = await emailService['transporter']?.sendMail(mailOptions);
       console.log(`Milestone notification sent for ${milestone.progress}% completion:`, result.messageId);
       
       return true;

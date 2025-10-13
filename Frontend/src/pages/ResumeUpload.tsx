@@ -71,6 +71,12 @@ export const ResumeUpload: React.FC = () => {
     fetchUserProfile()
   }, [])
 
+  useEffect(() => {
+    if (userProfile?.userId) {
+      fetchUserResumes()
+    }
+  }, [userProfile?.userId])
+
   const fetchUserProfile = async () => {
     try {
       const response = await profileAPI.get()
@@ -79,6 +85,19 @@ export const ResumeUpload: React.FC = () => {
       }
     } catch (error) {
       console.log('No profile found')
+    }
+  }
+
+  const fetchUserResumes = async () => {
+    try {
+      if (userProfile?.userId) {
+        const response = await resumeAPI.getUserResumes(userProfile.userId)
+        if (response.data.data) {
+          setResumes(response.data.data)
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch user resumes:', error)
     }
   }
 
@@ -98,6 +117,9 @@ export const ResumeUpload: React.FC = () => {
       setResumes(prev => [newResume, ...prev])
       toast.success('Resume uploaded successfully!')
       
+      // Refresh the resume list to ensure we have the latest data
+      await fetchUserResumes()
+      
       // Automatically trigger analysis with default values
       setTimeout(async () => {
         try {
@@ -112,7 +134,11 @@ export const ResumeUpload: React.FC = () => {
           const analysisResponse = await resumeAPI.parse(newResume.id, analysisData)
           const result = analysisResponse.data.data.parsedJson
 
+          console.log('Analysis response:', analysisResponse.data)
           console.log('Analysis result:', result)
+          console.log('Analysis result type:', typeof result)
+          console.log('Analysis result null check:', result === null)
+          console.log('Analysis result undefined check:', result === undefined)
 
           // Update local state
           setAnalysisResult(result)
@@ -120,18 +146,19 @@ export const ResumeUpload: React.FC = () => {
             r.id === newResume.id ? { ...r, parsedJson: result } : r
           ))
 
-          // Also update the database record by fetching it again
-          try {
-            const updatedResumeResponse = await resumeAPI.get(newResume.id)
-            console.log('Updated resume from DB:', updatedResumeResponse.data)
-          } catch (fetchError) {
-            console.error('Failed to fetch updated resume:', fetchError)
-          }
+          // Refresh the resume list to get the latest data from database
+          await fetchUserResumes()
 
           toast.success('Resume analyzed automatically!')
+          
+          // Set flag to trigger dashboard refresh
+          localStorage.setItem('resumeUploaded', 'true')
         } catch (analysisError: any) {
           console.error('Auto-analysis failed:', analysisError)
           toast.error('Upload successful, but automatic analysis failed. Please analyze manually.')
+          
+          // Set flag to trigger dashboard refresh even if analysis failed
+          localStorage.setItem('resumeUploaded', 'true')
         } finally {
           setAnalyzing(null)
         }
@@ -166,6 +193,13 @@ export const ResumeUpload: React.FC = () => {
       setResumes(prev => prev.map(r => 
         r.id === resumeId ? { ...r, parsedJson: result } : r
       ))
+      
+      // Refresh the resume list to get the latest data from database
+      await fetchUserResumes()
+      
+      // Set flag to trigger dashboard refresh
+      localStorage.setItem('resumeUploaded', 'true')
+      
       toast.success('Resume analyzed successfully!')
     } catch (error: any) {
       toast.error(error.response?.data?.message || 'Analysis failed')
@@ -191,11 +225,17 @@ export const ResumeUpload: React.FC = () => {
     if (!confirm('Are you sure you want to delete this resume?')) return
 
     try {
-      // Note: Delete endpoint not implemented in backend yet
+      await resumeAPI.delete(resumeId)
+      
+      // Update local state
       setResumes(prev => prev.filter(r => r.id !== resumeId))
+      
+      // Refresh the resume list to ensure we have the latest data
+      await fetchUserResumes()
+      
       toast.success('Resume deleted successfully!')
     } catch (error: any) {
-      toast.error('Failed to delete resume')
+      toast.error(error.response?.data?.message || 'Failed to delete resume')
     }
   }
 
@@ -258,7 +298,7 @@ export const ResumeUpload: React.FC = () => {
       </div>
 
       {/* Resume List */}
-      {resumes.length > 0 && (
+      {resumes.length > 0 ? (
         <div className="bg-white shadow rounded-lg">
           <div className="px-4 py-5 sm:p-6">
             <h3 className="text-lg font-medium text-gray-900 mb-4">Your Resumes</h3>
@@ -307,6 +347,16 @@ export const ResumeUpload: React.FC = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-white shadow rounded-lg">
+          <div className="px-4 py-5 sm:p-6 text-center">
+            <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No Resumes Found</h3>
+            <p className="text-sm text-gray-500 mb-4">
+              Upload your first resume to get started with AI-powered analysis
+            </p>
           </div>
         </div>
       )}

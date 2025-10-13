@@ -4,6 +4,7 @@ import Resume, { ResumeCreationAttributes, ResumeAttributes } from './ResumeMode
 import Planner from './plannerModel';
 import Interview from './interviewModel';
 import Notification, { NotificationCreationAttributes } from './notificationModel';
+import Resource from './resourceModel';
 
 // Define associations
 User.hasOne(Profile, { foreignKey: 'userId', as: 'Profile' });
@@ -21,6 +22,8 @@ Interview.belongsTo(User, { foreignKey: 'userId', as: 'User' });
 User.hasMany(Notification, { foreignKey: 'userId', as: 'Notifications' });
 Notification.belongsTo(User, { foreignKey: 'userId', as: 'User' });
 
+User.hasMany(Resource, { foreignKey: 'userId', as: 'Resources' });
+Resource.belongsTo(User, { foreignKey: 'userId', as: 'User' });
 
 Planner.hasMany(Interview, { foreignKey: 'plannerId', as: 'Interviews' });
 Interview.belongsTo(Planner, { foreignKey: 'plannerId', as: 'Planner' });
@@ -34,5 +37,6 @@ export {
   Planner,
   Interview,
   Notification,
-  NotificationCreationAttributes
+  NotificationCreationAttributes,
+  Resource
 };

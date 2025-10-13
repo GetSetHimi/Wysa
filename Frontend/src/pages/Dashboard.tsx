@@ -19,8 +19,7 @@ import {
   Star,
   Brain,
   Plus,
-  X,
-  RefreshCw
+  X
 } from 'lucide-react'
 import { format } from 'date-fns'
 import toast from 'react-hot-toast'
@@ -98,17 +97,25 @@ export const Dashboard: React.FC = () => {
           if (resumeResponse.data.data && resumeResponse.data.data.length > 0) {
             const latestResume = resumeResponse.data.data[0]
             console.log('Latest resume:', latestResume)
-            if (latestResume.parsedJson) {
+            console.log('Resume parsedJson:', latestResume.parsedJson)
+            console.log('Resume parsedJson type:', typeof latestResume.parsedJson)
+            console.log('Resume parsedJson null check:', latestResume.parsedJson === null)
+            console.log('Resume parsedJson undefined check:', latestResume.parsedJson === undefined)
+            
+            if (latestResume.parsedJson && latestResume.parsedJson !== null && latestResume.parsedJson !== undefined) {
               console.log('Resume analysis found:', latestResume.parsedJson)
               setResumeAnalysis(latestResume)
             } else {
-              console.log('No parsedJson in resume')
+              console.log('No parsedJson in resume - resume needs to be analyzed')
+              setResumeAnalysis(null)
             }
           } else {
             console.log('No resumes found for user')
+            setResumeAnalysis(null)
           }
         } catch (resumeError) {
           console.error('Error fetching resume analysis:', resumeError)
+          setResumeAnalysis(null)
         }
 
         // Check if user has any planners (onboarding is complete if they have planners)
@@ -157,6 +164,12 @@ export const Dashboard: React.FC = () => {
     }
   }, [])
 
+  const refreshData = useCallback(async () => {
+    setLoading(true)
+    await checkUserSetup()
+    await fetchToday()
+  }, [checkUserSetup, fetchToday])
+
   useEffect(() => {
     // Wait for authentication to complete before checking user setup
     if (!authLoading) {
@@ -165,12 +178,66 @@ export const Dashboard: React.FC = () => {
     }
   }, [authLoading, checkUserSetup, fetchToday])
 
-  const refreshData = async () => {
-    setLoading(true)
-    await checkUserSetup()
-    await fetchToday()
-  }
+  // Refresh data when component mounts (e.g., navigating to dashboard)
+  useEffect(() => {
+    if (user && !authLoading) {
+      console.log('Dashboard mounted, refreshing data...')
+      refreshData()
+    }
+  }, [user, authLoading, refreshData])
 
+  // Check for resume upload completion and refresh data
+  useEffect(() => {
+    const checkForResumeUpload = () => {
+      const resumeUploaded = localStorage.getItem('resumeUploaded')
+      if (resumeUploaded === 'true') {
+        console.log('Resume upload detected, refreshing dashboard...')
+        localStorage.removeItem('resumeUploaded') // Clear the flag
+        refreshData()
+      }
+    }
+
+    // Check immediately
+    checkForResumeUpload()
+
+    // Check periodically (every 2 seconds) when on dashboard
+    const interval = setInterval(checkForResumeUpload, 2000)
+
+    return () => clearInterval(interval)
+  }, [refreshData])
+
+  // Refresh data when user changes (e.g., after login)
+  useEffect(() => {
+    if (user && !authLoading) {
+      checkUserSetup()
+      fetchToday()
+    }
+  }, [user, authLoading, checkUserSetup, fetchToday])
+
+  // Auto-refresh dashboard when window gains focus (e.g., returning from resume upload)
+  useEffect(() => {
+    const handleFocus = () => {
+      if (user && !authLoading) {
+        console.log('Window focused, refreshing dashboard data...')
+        refreshData()
+      }
+    }
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden && user && !authLoading) {
+        console.log('Page visible, refreshing dashboard data...')
+        refreshData()
+      }
+    }
+
+    window.addEventListener('focus', handleFocus)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      window.removeEventListener('focus', handleFocus)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [user, authLoading, refreshData])
 
   const [learningPlanForm, setLearningPlanForm] = useState({
     role: '',
@@ -183,18 +250,19 @@ export const Dashboard: React.FC = () => {
 
   // AI-suggested focus areas functions (same as in Planner)
   const getAISuggestedFocusAreas = () => {
-    if (!resumeAnalysis || !userProfile) return []
+    if (!resumeAnalysis || !userProfile || !resumeAnalysis.parsedJson) return []
 
     const suggestions = []
+    const parsedData = resumeAnalysis.parsedJson
 
     // Add missing core skills as primary focus areas
-    if (resumeAnalysis.missingCoreSkills && resumeAnalysis.missingCoreSkills.length > 0) {
-      suggestions.push(...resumeAnalysis.missingCoreSkills.slice(0, 5))
+    if (parsedData.missingCoreSkills && parsedData.missingCoreSkills.length > 0) {
+      suggestions.push(...parsedData.missingCoreSkills.slice(0, 5))
     }
 
     // Add skills based on experience gaps
-    if (resumeAnalysis.experienceGaps && resumeAnalysis.experienceGaps.length > 0) {
-      const gapSkills = resumeAnalysis.experienceGaps
+    if (parsedData.experienceGaps && parsedData.experienceGaps.length > 0) {
+      const gapSkills = parsedData.experienceGaps
         .filter(gap => gap.recommendedActions && gap.recommendedActions.length > 0)
         .slice(0, 3)
         .map(gap => gap.title)
@@ -572,23 +640,13 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">
-            Welcome back, {user?.username}!
-          </h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Here's your learning progress for today
-          </p>
-        </div>
-        <button
-          onClick={refreshData}
-          disabled={loading}
-          className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
-        >
-          <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-          Refresh
-        </button>
+      <div>
+        <h1 className="text-2xl font-bold text-gray-900">
+          Welcome back, {user?.username}!
+        </h1>
+        <p className="mt-1 text-sm text-gray-500">
+          Here's your learning progress for today
+        </p>
       </div>
 
       {/* Role Readiness Card */}
@@ -667,7 +725,7 @@ export const Dashboard: React.FC = () => {
             </div>
 
             {/* Focus Areas */}
-            {resumeAnalysis.parsedJson.missingCoreSkills.length > 0 && (
+            {resumeAnalysis.parsedJson.missingCoreSkills && resumeAnalysis.parsedJson.missingCoreSkills.length > 0 && (
               <div className="bg-white rounded-lg p-4 border border-gray-100">
                 <p className="text-sm font-medium text-gray-700 mb-3">Key Focus Areas:</p>
                 <div className="flex flex-wrap gap-2">
@@ -813,7 +871,7 @@ export const Dashboard: React.FC = () => {
                   </div>
                 )}
 
-                {resumeAnalysis.parsedJson.missingCoreSkills.length > 0 && (
+                {resumeAnalysis.parsedJson.missingCoreSkills && resumeAnalysis.parsedJson.missingCoreSkills.length > 0 && (
                   <div className="mt-4">
                     <p className="text-sm font-medium text-gray-700 mb-2">Missing Core Skills:</p>
                     <div className="flex flex-wrap gap-1">
@@ -967,7 +1025,8 @@ export const Dashboard: React.FC = () => {
               <div className="bg-white rounded-lg p-4 border border-gray-100">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600 mb-1">
-                    {Math.round((resumeAnalysis.parsedJson.scores.overallFitScore / 100) * resumeAnalysis.parsedJson.missingCoreSkills.length)}
+                    {resumeAnalysis.parsedJson.missingCoreSkills ? 
+                      Math.round((resumeAnalysis.parsedJson.scores.overallFitScore / 100) * resumeAnalysis.parsedJson.missingCoreSkills.length) : 0}
                   </div>
                   <div className="text-sm text-gray-600">Skills Improved</div>
                 </div>
@@ -991,27 +1050,29 @@ export const Dashboard: React.FC = () => {
             </div>
 
             {/* Skill Progress */}
-            <div className="bg-white rounded-lg p-4 border border-gray-100">
-              <h4 className="text-sm font-medium text-gray-700 mb-3">Skill Development Progress</h4>
-              <div className="space-y-3">
-                {resumeAnalysis.parsedJson.missingCoreSkills.slice(0, 5).map((skill, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <span className="text-sm text-gray-700">{skill}</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-24 bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full"
-                          style={{ width: `${Math.random() * 80 + 20}%` }} // Simulated progress
-                        />
+            {resumeAnalysis.parsedJson.missingCoreSkills && resumeAnalysis.parsedJson.missingCoreSkills.length > 0 && (
+              <div className="bg-white rounded-lg p-4 border border-gray-100">
+                <h4 className="text-sm font-medium text-gray-700 mb-3">Skill Development Progress</h4>
+                <div className="space-y-3">
+                  {resumeAnalysis.parsedJson.missingCoreSkills.slice(0, 5).map((skill, index) => (
+                    <div key={index} className="flex items-center justify-between">
+                      <span className="text-sm text-gray-700">{skill}</span>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-24 bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-gradient-to-r from-green-400 to-green-600 h-2 rounded-full"
+                            style={{ width: `${Math.random() * 80 + 20}%` }} // Simulated progress
+                          />
+                        </div>
+                        <span className="text-xs text-gray-500 w-8">
+                          {Math.floor(Math.random() * 80 + 20)}%
+                        </span>
                       </div>
-                      <span className="text-xs text-gray-500 w-8">
-                        {Math.floor(Math.random() * 80 + 20)}%
-                      </span>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}

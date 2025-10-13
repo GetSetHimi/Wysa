@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { User } from '../Models';
 import axios from 'axios';
+import crypto from 'crypto';
+import { emailService } from '../Services/emailService';
 
 const authController = express.Router();
 
@@ -11,6 +13,8 @@ const authController = express.Router();
 const isDev = (process.env.NODE_ENV || 'development') === 'development';
 const loginLimiter = createRateLimit(isDev ? 60 * 1000 : 15 * 60 * 1000, isDev ? 30 : 5, 'Too many login attempts, please try again later.');
 const signupLimiter = createRateLimit(isDev ? 60 * 1000 : 15 * 60 * 1000, isDev ? 30 : 5, 'Too many signup attempts, please try again later.');
+const forgotPasswordLimiter = createRateLimit(15 * 60 * 1000, 3, 'Too many forgot password attempts, please try again later.');
+const resetPasswordLimiter = createRateLimit(15 * 60 * 1000, 5, 'Too many password reset attempts, please try again later.');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
 
@@ -83,6 +87,9 @@ const handleRegistration = async (req: Request, res: Response) => {
 
     const token = signJwt(created);
 
+    // Send welcome email
+    await emailService.sendWelcomeEmail(email, username);
+
     return res.status(201).json({
       success: true,
       message: 'Registration successful',
@@ -152,8 +159,160 @@ authController.put('/users/:id', async (req: Request, res: Response) => {
     console.error(error);
     return res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
-}); 
+});
 
+// Forgot Password endpoint
+authController.post('/forgot-password', forgotPasswordLimiter, async (req: Request, res: Response) => {
+  try {
+    const { email } = req.body as { email?: string };
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email is required',
+      });
+    }
+
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      // Don't reveal if user exists or not for security
+      return res.status(200).json({
+        success: true,
+        message: 'If an account with that email exists, a password reset link has been sent.',
+      });
+    }
+
+    // Generate reset token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetTokenExpiry = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes
+
+    // Store reset token in user record (you might want to create a separate table for this)
+    user.resetToken = resetToken;
+    user.resetTokenExpiry = resetTokenExpiry;
+    await user.save();
+
+    // Send password reset email
+    const resetLink = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password?token=${resetToken}`;
+    
+    const emailSent = await emailService.sendPasswordResetEmail(user.email, resetLink, user.username);
+    
+    if (!emailSent && isDev) {
+      console.log('Password reset link (email service not configured):', resetLink);
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: 'If an account with that email exists, a password reset link has been sent.',
+    });
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+});
+
+// Reset Password endpoint
+authController.post('/reset-password', resetPasswordLimiter, async (req: Request, res: Response) => {
+  try {
+    const { token, newPassword } = req.body as { token?: string; newPassword?: string };
+
+    if (!token || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'Token and new password are required',
+      });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'Password must be at least 6 characters long',
+      });
+    }
+
+    const user = await User.findOne({
+      where: {
+        resetToken: token,
+        resetTokenExpiry: {
+          [require('sequelize').Op.gt]: new Date(), // Token not expired
+        },
+      },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or expired reset token',
+      });
+    }
+
+    // Hash new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    
+    // Update user password and clear reset token
+    user.password = hashedPassword;
+    user.resetToken = null;
+    user.resetTokenExpiry = null;
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: 'Password has been reset successfully',
+    });
+  } catch (error) {
+    console.error('Reset password error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+});
+
+// Email test endpoint (for development/testing)
+authController.get('/test-email', async (req: Request, res: Response) => {
+  try {
+    const { email } = req.query as { email?: string };
+    
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email parameter is required',
+      });
+    }
+
+    const isConnected = await emailService.testConnection();
+    if (!isConnected) {
+      return res.status(500).json({
+        success: false,
+        message: 'Email service not configured or connection failed',
+      });
+    }
+
+    // Send test email
+    const testLink = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login`;
+    const emailSent = await emailService.sendPasswordResetEmail(email, testLink, 'Test User');
+    
+    if (emailSent) {
+      return res.status(200).json({
+        success: true,
+        message: 'Test email sent successfully',
+      });
+    } else {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to send test email',
+      });
+    }
+  } catch (error) {
+    console.error('Email test error:', error);
+    return res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    });
+  }
+});
 
 export default authController;
 

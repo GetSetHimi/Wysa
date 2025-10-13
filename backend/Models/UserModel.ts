@@ -8,6 +8,8 @@ interface UserAttributes {
   age: number;
   password: string;
   email: string;
+  resetToken?: string | null;
+  resetTokenExpiry?: Date | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -22,6 +24,8 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
   public age!: number;
   public password!: string;
   public email!: string;
+  public resetToken?: string | null;
+  public resetTokenExpiry?: Date | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -55,6 +59,14 @@ User.init(
       validate: {
         isEmail: true,
       },
+    },
+    resetToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    resetTokenExpiry: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
   },
   {

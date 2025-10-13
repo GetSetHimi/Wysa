@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react'
+import { ForgotPasswordModal } from '../components/ForgotPasswordModal'
 import toast from 'react-hot-toast'
 
 export const Login: React.FC = () => {
@@ -9,6 +10,7 @@ export const Login: React.FC = () => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [showForgotPassword, setShowForgotPassword] = useState(false)
   const { login } = useAuth()
   const navigate = useNavigate()
 
@@ -95,6 +97,16 @@ export const Login: React.FC = () => {
             </div>
           </div>
 
+          <div className="flex items-center justify-between">
+            <button
+              type="button"
+              onClick={() => setShowForgotPassword(true)}
+              className="text-sm text-blue-600 hover:text-blue-500"
+            >
+              Forgot your password?
+            </button>
+          </div>
+
           <div>
             <button
               type="submit"
@@ -105,6 +117,11 @@ export const Login: React.FC = () => {
             </button>
           </div>
         </form>
+        
+        <ForgotPasswordModal
+          isOpen={showForgotPassword}
+          onClose={() => setShowForgotPassword(false)}
+        />
       </div>
     </div>
   )

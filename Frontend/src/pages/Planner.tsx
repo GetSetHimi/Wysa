@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { plannerAPI, profileAPI, resumeAPI } from '../services/api'
 import { 
@@ -21,7 +21,7 @@ interface Planner {
   startDate: string
   endDate: string
   progressPercent: number
-  planJson: any
+  planJson: Record<string, unknown>
   createdAt: string
 }
 
@@ -31,7 +31,7 @@ interface PlannerForm {
   durationDays: number
   dailyHours: number
   experienceSummary: string
-  focusAreas: string[]
+  focusAreas: string
   additionalContext: string
 }
 
@@ -41,8 +41,8 @@ export const Planner: React.FC = () => {
   const [generating, setGenerating] = useState(false)
   const [showCreateForm, setShowCreateForm] = useState(false)
   const [selectedPlanner, setSelectedPlanner] = useState<Planner | null>(null)
-  const [resumeAnalysis, setResumeAnalysis] = useState<any>(null)
-  const [userProfile, setUserProfile] = useState<any>(null)
+  const [resumeAnalysis, setResumeAnalysis] = useState<Record<string, unknown> | null>(null)
+  const [userProfile, setUserProfile] = useState<Record<string, unknown> | null>(null)
   
   const {
     register,
@@ -51,27 +51,28 @@ export const Planner: React.FC = () => {
     reset
   } = useForm<PlannerForm>()
 
-  useEffect(() => {
-    fetchPlanners()
-    fetchUserData()
-  }, [])
-
   const fetchUserData = async () => {
     try {
+      console.log('Fetching user data...')
       // Fetch user profile and resume analysis for AI suggestions
-      const [profileResponse, resumeResponse] = await Promise.all([
-        profileAPI.get(),
-        resumeAPI.getUserResumes(0) // This will get the latest resume
-      ])
-
+      const profileResponse = await profileAPI.get()
+      console.log('Profile response:', profileResponse.data)
+      
       if (profileResponse.data.profile) {
         setUserProfile(profileResponse.data.profile)
-      }
-
-      if (resumeResponse.data.data && resumeResponse.data.data.length > 0) {
-        const latestResume = resumeResponse.data.data[0]
-        if (latestResume.parsedJson) {
-          setResumeAnalysis(latestResume.parsedJson)
+        
+        // Fetch resume analysis for AI suggestions
+        try {
+          const resumeResponse = await resumeAPI.getUserResumes(profileResponse.data.profile.userId as number)
+          if (resumeResponse.data.data && resumeResponse.data.data.length > 0) {
+            const latestResume = resumeResponse.data.data[0]
+            if (latestResume.parsedJson) {
+              setResumeAnalysis(latestResume.parsedJson)
+            }
+          }
+        } catch (resumeError) {
+          console.error('Failed to fetch resume analysis:', resumeError)
+          // Continue without resume analysis
         }
       }
     } catch (error) {
@@ -80,16 +81,33 @@ export const Planner: React.FC = () => {
     }
   }
 
-  const fetchPlanners = async () => {
+  const fetchPlanners = useCallback(async () => {
     try {
-      setPlanners([])
+      console.log('Fetching planners for user:', userProfile?.userId)
+      if (userProfile?.userId) {
+        const response = await plannerAPI.getUserPlanners(userProfile.userId as number)
+        console.log('Planners response:', response.data)
+        if (response.data.data) {
+          setPlanners(response.data.data)
+        }
+      }
     } catch (error) {
       console.error('Failed to fetch planners:', error)
       toast.error('Failed to load planners')
     } finally {
       setLoading(false)
     }
-  }
+  }, [userProfile?.userId])
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
+  useEffect(() => {
+    if (userProfile?.userId) {
+      fetchPlanners()
+    }
+  }, [userProfile?.userId, fetchPlanners])
 
   // Generate AI-suggested focus areas based on resume analysis
   const getAISuggestedFocusAreas = () => {
@@ -98,22 +116,22 @@ export const Planner: React.FC = () => {
     const suggestions = []
 
     // Add missing core skills as primary focus areas
-    if (resumeAnalysis.missingCoreSkills && resumeAnalysis.missingCoreSkills.length > 0) {
-      suggestions.push(...resumeAnalysis.missingCoreSkills.slice(0, 5))
+    if (resumeAnalysis.missingCoreSkills && Array.isArray(resumeAnalysis.missingCoreSkills) && resumeAnalysis.missingCoreSkills.length > 0) {
+      suggestions.push(...(resumeAnalysis.missingCoreSkills as string[]).slice(0, 5))
     }
 
     // Add skills based on experience gaps
-    if (resumeAnalysis.experienceGaps && resumeAnalysis.experienceGaps.length > 0) {
-      const gapSkills = resumeAnalysis.experienceGaps
-        .filter(gap => gap.recommendedActions && gap.recommendedActions.length > 0)
+    if (resumeAnalysis.experienceGaps && Array.isArray(resumeAnalysis.experienceGaps) && resumeAnalysis.experienceGaps.length > 0) {
+      const gapSkills = (resumeAnalysis.experienceGaps as Record<string, unknown>[])
+        .filter((gap: Record<string, unknown>) => gap.recommendedActions && Array.isArray(gap.recommendedActions) && gap.recommendedActions.length > 0)
         .slice(0, 3)
-        .map(gap => gap.title)
+        .map((gap: Record<string, unknown>) => gap.title as string)
       suggestions.push(...gapSkills)
     }
 
     // Add skills based on desired role
     if (userProfile.desiredRole) {
-      const roleSkills = getRoleSpecificSkills(userProfile.desiredRole)
+      const roleSkills = getRoleSpecificSkills(userProfile.desiredRole as string)
       suggestions.push(...roleSkills.slice(0, 3))
     }
 
@@ -141,7 +159,7 @@ export const Planner: React.FC = () => {
       // Use AI-suggested focus areas, or fall back to manual input if provided
       const aiSuggestions = getAISuggestedFocusAreas()
       const focusAreas = data.focusAreas && data.focusAreas.length > 0
-        ? data.focusAreas.split(',').map(area => area.trim()).filter(area => area.length > 0)
+        ? data.focusAreas.split(',').map((area: string) => area.trim()).filter((area: string) => area.length > 0)
         : aiSuggestions
 
       const processedData = {
@@ -155,9 +173,14 @@ export const Planner: React.FC = () => {
       setPlanners(prev => [newPlanner, ...prev])
       setShowCreateForm(false)
       reset()
+      
+      // Refresh the planners list to ensure we have the latest data
+      await fetchPlanners()
+      
       toast.success('Learning planner generated successfully!')
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Failed to generate planner')
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Failed to generate planner'
+      toast.error(errorMessage)
     } finally {
       setGenerating(false)
     }
@@ -174,7 +197,8 @@ export const Planner: React.FC = () => {
 
       window.open(fullUrl, '_blank')
       toast.success('Daily plan PDF downloaded!')
-    } catch (error: any) {
+    } catch (error: unknown) {
+      console.error('Download error:', error)
       toast.error('Failed to download daily plan PDF')
     }
   }
@@ -185,8 +209,13 @@ export const Planner: React.FC = () => {
     try {
       // Note: Delete endpoint not implemented in backend yet
       setPlanners(prev => prev.filter(p => p.id !== plannerId))
+      
+      // Refresh the planners list to ensure we have the latest data
+      await fetchPlanners()
+      
       toast.success('Planner deleted successfully!')
-    } catch (error: any) {
+    } catch (error: unknown) {
+      console.error('Delete error:', error)
       toast.error('Failed to delete planner')
     }
   }
@@ -594,7 +623,7 @@ export const Planner: React.FC = () => {
                   <div>
                     <h4 className="text-sm font-medium text-gray-700 mb-2">Plan Summary</h4>
                     <p className="text-sm text-gray-900">
-                      {selectedPlanner.planJson.summary || 'No summary available'}
+                      {(selectedPlanner.planJson as Record<string, unknown>).summary as string || 'No summary available'}
                     </p>
                   </div>
                 )}
