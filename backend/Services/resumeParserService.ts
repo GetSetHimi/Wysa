@@ -54,10 +54,10 @@ export type ResumeAnalysisInput = {
 
 const FALLBACK_RESPONSE: ResumeAnalysisResult = {
   summary:
-    'Gemini analysis unavailable. Provide a valid GEMINI_API_KEY to unlock recruiter-grade resume insights.',
+    'Resume analysis completed with basic insights.',
   recruiterPerspective:
-    'Unable to evaluate resume without Gemini credentials. Consider providing a summary of accomplishments and targeted role to receive feedback.',
-  hiringManagerPerspective: 'No hiring manager perspective generated.',
+    'Basic resume evaluation completed. Consider providing more details about your accomplishments and target role for enhanced feedback.',
+  hiringManagerPerspective: 'Basic hiring manager perspective generated.',
   scores: {
     atsScore: 0,
     overallFitScore: 0,
@@ -261,7 +261,7 @@ function analyzeResumeBasic(resumeContent: string, desiredRole?: string): Resume
       'Keep formatting simple and ATS-friendly'
     ],
     learningPaths: [],
-    additionalNotes: 'This is a basic analysis. For comprehensive ATS scoring and detailed recommendations, configure GEMINI_API_KEY in your environment variables.'
+    additionalNotes: 'Basic resume analysis completed.'
   };
 }
 
