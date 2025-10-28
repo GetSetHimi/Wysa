@@ -250,7 +250,13 @@ function analyzeResumeBasic(resumeContent: string, desiredRole?: string): Resume
       formatScore,
       sectionCompletenessScore: sectionScore,
     },
-    missingCoreSkills: desiredRole ? [`Specific ${desiredRole} skills analysis requires AI`] : ['AI analysis needed for detailed skill assessment'],
+    missingCoreSkills: desiredRole ? [
+      `Detailed ${desiredRole} skills analysis unavailable (AI service temporarily unavailable)`,
+      'Please check server logs for details or try again later'
+    ] : [
+      'AI analysis unavailable - detailed skill assessment cannot be performed',
+      'Please ensure Gemini API is properly configured and has available quota'
+    ],
     missingNiceToHaveSkills: ['Detailed analysis requires AI'],
     experienceGaps: [],
     certificationRecommendations: ['Consider AI analysis for detailed recommendations'],
@@ -269,6 +275,7 @@ export async function analyzeResumeWithGemini(
   input: ResumeAnalysisInput
 ): Promise<ResumeAnalysisResult> {
   if (!generativeAI) {
+    logger.warn('Gemini AI not initialized - API key missing. Using basic analysis.');
     return analyzeResumeBasic(input.resumeContent, input.desiredRole);
   }
 
@@ -276,6 +283,7 @@ export async function analyzeResumeWithGemini(
   const prompt = buildPrompt(input);
 
   try {
+    logger.info(`Attempting Gemini analysis with model: ${DEFAULT_MODEL}`);
     const result = await model.generateContent(prompt);
     const text = result.response?.text();
 
@@ -284,9 +292,26 @@ export async function analyzeResumeWithGemini(
       return analyzeResumeBasic(input.resumeContent, input.desiredRole);
     }
 
+    logger.info('Gemini analysis completed successfully');
     return parseJsonResponse(text);
-  } catch (error) {
-    logger.error('Gemini resume analysis failed:', error);
+  } catch (error: any) {
+    logger.error('Gemini resume analysis failed:', {
+      message: error?.message,
+      status: error?.status,
+      statusText: error?.statusText,
+      errorDetails: error?.toString()
+    });
+    
+    // Check for rate limit errors
+    if (error?.message?.includes('429') || error?.message?.includes('RATE_LIMIT_EXCEEDED')) {
+      logger.error('⚠️  RATE LIMIT EXCEEDED: Gemini API quota exhausted. Please check your Google Cloud Console quota settings.');
+    }
+    
+    // Check for quota errors
+    if (error?.message?.includes('quota_limit_value":"0"')) {
+      logger.error('⚠️  QUOTA ERROR: Your Gemini API has 0 quota. Please enable billing or increase quota limits in Google Cloud Console.');
+    }
+    
     return analyzeResumeBasic(input.resumeContent, input.desiredRole);
   }
 }

@@ -14,12 +14,12 @@ import {
 } from 'lucide-react'
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: Home },
-  { name: 'Profile', href: '/profile', icon: User },
-  { name: 'Resume', href: '/resume', icon: FileText },
-  { name: 'Planner', href: '/planner', icon: Calendar },
-  { name: 'Interview', href: '/interview', icon: Mic },
-  { name: 'Resources', href: '/resources', icon: BookOpen },
+  { name: 'Dashboard', href: '/app/dashboard', icon: Home },
+  { name: 'Profile', href: '/app/profile', icon: User },
+  { name: 'Resume', href: '/app/resume', icon: FileText },
+  { name: 'Planner', href: '/app/planner', icon: Calendar },
+  { name: 'Interview', href: '/app/interview', icon: Mic },
+  { name: 'Resources', href: '/app/resources', icon: BookOpen },
 ]
 
 export const Layout: React.FC = () => {
@@ -30,7 +30,7 @@ export const Layout: React.FC = () => {
 
   const handleLogout = () => {
     logout()
-    navigate('/login')
+    navigate('/')
   }
 
   return (

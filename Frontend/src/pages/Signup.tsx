@@ -37,7 +37,7 @@ export const Signup: React.FC = () => {
     try {
       await signup(username, email, password)
       toast.success('Account created successfully!')
-      navigate('/dashboard')
+      navigate('/app/dashboard')
     } catch (error: any) {
       toast.error(error.message || 'Signup failed')
     } finally {

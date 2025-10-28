@@ -25,7 +25,7 @@ export const Login: React.FC = () => {
     try {
       await login(email, password)
       toast.success('Login successful!')
-      navigate('/dashboard')
+      navigate('/app/dashboard')
     } catch (error: any) {
       toast.error(error.message || 'Login failed')
     } finally {

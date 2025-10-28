@@ -3,6 +3,8 @@ import { Toaster } from 'react-hot-toast'
 import { AuthProvider } from './contexts/AuthContext'
 import { ProtectedRoute } from './Components/ProtectedRoute'
 import { Layout } from './Components/Layout'
+import { PublicNavbar } from './Components/PublicNavbar'
+import { HomePage } from './pages/HomePage'
 import { Login } from './pages/Login'
 import { Signup } from './pages/Signup'
 import { ResetPassword } from './pages/ResetPassword'
@@ -20,18 +22,27 @@ function App() {
         <div className="min-h-screen bg-gray-50">
           <Toaster position="top-right" />
           <Routes>
+            {/* Public routes */}
+            <Route path="/" element={
+              <>
+                <PublicNavbar />
+                <HomePage />
+              </>
+            } />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            
+            {/* Protected routes */}
             <Route
-              path="/"
+              path="/app"
               element={
                 <ProtectedRoute>
                   <Layout />
                 </ProtectedRoute>
               }
             >
-              <Route index element={<Navigate to="/dashboard" replace />} />
+              <Route index element={<Navigate to="/app/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="profile" element={<Profile />} />
               <Route path="resume" element={<ResumeUpload />} />
