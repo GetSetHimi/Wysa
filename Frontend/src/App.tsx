@@ -14,6 +14,8 @@ import { ResumeUpload } from './pages/ResumeUpload'
 import { Planner } from './pages/Planner'
 import { Interview } from './pages/Interview'
 import { Resources } from './pages/Resources'
+import AdminDashboard from './pages/AdminDashboard'
+import AdminLogin from './pages/AdminLogin'
 
 function App() {
   return (
@@ -32,6 +34,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            
+            {/* Admin routes */}
+            <Route path="/admin-login" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminDashboard />} />
             
             {/* Protected routes */}
             <Route

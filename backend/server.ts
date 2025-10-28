@@ -14,8 +14,10 @@ import pdfController from './Controller/pdfController';
 import interviewController from './Controller/interviewController';
 import { s3Controller } from './Controller/s3Controller';
 import resourceController from './Controller/resourceController';
+import analyticsController from './Controller/analyticsController';
 import { requireAuth } from './middleware/authMiddleware';
 import { emailScheduler } from './Services/emailScheduler';
+import { AdminSetupService } from './Services/adminSetupService';
 
 // Security and optimization middleware
 import { 
@@ -91,6 +93,7 @@ app.use('/api/pdf', apiRateLimit, pdfController);
 app.use('/api/interview', apiRateLimit, interviewController);
 app.use('/api/s3', apiRateLimit, s3Controller);
 app.use('/api/resources', apiRateLimit, resourceController);
+app.use('/api/analytics', apiRateLimit, analyticsController);
 
 // Direct route for /api/today (points to notificationController's today endpoint)
 app.use('/api/today', apiRateLimit, notificationController);
@@ -120,7 +123,7 @@ async function initializeDatabase() {
   }
 }
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     logger.info(`🚀 Server is running on port ${PORT}`);
     logger.info(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
     
@@ -130,6 +133,11 @@ app.listen(PORT, () => {
     logger.info('📧 Starting email scheduler...');
     emailScheduler.start();
     logger.info('✅ Email scheduler started successfully');
+    
+    // Setup admin user from environment variables
+    logger.info('🔐 Setting up admin user...');
+    await AdminSetupService.setupAdminUser();
+    await AdminSetupService.verifyAdminUser();
 });
 
 // Graceful shutdown
