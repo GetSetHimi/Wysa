@@ -96,7 +96,7 @@ app.use('/api/resources', apiRateLimit, resourceController);
 app.use('/api/analytics', apiRateLimit, analyticsController);
 
 // Direct route for /api/today (points to notificationController's today endpoint)
-app.use('/api/today', apiRateLimit, notificationController);
+app.use('/api/today', requireAuth, apiRateLimit, notificationController);
 
 // Error handling middleware (must be last)
 app.use(notFoundHandler);

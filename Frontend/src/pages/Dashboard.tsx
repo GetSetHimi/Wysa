@@ -299,7 +299,7 @@ export const Dashboard: React.FC = () => {
         description: 'Set your career goals and preferences',
         icon: User,
         completed: onboardingStep !== 'profile',
-        href: '/profile'
+        href: '/app/profile'
       },
       {
         id: 'resume' as OnboardingStep,
@@ -307,7 +307,7 @@ export const Dashboard: React.FC = () => {
         description: 'Upload your resume for AI analysis',
         icon: Upload,
         completed: onboardingStep === 'planner' || onboardingStep === 'complete',
-        href: '/resume'
+        href: '/app/resume'
       },
       {
         id: 'planner' as OnboardingStep,
@@ -315,7 +315,7 @@ export const Dashboard: React.FC = () => {
         description: 'Generate your personalized learning plan',
         icon: Calendar,
         completed: onboardingStep === 'complete',
-        href: '/planner'
+        href: '/app/planner'
       }
     ]
     return steps
@@ -372,7 +372,7 @@ export const Dashboard: React.FC = () => {
           <div>
             <p>Resources generated automatically!</p>
             <p className="text-sm mt-1">
-              <a href="/resources" className="text-blue-600 hover:text-blue-800 underline">
+              <a href="/app/resources" className="text-blue-600 hover:text-blue-800 underline">
                 View your personalized resources →
               </a>
             </p>
@@ -385,7 +385,7 @@ export const Dashboard: React.FC = () => {
           <div>
             <p>Learning plan created successfully!</p>
             <p className="text-sm mt-1">
-              <a href="/resources" className="text-blue-600 hover:text-blue-800 underline">
+              <a href="/app/resources" className="text-blue-600 hover:text-blue-800 underline">
                 Generate personalized resources →
               </a>
             </p>
@@ -907,7 +907,7 @@ export const Dashboard: React.FC = () => {
               </div>
               <div className="mt-4">
                 <Link
-                  to="/resume"
+                  to="/app/resume"
                   className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
                 >
                   <Upload className="h-4 w-4 mr-2" />
@@ -941,7 +941,7 @@ export const Dashboard: React.FC = () => {
                   </p>
                   <div className="flex space-x-3">
                     <Link
-                      to="/planner"
+                      to="/app/planner"
                       className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700"
                     >
                       <Calendar className="h-4 w-4 mr-2" />
@@ -1079,7 +1079,7 @@ export const Dashboard: React.FC = () => {
           </h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
-              to="/resume"
+              to="/app/resume"
               className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
             >
               <div>
@@ -1099,7 +1099,7 @@ export const Dashboard: React.FC = () => {
             </Link>
 
             <Link
-              to="/planner"
+              to="/app/planner"
               className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
             >
               <div>
@@ -1119,7 +1119,7 @@ export const Dashboard: React.FC = () => {
             </Link>
 
             <Link
-              to="/interview"
+              to="/app/interview"
               className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
             >
               <div>
@@ -1139,7 +1139,7 @@ export const Dashboard: React.FC = () => {
             </Link>
 
             <Link
-              to="/resources"
+              to="/app/resources"
               className="relative group bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-500 rounded-lg border border-gray-200 hover:border-gray-300"
             >
               <div>

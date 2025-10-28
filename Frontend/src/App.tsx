@@ -16,6 +16,30 @@ import { Interview } from './pages/Interview'
 import { Resources } from './pages/Resources'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminLogin from './pages/AdminLogin'
+import { useAuth } from './contexts/AuthContext'
+
+const HomePageWrapper = () => {
+  const { user, loading } = useAuth()
+  
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+  
+  if (user) {
+    return <Navigate to="/app/dashboard" replace />
+  }
+  
+  return (
+    <>
+      <PublicNavbar />
+      <HomePage />
+    </>
+  )
+}
 
 function App() {
   return (
@@ -25,19 +49,18 @@ function App() {
           <Toaster position="top-right" />
           <Routes>
             {/* Public routes */}
-            <Route path="/" element={
-              <>
-                <PublicNavbar />
-                <HomePage />
-              </>
-            } />
+            <Route path="/" element={<HomePageWrapper />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             
             {/* Admin routes */}
             <Route path="/admin-login" element={<AdminLogin />} />
-            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin" element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
             
             {/* Protected routes */}
             <Route

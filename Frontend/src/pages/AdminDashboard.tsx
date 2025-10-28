@@ -36,6 +36,10 @@ const AdminDashboard: React.FC = () => {
       setLoading(true);
       const token = localStorage.getItem('token');
       
+      if (!token) {
+        throw new Error('No authentication token found. Please log in.');
+      }
+      
       const response = await fetch('/api/analytics/stats', {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -44,7 +48,18 @@ const AdminDashboard: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch analytics data');
+        if (response.status === 401) {
+          throw new Error('Authentication failed. Please log in again.');
+        } else if (response.status === 403) {
+          throw new Error('Access denied. Admin privileges required.');
+        } else {
+          throw new Error(`Server error: ${response.status}`);
+        }
+      }
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Server returned non-JSON response. Please check your connection.');
       }
 
       const data = await response.json();
@@ -66,6 +81,11 @@ const AdminDashboard: React.FC = () => {
     try {
       const token = localStorage.getItem('token');
       
+      if (!token) {
+        console.error('No authentication token found');
+        return;
+      }
+      
       const response = await fetch(`/api/analytics/active-users-details/${selectedTimeWindow}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -74,7 +94,22 @@ const AdminDashboard: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch recent activity');
+        if (response.status === 401) {
+          console.error('Authentication failed');
+          return;
+        } else if (response.status === 403) {
+          console.error('Access denied. Admin privileges required.');
+          return;
+        } else {
+          console.error(`Server error: ${response.status}`);
+          return;
+        }
+      }
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        console.error('Server returned non-JSON response');
+        return;
       }
 
       const data = await response.json();
@@ -90,6 +125,11 @@ const AdminDashboard: React.FC = () => {
     try {
       const token = localStorage.getItem('token');
       
+      if (!token) {
+        console.error('No authentication token found');
+        return;
+      }
+      
       const response = await fetch('/api/analytics/admin-info', {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -98,9 +138,20 @@ const AdminDashboard: React.FC = () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        if (data.success) {
-          setAdminInfo(data.data.adminInfo);
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const data = await response.json();
+          if (data.success) {
+            setAdminInfo(data.data.adminInfo);
+          }
+        }
+      } else {
+        if (response.status === 401) {
+          console.error('Authentication failed');
+        } else if (response.status === 403) {
+          console.error('Access denied. Admin privileges required.');
+        } else {
+          console.error(`Server error: ${response.status}`);
         }
       }
     } catch (err) {
@@ -136,10 +187,21 @@ const AdminDashboard: React.FC = () => {
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
-        <div className="text-center">
+        <div className="text-center max-w-md">
           <div className="text-red-500 text-xl mb-4">⚠️ Access Denied</div>
-          <div className="text-gray-600">Error: {error}</div>
-          <div className="text-sm text-gray-500 mt-2">This dashboard is for administrators only.</div>
+          <div className="text-gray-600 mb-4">Error: {error}</div>
+          <div className="text-sm text-gray-500 mb-6">This dashboard is for administrators only.</div>
+          <div className="space-y-2">
+            <a 
+              href="/admin-login" 
+              className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Go to Admin Login
+            </a>
+            <div className="text-xs text-gray-400">
+              Or contact your system administrator for access
+            </div>
+          </div>
         </div>
       </div>
     );
