@@ -25,8 +25,10 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({ isOpen
       await authAPI.forgotPassword(email)
       setEmailSent(true)
       toast.success('Password reset link sent to your email')
-    } catch (error: any) {
-      toast.error(error.message || 'Failed to send reset link')
+    } catch (error: unknown) {
+      console.error('Forgot password error:', error)
+      const errorMessage = error instanceof Error ? error.message : 'Failed to send reset link'
+      toast.error(errorMessage)
     } finally {
       setLoading(false)
     }

@@ -137,8 +137,10 @@ export const Dashboard: React.FC = () => {
       // If it's an authentication error (401), user needs to login
       if (error.status === 401) {
         setOnboardingStep('profile')
+        toast.error('Please log in again')
       } else {
         setOnboardingStep('profile')
+        toast.error('Failed to load dashboard data')
       }
     } finally {
       setLoading(false)

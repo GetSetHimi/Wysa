@@ -93,7 +93,7 @@ export const Login: React.FC = () => {
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center justify-center w-10 h-full z-10 hover:bg-gray-50 rounded-r-md transition-colors cursor-pointer"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center justify-center w-10 h-full z-20 hover:bg-gray-50 rounded-r-md transition-colors cursor-pointer"
                 onClick={togglePasswordVisibility}
                 tabIndex={-1}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
