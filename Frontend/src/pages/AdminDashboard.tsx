@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Card } from '../Components/ui/card';
 import { BarChart3, Users, Clock, TrendingUp, Shield, Eye } from 'lucide-react';
+import { api } from '../services/api';
 
 interface ActivityStats {
   active15Min: number;
@@ -31,38 +32,10 @@ const AdminDashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedTimeWindow, setSelectedTimeWindow] = useState(15);
 
-  const fetchStats = async () => {
+  const fetchStats = useCallback(async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
-      
-      if (!token) {
-        throw new Error('No authentication token found. Please log in.');
-      }
-      
-      const response = await fetch('/api/analytics/stats', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          throw new Error('Authentication failed. Please log in again.');
-        } else if (response.status === 403) {
-          throw new Error('Access denied. Admin privileges required.');
-        } else {
-          throw new Error(`Server error: ${response.status}`);
-        }
-      }
-
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('Server returned non-JSON response. Please check your connection.');
-      }
-
-      const data = await response.json();
+      const { data } = await api.get('/api/analytics/stats');
       if (data.success) {
         setStats(data.data);
         setError(null);
@@ -75,103 +48,43 @@ const AdminDashboard: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const fetchRecentActivity = async () => {
+  const fetchRecentActivity = useCallback(async () => {
     try {
-      const token = localStorage.getItem('token');
-      
-      if (!token) {
-        console.error('No authentication token found');
-        return;
-      }
-      
-      const response = await fetch(`/api/analytics/active-users-details/${selectedTimeWindow}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        if (response.status === 401) {
-          console.error('Authentication failed');
-          return;
-        } else if (response.status === 403) {
-          console.error('Access denied. Admin privileges required.');
-          return;
-        } else {
-          console.error(`Server error: ${response.status}`);
-          return;
-        }
-      }
-
-      const contentType = response.headers.get('content-type');
-      if (!contentType || !contentType.includes('application/json')) {
-        console.error('Server returned non-JSON response');
-        return;
-      }
-
-      const data = await response.json();
+      const { data } = await api.get(`/api/analytics/active-users-details/${selectedTimeWindow}`);
       if (data.success) {
         setRecentActivity(data.data.activeUsers || []);
       }
     } catch (err) {
       console.error('Error fetching recent activity:', err);
     }
-  };
+  }, [selectedTimeWindow]);
 
-  const fetchAdminInfo = async () => {
+  const fetchAdminInfo = useCallback(async () => {
     try {
-      const token = localStorage.getItem('token');
-      
-      if (!token) {
-        console.error('No authentication token found');
-        return;
-      }
-      
-      const response = await fetch('/api/analytics/admin-info', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          const data = await response.json();
-          if (data.success) {
-            setAdminInfo(data.data.adminInfo);
-          }
-        }
-      } else {
-        if (response.status === 401) {
-          console.error('Authentication failed');
-        } else if (response.status === 403) {
-          console.error('Access denied. Admin privileges required.');
-        } else {
-          console.error(`Server error: ${response.status}`);
-        }
+      const { data } = await api.get('/api/analytics/admin-info');
+      if (data.success) {
+        setAdminInfo(data.data.adminInfo);
       }
     } catch (err) {
       console.error('Error fetching admin info:', err);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchStats();
     fetchRecentActivity();
     fetchAdminInfo();
-    
+
     // Refresh data every 30 seconds
     const interval = setInterval(() => {
       fetchStats();
       fetchRecentActivity();
     }, 30000);
-    
+
     return () => clearInterval(interval);
-  }, [selectedTimeWindow]);
+  }, [fetchStats, fetchRecentActivity, fetchAdminInfo]);
 
   if (loading) {
     return (

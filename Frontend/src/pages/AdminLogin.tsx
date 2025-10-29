@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Shield, Eye, EyeOff } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { authAPI, api } from '../services/api';
 
 const AdminLogin: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -15,42 +16,29 @@ const AdminLogin: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
 
-      const data = await response.json();
+      const resp = await authAPI.login(email, password);
+      const data = resp.data;
 
-      if (data.success) {
+      if (data?.success) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        
-        // Check if user is admin by trying to access admin endpoint
-        const adminCheck = await fetch('/api/analytics/stats', {
-          headers: {
-            'Authorization': `Bearer ${data.token}`,
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (adminCheck.ok) {
+        try {
+          await api.get('/api/analytics/stats');
           toast.success('Admin login successful!');
           navigate('/admin');
-        } else {
+        } catch {
           toast.error('Access denied. Admin privileges required.');
           localStorage.removeItem('token');
           localStorage.removeItem('user');
         }
       } else {
-        toast.error(data.message || 'Login failed');
+        toast.error(data?.message || 'Login failed');
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Login error:', error);
-      toast.error('Login failed. Please try again.');
+      const message = (error as { message?: string })?.message || 'Login failed. Please try again.';
+      toast.error(message);
     } finally {
       setLoading(false);
     }

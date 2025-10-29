@@ -2,3 +2,21 @@
 {"constraint":"planners_userId_fkey","level":"error","message":"❌ Database initialization failed: Unknown constraint error","name":"SequelizeUnknownConstraintError","original":{"code":"42704","file":"tablecmds.c","length":141,"line":"12648","name":"error","routine":"ATExecDropConstraint","severity":"ERROR","sql":"ALTER TABLE \"planners\" DROP CONSTRAINT \"planners_userId_fkey\""},"parameters":{},"parent":{"code":"42704","file":"tablecmds.c","length":141,"line":"12648","name":"error","routine":"ATExecDropConstraint","severity":"ERROR","sql":"ALTER TABLE \"planners\" DROP CONSTRAINT \"planners_userId_fkey\""},"sql":"ALTER TABLE \"planners\" DROP CONSTRAINT \"planners_userId_fkey\"","stack":"Error\n    at Query.run (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/dialects/postgres/query.js:76:25)\n    at /Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/sequelize.js:650:28\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async Function.sync (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/model.js:1402:17)\n    at async Sequelize.sync (/Users/hexahealth/Desktop/Personal/Wysa/backend/node_modules/sequelize/src/sequelize.js:825:9)\n    at async initializeDatabase (/Users/hexahealth/Desktop/Personal/Wysa/backend/server.ts:105:5)","table":"planners","timestamp":"2025-10-13T18:12:08.768Z"}
 {"level":"error","message":"Error analyzing skill gaps: Gemini API error: 404","stack":"Error: Gemini API error: 404\n    at ResourceGenerationService.callGeminiAPI (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:258:13)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async ResourceGenerationService.analyzeSkillGaps (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:117:24)\n    at async ResourceGenerationService.generatePersonalizedResources (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:73:32)\n    at async /Users/hexahealth/Desktop/Personal/Wysa/backend/Controller/resourceController.ts:94:22","timestamp":"2025-10-13T18:12:43.999Z"}
 {"level":"error","message":"Error generating resources: Gemini API error: 404","stack":"Error: Gemini API error: 404\n    at ResourceGenerationService.callGeminiAPI (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:258:13)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async ResourceGenerationService.generateResources (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:151:24)\n    at async ResourceGenerationService.generatePersonalizedResources (/Users/hexahealth/Desktop/Personal/Wysa/backend/Services/resourceGenerationService.ts:76:25)\n    at async /Users/hexahealth/Desktop/Personal/Wysa/backend/Controller/resourceController.ts:94:22","timestamp":"2025-10-13T18:12:44.856Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:42.560Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:43.708Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:44.317Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:44.896Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:45.489Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:46.066Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:46.644Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:47.223Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:47.799Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:48.379Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:48.958Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:50.954Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:52.080Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:59.373Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:00.730Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:08.611Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:17.197Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:17.771Z"}

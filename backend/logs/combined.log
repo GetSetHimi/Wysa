@@ -954,3 +954,306 @@
 {"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:47:22.901Z"}
 {"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-13T18:47:25.083Z"}
 {"level":"info","message":"GET / - 200 - 1996ms","timestamp":"2025-10-13T18:48:07.968Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-28T16:43:28.043Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-28T16:43:28.328Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-28T16:43:28.341Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-28T16:43:28.342Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-28T16:43:28.342Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-28T16:43:28.682Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-28T16:43:28.682Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-28T16:43:28.682Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-28T16:43:28.682Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-28T16:43:28.682Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-28T16:43:28.682Z"}
+{"level":"info","message":"🔐 Setting up admin user...","timestamp":"2025-10-28T16:43:28.682Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-28T16:43:34.840Z"}
+{"level":"info","message":"✅ Admin user updated: himi50071@gmail.com","timestamp":"2025-10-28T16:43:35.211Z"}
+{"level":"info","message":"🔐 Admin credentials configured:","timestamp":"2025-10-28T16:43:35.211Z"}
+{"level":"info","message":"   Email: himi50071@gmail.com","timestamp":"2025-10-28T16:43:35.211Z"}
+{"level":"info","message":"   Username: Admin","timestamp":"2025-10-28T16:43:35.211Z"}
+{"level":"info","message":"   Password: [CONFIGURED]","timestamp":"2025-10-28T16:43:35.211Z"}
+{"level":"info","message":"✅ Admin user verified: himi50071@gmail.com","timestamp":"2025-10-28T16:43:35.571Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-28T16:43:40.916Z"}
+{"level":"info","message":"📞 Checking for interview reminders...","timestamp":"2025-10-28T17:00:00.012Z"}
+{"level":"info","message":"📧 Starting daily plan email job...","timestamp":"2025-10-28T17:00:00.013Z"}
+{"level":"info","message":"📞 Checking for interview reminders...","timestamp":"2025-10-28T17:30:00.025Z"}
+{"level":"info","message":"Email service initialized successfully","timestamp":"2025-10-29T05:12:14.463Z"}
+{"level":"info","message":"🕐 Initializing email scheduler...","timestamp":"2025-10-29T05:12:14.724Z"}
+{"level":"info","message":"📅 Daily plan emails scheduled (every hour)","timestamp":"2025-10-29T05:12:14.747Z"}
+{"level":"info","message":"📅 Interview reminders scheduled (every 30 minutes)","timestamp":"2025-10-29T05:12:14.748Z"}
+{"level":"info","message":"✅ Email scheduler initialized successfully","timestamp":"2025-10-29T05:12:14.748Z"}
+{"level":"info","message":"🚀 Server is running on port 3000","timestamp":"2025-10-29T05:12:15.072Z"}
+{"level":"info","message":"🌍 Environment: development","timestamp":"2025-10-29T05:12:15.072Z"}
+{"level":"info","message":"📧 Starting email scheduler...","timestamp":"2025-10-29T05:12:15.072Z"}
+{"level":"info","message":"▶️ Started job: daily-plan-emails","timestamp":"2025-10-29T05:12:15.073Z"}
+{"level":"info","message":"▶️ Started job: interview-reminders","timestamp":"2025-10-29T05:12:15.073Z"}
+{"level":"info","message":"✅ Email scheduler started successfully","timestamp":"2025-10-29T05:12:15.073Z"}
+{"level":"info","message":"🔐 Setting up admin user...","timestamp":"2025-10-29T05:12:15.073Z"}
+{"level":"info","message":"✅ Connected to Postgres (Neon) successfully","timestamp":"2025-10-29T05:12:22.244Z"}
+{"level":"info","message":"✅ Admin user updated: himi50071@gmail.com","timestamp":"2025-10-29T05:12:22.621Z"}
+{"level":"info","message":"🔐 Admin credentials configured:","timestamp":"2025-10-29T05:12:22.622Z"}
+{"level":"info","message":"   Email: himi50071@gmail.com","timestamp":"2025-10-29T05:12:22.622Z"}
+{"level":"info","message":"   Username: Admin","timestamp":"2025-10-29T05:12:22.622Z"}
+{"level":"info","message":"   Password: [CONFIGURED]","timestamp":"2025-10-29T05:12:22.622Z"}
+{"level":"info","message":"✅ Admin user verified: himi50071@gmail.com","timestamp":"2025-10-29T05:12:22.988Z"}
+{"level":"info","message":"✅ Database synchronized successfully","timestamp":"2025-10-29T05:12:29.047Z"}
+{"level":"info","message":"POST /login - 200 - 3062ms","timestamp":"2025-10-29T05:13:40.647Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:41.182Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:41.696Z"}
+{"level":"info","message":"GET /me - 200 - 1293ms","timestamp":"2025-10-29T05:13:41.984Z"}
+{"level":"info","message":"GET / - 200 - 1593ms","timestamp":"2025-10-29T05:13:42.275Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:42.559Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:42.560Z"}
+{"level":"info","message":"GET / - 500 - 1871ms","timestamp":"2025-10-29T05:13:42.560Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:42.843Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:43.132Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:43.419Z"}
+{"level":"info","message":"GET / - 200 - 1378ms","timestamp":"2025-10-29T05:13:43.656Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:43.684Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:43.685Z"}
+{"level":"info","message":"GET /user/2 - 200 - 1398ms","timestamp":"2025-10-29T05:13:43.686Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:43.708Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:43.708Z"}
+{"level":"info","message":"GET / - 500 - 1145ms","timestamp":"2025-10-29T05:13:43.709Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:43.937Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:43.980Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:43.983Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:43.998Z"}
+{"level":"info","message":"GET / - 200 - 557ms","timestamp":"2025-10-29T05:13:44.217Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:44.311Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:44.312Z"}
+{"level":"info","message":"GET /user/2 - 200 - 618ms","timestamp":"2025-10-29T05:13:44.313Z"}
+{"level":"info","message":"GET /user/0 - 200 - 612ms","timestamp":"2025-10-29T05:13:44.314Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:44.316Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:44.317Z"}
+{"level":"info","message":"GET / - 500 - 606ms","timestamp":"2025-10-29T05:13:44.317Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:44.499Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:44.607Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:44.609Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:44.611Z"}
+{"level":"info","message":"GET / - 200 - 555ms","timestamp":"2025-10-29T05:13:44.776Z"}
+{"level":"info","message":"GET /user/0 - 200 - 558ms","timestamp":"2025-10-29T05:13:44.883Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:44.895Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:44.896Z"}
+{"level":"info","message":"GET / - 500 - 568ms","timestamp":"2025-10-29T05:13:44.896Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:44.904Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:44.904Z"}
+{"level":"info","message":"GET /user/2 - 200 - 584ms","timestamp":"2025-10-29T05:13:44.904Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.060Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.197Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.199Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.211Z"}
+{"level":"info","message":"GET / - 200 - 560ms","timestamp":"2025-10-29T05:13:45.340Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:45.480Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:45.480Z"}
+{"level":"info","message":"GET /user/2 - 200 - 574ms","timestamp":"2025-10-29T05:13:45.481Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.489Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:45.489Z"}
+{"level":"info","message":"GET / - 500 - 584ms","timestamp":"2025-10-29T05:13:45.489Z"}
+{"level":"info","message":"GET /user/0 - 200 - 575ms","timestamp":"2025-10-29T05:13:45.489Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.617Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.765Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.772Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:45.777Z"}
+{"level":"info","message":"GET / - 200 - 549ms","timestamp":"2025-10-29T05:13:45.890Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:46.051Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:46.052Z"}
+{"level":"info","message":"GET /user/2 - 200 - 571ms","timestamp":"2025-10-29T05:13:46.053Z"}
+{"level":"info","message":"GET /user/0 - 200 - 565ms","timestamp":"2025-10-29T05:13:46.055Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.066Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:46.066Z"}
+{"level":"info","message":"GET / - 500 - 575ms","timestamp":"2025-10-29T05:13:46.066Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.172Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.340Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.344Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.356Z"}
+{"level":"info","message":"GET / - 200 - 587ms","timestamp":"2025-10-29T05:13:46.480Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:46.630Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:46.631Z"}
+{"level":"info","message":"GET /user/2 - 200 - 575ms","timestamp":"2025-10-29T05:13:46.631Z"}
+{"level":"info","message":"GET /user/0 - 200 - 574ms","timestamp":"2025-10-29T05:13:46.637Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.643Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:46.644Z"}
+{"level":"info","message":"GET / - 500 - 576ms","timestamp":"2025-10-29T05:13:46.644Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.775Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.917Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.924Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:46.937Z"}
+{"level":"info","message":"GET / - 200 - 566ms","timestamp":"2025-10-29T05:13:47.050Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:47.196Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:47.197Z"}
+{"level":"info","message":"GET /user/2 - 200 - 564ms","timestamp":"2025-10-29T05:13:47.197Z"}
+{"level":"info","message":"GET /user/0 - 200 - 568ms","timestamp":"2025-10-29T05:13:47.208Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:47.222Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:47.223Z"}
+{"level":"info","message":"GET / - 500 - 577ms","timestamp":"2025-10-29T05:13:47.223Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:47.340Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:47.483Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:47.499Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:47.511Z"}
+{"level":"info","message":"GET / - 200 - 565ms","timestamp":"2025-10-29T05:13:47.621Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:47.763Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:47.763Z"}
+{"level":"info","message":"GET /user/2 - 200 - 564ms","timestamp":"2025-10-29T05:13:47.763Z"}
+{"level":"info","message":"GET /user/0 - 200 - 572ms","timestamp":"2025-10-29T05:13:47.782Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:47.799Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:47.799Z"}
+{"level":"info","message":"GET / - 500 - 574ms","timestamp":"2025-10-29T05:13:47.799Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:47.904Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.081Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.086Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.088Z"}
+{"level":"info","message":"GET / - 200 - 556ms","timestamp":"2025-10-29T05:13:48.180Z"}
+{"level":"info","message":"GET /user/0 - 200 - 581ms","timestamp":"2025-10-29T05:13:48.365Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:48.366Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:48.366Z"}
+{"level":"info","message":"GET /user/2 - 200 - 602ms","timestamp":"2025-10-29T05:13:48.367Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.378Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:48.379Z"}
+{"level":"info","message":"GET / - 500 - 578ms","timestamp":"2025-10-29T05:13:48.379Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.462Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.651Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.665Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.673Z"}
+{"level":"info","message":"GET / - 200 - 566ms","timestamp":"2025-10-29T05:13:48.748Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:48.934Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:48.934Z"}
+{"level":"info","message":"GET /user/2 - 200 - 566ms","timestamp":"2025-10-29T05:13:48.935Z"}
+{"level":"info","message":"GET /user/0 - 200 - 571ms","timestamp":"2025-10-29T05:13:48.951Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:48.957Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:48.958Z"}
+{"level":"info","message":"GET / - 500 - 572ms","timestamp":"2025-10-29T05:13:48.958Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:49.031Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:49.222Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:49.226Z"}
+{"level":"info","message":"GET / - 200 - 568ms","timestamp":"2025-10-29T05:13:49.319Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:49.539Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:49.539Z"}
+{"level":"info","message":"GET /user/2 - 200 - 602ms","timestamp":"2025-10-29T05:13:49.540Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:49.606Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:49.821Z"}
+{"level":"info","message":"GET /user/2 - 200 - 879ms","timestamp":"2025-10-29T05:13:49.827Z"}
+{"level":"info","message":"GET / - 200 - 560ms","timestamp":"2025-10-29T05:13:49.883Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:50.101Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:50.102Z"}
+{"level":"info","message":"GET /user/2 - 200 - 559ms","timestamp":"2025-10-29T05:13:50.103Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:50.109Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:50.388Z"}
+{"level":"info","message":"GET /user/2 - 200 - 570ms","timestamp":"2025-10-29T05:13:50.401Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:50.667Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:50.667Z"}
+{"level":"info","message":"GET /user/2 - 200 - 562ms","timestamp":"2025-10-29T05:13:50.667Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:50.680Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:50.682Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:50.954Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:50.954Z"}
+{"level":"info","message":"GET / - 500 - 549ms","timestamp":"2025-10-29T05:13:50.954Z"}
+{"level":"info","message":"GET /user/2 - 200 - 556ms","timestamp":"2025-10-29T05:13:50.959Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:51.239Z"}
+{"level":"info","message":"GET /user/2 - 200 - 558ms","timestamp":"2025-10-29T05:13:51.520Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:51.801Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:52.079Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:52.080Z"}
+{"level":"info","message":"GET / - 500 - 555ms","timestamp":"2025-10-29T05:13:52.080Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:56.994Z"}
+{"level":"info","message":"GET / - 200 - 600ms","timestamp":"2025-10-29T05:13:57.273Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:57.554Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:57.557Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:57.830Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:57.830Z"}
+{"level":"info","message":"GET /user/2 - 200 - 554ms","timestamp":"2025-10-29T05:13:57.831Z"}
+{"level":"info","message":"GET / - 200 - 561ms","timestamp":"2025-10-29T05:13:57.835Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:58.120Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:58.122Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:13:58.409Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:13:58.410Z"}
+{"level":"info","message":"GET /user/2 - 200 - 563ms","timestamp":"2025-10-29T05:13:58.411Z"}
+{"level":"info","message":"GET /user/2 - 200 - 930ms","timestamp":"2025-10-29T05:13:58.774Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:59.094Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:59.096Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:59.372Z"}
+{"level":"error","timestamp":"2025-10-29T05:13:59.373Z"}
+{"level":"info","message":"GET / - 500 - 592ms","timestamp":"2025-10-29T05:13:59.373Z"}
+{"level":"info","message":"GET /user/2 - 200 - 606ms","timestamp":"2025-10-29T05:13:59.382Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:13:59.677Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:00.729Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:00.730Z"}
+{"level":"info","message":"GET / - 500 - 1335ms","timestamp":"2025-10-29T05:14:00.731Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:06.206Z"}
+{"level":"info","message":"GET / - 200 - 585ms","timestamp":"2025-10-29T05:14:06.510Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:06.798Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:14:07.155Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:14:07.155Z"}
+{"level":"info","message":"GET /user/2 - 200 - 636ms","timestamp":"2025-10-29T05:14:07.155Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:07.482Z"}
+{"level":"info","message":"GET /user/2 - 200 - 887ms","timestamp":"2025-10-29T05:14:08.046Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:08.332Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:08.611Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:08.611Z"}
+{"level":"info","message":"GET / - 500 - 559ms","timestamp":"2025-10-29T05:14:08.611Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:13.155Z"}
+{"level":"info","message":"GET / - 200 - 564ms","timestamp":"2025-10-29T05:14:13.437Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:13.786Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:14.062Z"}
+{"level":"info","message":"GET / - 200 - 912ms","timestamp":"2025-10-29T05:14:14.354Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:14:14.640Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:14:14.640Z"}
+{"level":"info","message":"GET /user/2 - 200 - 1187ms","timestamp":"2025-10-29T05:14:14.640Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:14.918Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:15.225Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:15.522Z"}
+{"level":"info","message":"GET / - 200 - 1479ms","timestamp":"2025-10-29T05:14:15.876Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:14:16.162Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:14:16.162Z"}
+{"level":"info","message":"GET /user/2 - 200 - 1520ms","timestamp":"2025-10-29T05:14:16.163Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:16.437Z"}
+{"level":"info","message":"GET /user/2 - 200 - 1912ms","timestamp":"2025-10-29T05:14:16.564Z"}
+{"level":"info","message":"GET / - 200 - 838ms","timestamp":"2025-10-29T05:14:16.720Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:16.923Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:16.927Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:17.197Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:17.197Z"}
+{"level":"info","message":"GET / - 500 - 624ms","timestamp":"2025-10-29T05:14:17.198Z"}
+{"level":"info","message":"GET /user/2 - 200 - 637ms","timestamp":"2025-10-29T05:14:17.206Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:17.491Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:17.770Z"}
+{"level":"error","timestamp":"2025-10-29T05:14:17.771Z"}
+{"level":"info","message":"GET / - 500 - 559ms","timestamp":"2025-10-29T05:14:17.771Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:26.408Z"}
+{"level":"info","message":"GET / - 200 - 553ms","timestamp":"2025-10-29T05:14:26.686Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:26.970Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:26.984Z"}
+{"level":"info","message":"GET / - 200 - 557ms","timestamp":"2025-10-29T05:14:27.247Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:14:27.260Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:14:27.260Z"}
+{"level":"info","message":"GET /user/2 - 200 - 556ms","timestamp":"2025-10-29T05:14:27.260Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:27.545Z"}
+{"level":"info","message":"GET / - 200 - 575ms","timestamp":"2025-10-29T05:14:27.824Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:28.104Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:28.106Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:28.376Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:14:28.383Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:14:28.383Z"}
+{"level":"info","message":"GET /user/2 - 200 - 552ms","timestamp":"2025-10-29T05:14:28.383Z"}
+{"level":"info","message":"GET / - 200 - 822ms","timestamp":"2025-10-29T05:14:28.650Z"}
+{"level":"info","message":"GET /user/2 - 200 - 1096ms","timestamp":"2025-10-29T05:14:28.931Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:28.933Z"}
+{"level":"info","message":"Found resumes for user:","timestamp":"2025-10-29T05:14:29.213Z"}
+{"hasParsedJson":true,"id":14,"level":"info","message":"Resume 1:","originalFileName":"Himanshu_Sharma_Resume.pdf","parsedJsonKeys":["scores","summary","generatedAt","inputContext","learningPaths","experienceGaps","additionalNotes","missingCoreSkills","atsOptimizationTips","recruiterPerspective","missingNiceToHaveSkills","hiringManagerPerspective","certificationRecommendations"],"parsedJsonType":"object","timestamp":"2025-10-29T05:14:29.214Z"}
+{"level":"info","message":"GET /user/2 - 200 - 559ms","timestamp":"2025-10-29T05:14:29.214Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:30.057Z"}
+{"level":"info","message":"GET /eligibility - 200 - 1101ms","timestamp":"2025-10-29T05:14:30.884Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:31.167Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:31.339Z"}
+{"level":"info","message":"GET /history - 200 - 670ms","timestamp":"2025-10-29T05:14:31.663Z"}
+{"level":"info","message":"GET /eligibility - 200 - 859ms","timestamp":"2025-10-29T05:14:31.746Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:32.188Z"}
+{"level":"info","message":"GET /history - 200 - 660ms","timestamp":"2025-10-29T05:14:32.515Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:33.120Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:33.134Z"}
+{"level":"info","message":"GET /user/2 - 200 - 552ms","timestamp":"2025-10-29T05:14:33.399Z"}
+{"level":"info","message":"GET / - 200 - 570ms","timestamp":"2025-10-29T05:14:33.421Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:33.762Z"}
+{"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:33.764Z"}
+{"level":"info","message":"GET /user/2 - 200 - 687ms","timestamp":"2025-10-29T05:14:34.094Z"}
+{"level":"info","message":"GET / - 200 - 673ms","timestamp":"2025-10-29T05:14:34.096Z"}

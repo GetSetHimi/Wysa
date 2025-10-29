@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import winston from 'winston';
+import { trackUserActivity } from '../Services/userActivityService';
 
 type JwtPayload = {
   id: number;
@@ -26,7 +27,10 @@ export async function requireAuth(req: Request, res: Response, next: NextFunctio
     const decoded = jwt.verify(token, secret) as JwtPayload;
 
     req.user = { id: decoded.id, email: decoded.email };
-    return next();
+    
+    // Track user activity after successful authentication
+    await trackUserActivity(req, res, next);
+    return;
   } catch (err) {
     winston.warn('JWT verification failed', err);
     return res.status(401).json({ success: false, message: 'Invalid or expired token' });

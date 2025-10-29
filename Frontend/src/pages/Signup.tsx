@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react'
@@ -12,8 +12,29 @@ export const Signup: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const { signup } = useAuth()
+  const { signup, token, user, loading: authLoading } = useAuth()
   const navigate = useNavigate()
+
+  // Redirect if user is already authenticated
+  useEffect(() => {
+    if (!authLoading && (token || user)) {
+      navigate('/app/dashboard', { replace: true })
+    }
+  }, [token, user, authLoading, navigate])
+
+  // Show loading spinner while checking authentication
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+
+  // Don't render signup form if user is authenticated
+  if (token || user) {
+    return null
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()

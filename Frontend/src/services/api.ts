@@ -2,6 +2,15 @@ import axios from 'axios'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://wysa-adw7.onrender.com'
 
+// Debug: log the resolved API base URL once (helps diagnose Network Error in prod)
+if (typeof window !== 'undefined') {
+  // Only log in development or if explicitly enabled via env
+  const shouldLog = import.meta.env.DEV || import.meta.env.VITE_LOG_API_BASE === 'true'
+  if (shouldLog) {
+    console.info('[api] Base URL:', API_BASE_URL)
+  }
+}
+
 export const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
