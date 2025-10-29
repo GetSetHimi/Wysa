@@ -1257,3 +1257,4 @@
 {"level":"debug","message":"User activity tracked for user 2","timestamp":"2025-10-29T05:14:33.764Z"}
 {"level":"info","message":"GET /user/2 - 200 - 687ms","timestamp":"2025-10-29T05:14:34.094Z"}
 {"level":"info","message":"GET / - 200 - 673ms","timestamp":"2025-10-29T05:14:34.096Z"}
+{"level":"info","message":"📞 Checking for interview reminders...","timestamp":"2025-10-29T05:30:00.010Z"}
